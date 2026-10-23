@@ -13,6 +13,8 @@ const block = (start, end) => source.slice(source.indexOf(start), source.indexOf
 function fixture() {
   const classes = new Set(), nodes = new Map(), scrollListeners = [], cancelled = [], cards = [], shared = [];
   const element = () => ({ hidden: false, textContent: '', children: [], handlers: {},
+    setAttribute(name, value) { this[name] = value; }, removeAttribute(name) { delete this[name]; },
+    focus() { if (!this.disabled) this.focused = true; },
     addEventListener(name, callback) { (this.handlers[name] ||= []).push(callback); },
     appendChild(child) { this.children.push(child); }, replaceChildren() { this.children = []; },
     getBoundingClientRect() { return { top: 100 }; }, scrollIntoView() {},
@@ -32,13 +34,14 @@ function fixture() {
     refreshUISources() {}, animateComposer() {}, setUrl() {}, rebuildMessages() { $('#end-card').hidden = true; },
     journeyFlow: { reset() {} }, share: () => shared.push('share'), downloadSticker() {},
     saveJourneyCard: async options => { cards.push(options); return { method: 'download' }; },
+    requestSelfie: async () => ({ cancelled: false }),
     trackEvent() {}, toast() {}, persistJourney: async () => true,
-    BRAND: { shortSpeaker: '川伯' },
+    BRAND: { shortSpeaker: '川伯', visitor: '新北事民．關心新北事' },
   });
   vm.runInContext(`
     var height=844,runwayHeight=0,totalMessageHeight=4800,sentCount=3,desiredSentCount=3;
     var sendTimer=42,sendDueAt=100,forceSend=true,followNextMessage=true,composerTimer=99;
-    var needsLayout=false,uiDirty=false,currentIndex=2,completed=false,completionTracked=false,endActionsBound=false;
+    var needsLayout=false,uiDirty=false,currentIndex=2,completed=false,completionTracked=false,endActionsBound=false,cardExportPending=false;
     var type,renderer,scene,lastSentAt=0,scrollVelocity=0,lastDownAt=0,scriptVersion=2,seed='00112233445566778899aabbccddeeff';
     var conversation=createConversation(seed,scriptVersion),scrollRoot={style:{}};
     var messages=Array.from({length:48},(_,index)=>({index,bottomOffset:(index+1)*100,slot:{hidden:index>=3},actions:[]}));
@@ -61,6 +64,38 @@ test('reading mode cancels pending delivery and exposes the ending before animat
   vm.runInContext('setReadingMode(false);', setup.context);
   assert.equal(vm.runInContext('sentCount', setup.context), 48);
   assert.equal(setup.$('#end-card').hidden, false);
+});
+
+test('card download waits for selfie choice, ignores repeated taps, and passes only the approved canvas', async () => {
+  const setup = fixture();
+  let decide;
+  setup.context.requestSelfie = () => new Promise(resolve => { decide = resolve; });
+  const pending = vm.runInContext('downloadJourney()', setup.context);
+  await vm.runInContext('downloadJourney()', setup.context);
+  assert.equal(setup.cards.length, 0);
+  assert.equal(setup.$('#download').disabled, true);
+  const canvas = { width: 720, height: 720 };
+  decide({ cancelled: false, canvas });
+  await pending;
+  assert.equal(setup.cards.length, 1);
+  assert.equal(setup.cards[0].selfieCanvas, canvas);
+  assert.equal(setup.$('#download').disabled, false);
+});
+
+test('cancelled selfie or a replaced journey cannot export a stale card', async () => {
+  const setup = fixture();
+  setup.context.requestSelfie = async () => ({ cancelled: true });
+  await vm.runInContext('downloadJourney()', setup.context);
+  assert.equal(setup.cards.length, 0);
+  assert.equal(setup.$('#download').focused, true);
+  let decide;
+  setup.context.requestSelfie = () => new Promise(resolve => { decide = resolve; });
+  const pending = vm.runInContext('downloadJourney()', setup.context);
+  vm.runInContext('restartJourney()', setup.context);
+  decide({ cancelled: false });
+  await pending;
+  assert.equal(setup.cards.length, 0);
+  assert.equal(setup.$('#download').disabled, false);
 });
 
 test('text-only startup keeps share, card export, and restart actions working without WebGL', async () => {

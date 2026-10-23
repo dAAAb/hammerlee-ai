@@ -1,0 +1,74 @@
+.selfie-dialog {
+  box-sizing: border-box;
+  width: min(94vw, 480px);
+  max-width: calc(100vw - 16px);
+  max-height: min(94dvh, 900px);
+  padding: 22px;
+  border: 1px solid #a9bca3;
+  border-radius: 24px;
+  color: #233e39;
+  background: #fbfaf1;
+  overflow-y: auto;
+  overscroll-behavior: contain;
+  z-index: 60;
+}
+.selfie-dialog::backdrop { background: #173e32b8; backdrop-filter: blur(4px); }
+.selfie-dialog [hidden] { display: none!important; }
+.selfie-heading { display: flex; align-items: center; gap: 12px; justify-content: space-between; }
+.selfie-dialog h2 { margin: 0; font-size: 24px; line-height: 1.4; }
+.selfie-dialog p { margin: 12px 0; font-size: 16px; line-height: 1.65; color: #4d6654; }
+.selfie-dialog .selfie-cancel {
+  flex-shrink: 0;
+  min-width: 56px;
+  min-height: 48px;
+  padding: 8px;
+  border: 1px solid #a9bca3;
+  border-radius: 12px;
+  background: #fffef4;
+  font: inherit;
+  font-size: 16px;
+  color: #294d3c;
+}
+.selfie-preview {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(100%, 330px, 38dvh);
+  aspect-ratio: 1;
+  margin: 16px auto;
+  border: 2px solid #a4b99b;
+  border-radius: 24px;
+  overflow: hidden;
+  background: #e8eddd;
+}
+.selfie-video, .selfie-photo { display: block; width: 100%; height: 100%; object-fit: cover; }
+.selfie-video { transform: scaleX(-1); }
+.selfie-placeholder { padding: 16px; text-align: center; }
+.selfie-placeholder>span { color: #3f7860; font-size: 54px; line-height: 1; }
+.selfie-dialog .selfie-placeholder p { margin-bottom: 0; font-size: 16px; }
+.selfie-dialog .selfie-status { min-height: 3.3em; margin: 14px 0; }
+.selfie-actions { display: grid; gap: 10px; }
+.selfie-actions button {
+  width: 100%;
+  min-height: 52px;
+  padding: 12px 14px;
+  border: 1px solid #41674d;
+  border-radius: 14px;
+  font: inherit;
+  font-size: 18px;
+  line-height: 1.45;
+  cursor: pointer;
+}
+.selfie-primary { color: #fffdf0; background: #30644f; box-shadow: 3px 3px 0 #c4d1af; }
+.selfie-secondary { color: #294d3c; background: #fffef4; }
+.selfie-actions button:disabled { cursor: default; opacity: .65; box-shadow: none; }
+.selfie-dialog button:focus-visible { outline: 3px solid #df743d; outline-offset: 3px; }
+@media(max-width:360px) {
+  .selfie-dialog { padding: 18px 14px; }
+  .selfie-dialog h2 { font-size: 22px; }
+  .selfie-heading { gap: 8px; }
+}
+@media(max-height:600px) {
+  .selfie-dialog { padding-top: 16px; padding-bottom: 16px; }
+  .selfie-preview { width: min(100%, 230px, 34dvh); margin: 12px auto; }
+}

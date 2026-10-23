@@ -49,6 +49,18 @@ test('homepage is indexable only on the primary hostname and has canonical and s
   assert.equal(preview.headers.get('X-Robots-Tag'), 'noindex, follow');
 });
 
+test('homepage and replay permit same-origin camera access while blocking microphone and geolocation', async () => {
+  const worker = createWorker({ assets });
+  for (const pathname of ['/', `/?s=${seed}&v=2`]) {
+    const result = await worker.fetch(createRequest(pathname));
+    assert.equal(result.status, 200);
+    const policy = new Map(result.headers.get('Permissions-Policy').split(',').map(directive => directive.trim().split('=')));
+    assert.equal(policy.get('camera'), '(self)', 'optional selfies must remain available only to the document origin');
+    assert.equal(policy.get('microphone'), '()');
+    assert.equal(policy.get('geolocation'), '()');
+  }
+});
+
 test('shared pages expose seed-specific metadata but canonicalise and noindex the parameterised page', async () => {
   const worker = createWorker({ assets });
   const result = await worker.fetch(createRequest(`/?s=${seed}&v=2`));

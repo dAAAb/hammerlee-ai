@@ -1,10 +1,12 @@
 import * as THREE from 'three';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import './style.css';
+import './selfie.css';
 import { MeshType, disposeGroup } from './text3d.js';
 import { createWorker, createSticker, createBadge } from './models.js';
 import { TOPICS, VERSION, createConversation, newSeed } from './conversation.js';
 import { saveJourneyCard, shareJourney } from './export.js';
+import { requestSelfie } from './selfie.js';
 import { BRAND } from './branding.js';
 import photos from './photos.json';
 import { createExperienceControls } from './experience-controls.js';
@@ -33,6 +35,7 @@ const badgeScene = new THREE.Scene();
 const journeyFlow = createJourneyFlow({ conversation, save: saveJourney, share: shareJourney, onSaveState: updateCloudStatus });
 let endActionsBound = false;
 let completionTracked = false;
+let cardExportPending = false;
 let sentCount = 0, sendTimer = null, forceSend = false;
 let desiredSentCount = 0, sendDueAt = 0, queuedAt = 0, lastSentAt = -Infinity, followNextMessage = false;
 let scrollVelocity = 0, lastScrollAt = performance.now(), lastDownAt = -Infinity, lastInputAt = -Infinity;
@@ -173,7 +176,7 @@ function buildMessage(info) {
     const text = type.text(m.text, messageLayout.systemSize, '#4d6654', { maxWidth: info.shellWidth - 48, lineHeight: messageLayout.systemLineHeight });
     text.position.set((info.shellWidth - text.userData.width) / 2, -28, 2); group.add(text); return group;
   }
-  const label = type.text(isUser ? '你 · 示範回覆' : BRAND.shortSpeaker, messageLayout.labelSize, '#4d6654');
+  const label = type.text(isUser ? BRAND.visitor : BRAND.shortSpeaker, messageLayout.labelSize, '#4d6654');
   label.position.set(isUser ? x + w - label.userData.width : x, -18, 1); group.add(label);
   const bubble = new THREE.Group(); bubble.position.set(x, -messageLayout.bubbleTop, 0); bubble.rotation.x = inspecting ? .21 : .055; bubble.rotation.y = inspecting ? -.27 : -.055;
   const shadow = panel(w, h, '#cad5bb', 2); shadow.position.set(4, -6, -4); bubble.add(shadow);
@@ -243,7 +246,7 @@ function rebuildMessages() {
   $('#progress-fill').style.width = `${(currentIndex + 1) / messages.length * 100}%`;
   $('#journey-id').textContent = `CITY / ${seed.match(/.{8}/g).join(' · ').toUpperCase()}`;
   const transcript = $('#transcript'); transcript.replaceChildren();
-  displayEntries().forEach(({message:m}) => { const article = document.createElement('article'); article.className = `transcript-message ${m.role}`; const name = document.createElement('strong'); name.textContent = m.role === 'visitor' ? '你（示範回覆）：' : m.role === 'system' ? '展示說明：' : BRAND.shortSpeaker+'：'; article.append(name, document.createTextNode(m.text)); transcript.appendChild(article); });
+  displayEntries().forEach(({message:m}) => { const article = document.createElement('article'); article.className = `transcript-message ${m.role}`; const name = document.createElement('strong'); name.textContent = m.role === 'visitor' ? BRAND.visitor+'：' : m.role === 'system' ? '展示說明：' : BRAND.shortSpeaker+'：'; article.append(name, document.createTextNode(m.text)); transcript.appendChild(article); });
   $('#topics').replaceChildren();
   conversation.topicOrder.forEach((id, i) => { const topic = TOPICS.find(t => t.id === id); const button = document.createElement('button'); const n = document.createElement('span'); n.textContent = String(i + 1).padStart(2, '0'); button.append(n, document.createTextNode(topic.title)); button.dataset.topic = id; button.addEventListener('click', () => {const target=messages.find(m=>m.message.topic===id);if(target){revealThrough(target.index);target.slot.scrollIntoView({behavior:reduced?'instant':'smooth',block:'center'});}}); $('#topics').appendChild(button); });
   if (badge) disposeGroup(badge); badge = createBadge(seed); badgeScene.add(badge);
@@ -442,7 +445,7 @@ function renderTextTranscript() {
   const transcript = $('#transcript'); transcript.replaceChildren();
   for (const { message } of displayEntries()) {
     const article = document.createElement('article'); article.className = `transcript-message ${message.role}`;
-    article.textContent = `${message.role === 'visitor' ? '你（示範回覆）' : message.role === 'system' ? '展示說明' : BRAND.shortSpeaker}：${message.text}`;
+    article.textContent = `${message.role === 'visitor' ? BRAND.visitor : message.role === 'system' ? '展示說明' : BRAND.shortSpeaker}：${message.text}`;
     transcript.appendChild(article);
   }
 }
@@ -458,18 +461,28 @@ function restartJourney() {
 }
 
 async function downloadJourney() {
+  if (cardExportPending) return;
+  cardExportPending = true;
+  const button = $('#download');
+  button.disabled = true; button.setAttribute('aria-busy', 'true');
   const current = conversation;
   try {
+    const selfie = await requestSelfie();
+    if (selfie.cancelled || current !== conversation) return;
     let badgeCanvas;
     if (renderer && !renderer.getContext().isContextLost()) {
       const model = createBadge(current.seed);
       try { badgeCanvas = snapshotModel(model); } catch { /* Text cards remain available when WebGL export fails. */ }
       finally { disposeGroup(model); }
     }
-    const result = await saveJourneyCard({ conversation: current, badgeCanvas });
+    const result = await saveJourneyCard({ conversation: current, badgeCanvas, selfieCanvas: selfie.canvas });
     if (result.method === 'download' || result.method === 'native') trackEvent('download');
-    if (result.method === 'download') toast('對話紀念卡已產生，請查看下載項目。');
+    if (result.method === 'download') toast('新北事民卡已產生，請查看下載項目。');
   } catch (error) { console.error(error); toast('圖卡下載失敗，請再試一次。'); }
+  finally {
+    cardExportPending = false; button.disabled = false; button.removeAttribute('aria-busy');
+    if (current === conversation && !document.hidden) button.focus?.({ preventScroll: true });
+  }
 }
 
 function bindEndActions() {

@@ -9,7 +9,7 @@ const MAX_IMAGE_BYTES = 2_097_152;
 const COMMON_HEADERS = {
   'X-Content-Type-Options': 'nosniff',
   'Referrer-Policy': 'strict-origin-when-cross-origin',
-  'Permissions-Policy': 'camera=(), microphone=(), geolocation=(), accelerometer=(self), gyroscope=(self)',
+  'Permissions-Policy': 'camera=(self), microphone=(), geolocation=(), accelerometer=(self), gyroscope=(self)',
 };
 
 class PayloadLimitError extends Error {}

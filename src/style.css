@@ -113,3 +113,11 @@ dialog p { font-size: 16px; line-height: 1.8; color: var(--secondary-ink); }
   .composer-bottom>span:nth-child(2) { display: none; }
   #info-dialog { padding: 24px 20px; }
 }
+
+/* Keep the compact header and the optional-photo note readable on phones. */
+.chat-header { min-height: 92px; }
+.chat-header h2.speaker-name { margin-bottom: 0; }
+.card-download { width: 100%; }
+.card-download #download { width: 100%; }
+.card-download #selfie-hint { margin: 8px 0 0; color: var(--secondary-ink); }
+#download:disabled { cursor: wait; opacity: .65; }

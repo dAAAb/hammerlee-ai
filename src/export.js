@@ -1,5 +1,6 @@
 import { TOPICS, normalizeSeed } from './conversation.js';
 import { BRAND } from './branding.js';
+import { paintJourneyQr, canonicalJourneyUrl } from './journey-qr.js';
 
 const FONT = '"PingFang TC", "Noto Sans TC", "Microsoft JhengHei", system-ui, sans-serif';
 const COLORS = { paper: '#f6f3e9', ink: '#174d49', muted: '#637c74', mint: '#d8e9cf', white: '#fffef8' };
@@ -46,7 +47,8 @@ function paintText(context, text, x, y, maximumWidth, { size = 32, lineHeight = 
 }
 
 function hasCanvasImage(source) {
-  return source && Number(source.width) > 0 && Number(source.height) > 0;
+  return source && Number.isFinite(Number(source.width)) && Number(source.width) > 0
+    && Number.isFinite(Number(source.height)) && Number(source.height) > 0;
 }
 
 function paintContainedImage(context, source, x, y, width, height) {
@@ -56,24 +58,33 @@ function paintContainedImage(context, source, x, y, width, height) {
   context.drawImage(source, x + (width - imageWidth) / 2, y + (height - imageHeight) / 2, imageWidth, imageHeight);
 }
 
-function paintBubble(context, message, y) {
+function measureBubble(context, message, size) {
+  const width = message.role === 'visitor' ? 980 : 1060;
+  context.font = `600 ${size}px ${FONT}`;
+  const lines = wrapText(context, message.text, width - 60);
+  const lineHeight = Math.round(size * 1.46);
+  const height = lines.length * lineHeight + 42;
+  return { width, size, lineHeight, lines, height, totalHeight: height + 61 };
+}
+
+function paintBubble(context, message, y, layout) {
   const isVisitor = message.role === 'visitor';
-  const x = isVisitor ? 245 : 70;
-  const width = isVisitor ? 885 : 930;
-  paintText(context, isVisitor ? '你 · 示範回覆' : BRAND.speaker, x + 8, y, width, {
+  const { width, size, lineHeight, lines, height, totalHeight } = layout;
+  const x = isVisitor ? 150 : 70;
+  paintText(context, isVisitor ? (BRAND.visitor || '新北事民．關心新北事') : BRAND.speaker, x + 8, y, width, {
     size: 24, lineHeight: 30, color: COLORS.muted,
   });
-  context.font = `600 35px ${FONT}`;
-  const lines = wrapText(context, message.text, width - 64);
-  const height = lines.length * 51 + 54;
   context.fillStyle = '#d4d9c8';
-  roundRect(context, x, y + 43, width, height, 29);
+  roundRect(context, x, y + 42, width, height, 29);
   context.fill();
   context.fillStyle = isVisitor ? COLORS.mint : COLORS.white;
   roundRect(context, x, y + 35, width, height, 29);
   context.fill();
-  paintText(context, message.text, x + 32, y + 63, width - 64, { size: 35, lineHeight: 51, weight: 600 });
-  return y + height + 61;
+  context.font = `600 ${size}px ${FONT}`;
+  context.fillStyle = COLORS.ink;
+  context.textBaseline = 'top';
+  lines.forEach((line, index) => context.fillText(line, x + 30, y + 56 + index * lineHeight));
+  return y + totalHeight;
 }
 
 function selectExcerpts(conversation) {
@@ -83,7 +94,43 @@ function selectExcerpts(conversation) {
   return (topical.length >= 3 ? topical : dialogue).slice(0, 3);
 }
 
-function renderCard({ conversation, badgeCanvas, sceneCanvas }, includeImages = true) {
+function paintBadge(context, badgeCanvas, x, y, radius) {
+  context.save();
+  context.fillStyle = COLORS.white;
+  context.beginPath(); context.arc(x, y, radius + 5, 0, Math.PI * 2); context.fill();
+  context.beginPath(); context.arc(x, y, radius, 0, Math.PI * 2); context.clip();
+  if (hasCanvasImage(badgeCanvas)) {
+    paintContainedImage(context, badgeCanvas, x - radius, y - radius, radius * 2, radius * 2);
+  } else {
+    context.fillStyle = '#b99e6b'; context.fillRect(x - radius, y - radius, radius * 2, radius * 2);
+    context.strokeStyle = '#fff6d8'; context.lineWidth = 3;
+    context.beginPath(); context.arc(x, y, radius * .77, 0, Math.PI * 2); context.stroke();
+    const size = Math.round(radius * .32);
+    paintText(context, '新北', x - size, y - size * 1.1, radius * 2, { size, lineHeight: size, color: COLORS.white, weight: 700 });
+    paintText(context, '事民', x - size, y + size * .15, radius * 2, { size, lineHeight: size, color: COLORS.white, weight: 700 });
+  }
+  context.restore();
+}
+
+function paintPortrait(context, selfieCanvas, badgeCanvas) {
+  // The whole portrait column starts after the header text, including its badge.
+  context.save();
+  context.shadowColor = '#174d4926'; context.shadowBlur = 18; context.shadowOffsetY = 8;
+  context.fillStyle = COLORS.white; roundRect(context, 876, 64, 254, 286, 29); context.fill();
+  context.shadowColor = 'transparent'; context.shadowBlur = 0; context.shadowOffsetY = 0;
+  context.save(); roundRect(context, 886, 74, 234, 240, 22); context.clip();
+  const ratio = Math.max(234 / selfieCanvas.width, 240 / selfieCanvas.height);
+  const drawWidth = selfieCanvas.width * ratio, drawHeight = selfieCanvas.height * ratio;
+  context.drawImage(selfieCanvas, 886 + (234 - drawWidth) / 2, 74 + (240 - drawHeight) / 2, drawWidth, drawHeight);
+  context.restore();
+  paintText(context, '我的城市日常', 943, 322, 185, { size: 20, lineHeight: 25, weight: 600 });
+  context.restore();
+  paintBadge(context, badgeCanvas, 866, 328, 58);
+}
+
+/** Memory-only Canvas2D export; media and the QR never leave this browser. */
+export function renderJourneyCard({ conversation, badgeCanvas, sceneCanvas, selfieCanvas }, includeImages = true) {
+  validateConversation(conversation);
   const canvas = document.createElement('canvas');
   canvas.width = 1200;
   canvas.height = 1600;
@@ -97,45 +144,37 @@ function renderCard({ conversation, badgeCanvas, sceneCanvas }, includeImages = 
   context.arc(1130, 105, 260, 0, Math.PI * 2);
   context.fill();
 
-  paintText(context, 'HAMMER LEE  /  3D 對話紀念卡', 70, 70, 800, { size: 26, weight: 700 });
-  paintText(context, BRAND.title, 70, 135, 820, { size: 76, lineHeight: 91, weight: 800 });
-  paintText(context, BRAND.speaker, 70, 232, 800, { size: 31, lineHeight: 41, weight: 700 });
-  paintText(context, BRAND.subtitle, 70, 280, 800, { size: 27, lineHeight: 36, color: COLORS.muted });
+  paintText(context, '3D 新北事民卡', 70, 64, 720, { size: 48, lineHeight: 60, weight: 800 });
+  paintText(context, BRAND.title, 70, 145, 720, { size: 76, lineHeight: 91, weight: 800 });
+  paintText(context, BRAND.speaker, 72, 252, 715, { size: 28, lineHeight: 39, weight: 700 });
+  paintText(context, BRAND.visitor || '新北事民．關心新北事', 72, 314, 715, { size: 28, lineHeight: 39, color: COLORS.muted });
+  paintText(context, 'HAMMER LEE  /  城市日常收藏', 72, 366, 715, { size: 21, lineHeight: 28, color: COLORS.muted });
 
-  if (includeImages && hasCanvasImage(badgeCanvas)) {
-    context.save();
-    context.beginPath();
-    context.arc(1001, 175, 116, 0, Math.PI * 2);
-    context.clip();
-    paintContainedImage(context, badgeCanvas, 885, 59, 232, 232);
-    context.restore();
+  if (includeImages && hasCanvasImage(selfieCanvas)) {
+    paintPortrait(context, selfieCanvas, includeImages ? badgeCanvas : null);
   } else {
-    context.fillStyle = '#c2aa80';
-    context.beginPath();
-    context.arc(1001, 175, 76, 0, Math.PI * 2);
-    context.fill();
-    context.strokeStyle = COLORS.white;
-    context.lineWidth = 5;
-    context.beginPath();
-    context.arc(1001, 175, 62, 0, Math.PI * 2);
-    context.stroke();
-    paintText(context, '城市', 957, 135, 160, { size: 38, weight: 800, color: COLORS.white });
-    paintText(context, '探索', 957, 183, 160, { size: 38, weight: 800, color: COLORS.white });
+    paintBadge(context, includeImages ? badgeCanvas : null, 1000, 203, 112);
+    paintText(context, BRAND.badgeAlias, 916, 338, 220, { size: 24, lineHeight: 30, weight: 700 });
   }
-  paintText(context, BRAND.badgeAlias, 912, 300, 220, { size: 24, lineHeight: 30, weight: 700 });
 
   const firstTopic = TOPICS.find(({ id }) => id === conversation.topicOrder?.[0]);
   const topicTitle = firstTopic?.title || '城市生活';
   context.fillStyle = COLORS.ink;
-  roundRect(context, 70, 339, 1060, 69, 25);
+  roundRect(context, 70, 416, 1060, 64, 24);
   context.fill();
-  paintText(context, `這次，從「${topicTitle}」聊起`, 98, 356, 1000, { size: 30, color: COLORS.white, weight: 600 });
+  paintText(context, `這次，從「${topicTitle}」聊起`, 98, 431, 1000, { size: 30, color: COLORS.white, weight: 600 });
 
-  let bottom = 449;
-  for (const message of selectExcerpts(conversation)) bottom = paintBubble(context, message, bottom);
+  const excerpts = selectExcerpts(conversation);
+  let layouts;
+  for (let size = 34; size >= 26; size--) {
+    layouts = excerpts.map(message => measureBubble(context, message, size));
+    if (layouts.reduce((total, item) => total + item.totalHeight, 0) <= 710) break;
+  }
+  let bottom = 511;
+  excerpts.forEach((message, index) => { bottom = paintBubble(context, message, bottom, layouts[index]); });
 
-  const previewY = Math.max(1060, bottom + 5);
-  const previewHeight = Math.max(0, 1295 - previewY);
+  const previewY = Math.max(bottom + 10, 1100);
+  const previewHeight = Math.min(120, 1220 - previewY);
   if (includeImages && hasCanvasImage(sceneCanvas) && previewHeight > 80) {
     context.save();
     roundRect(context, 70, previewY, 1060, previewHeight, 25);
@@ -144,28 +183,34 @@ function renderCard({ conversation, badgeCanvas, sceneCanvas }, includeImages = 
     context.fillRect(70, previewY, 1060, previewHeight);
     paintContainedImage(context, sceneCanvas, 70, previewY, 1060, previewHeight);
     context.restore();
-  } else {
+  } else if (previewHeight > 80) {
     context.fillStyle = '#e3e9d8';
-    roundRect(context, 70, 1110, 1060, 141, 25);
+    roundRect(context, 70, previewY, 1060, previewHeight, 25);
     context.fill();
-    paintText(context, '8 個生活話題 · 一段預寫對話', 103, 1138, 990, { size: 32, weight: 700 });
-    paintText(context, '捲一捲，看看這座城市裡的日常小事。', 103, 1188, 990, { size: 27, color: COLORS.muted });
+    paintText(context, '8 個生活話題 · 收藏這段城市日常', 100, previewY + 22, 990, { size: 28, lineHeight: 38, weight: 700 });
+    if (previewHeight > 106) paintText(context, '掃描右下角，和朋友重看同一段對話。', 100, previewY + 66, 990, { size: 24, lineHeight: 32, color: COLORS.muted });
   }
 
-  paintText(context, BRAND.subtitle, 70, 1315, 1060, {
-    size: 26, lineHeight: 38, weight: 600,
+  context.fillStyle = '#d4ddce'; context.fillRect(70, 1246, 1060, 2);
+  paintText(context, '邀請你，來「川伯，聊聊」。', 70, 1274, 765, {
+    size: 33, lineHeight: 43, weight: 700,
   });
-  paintText(context, BRAND.disclosure, 70, 1353, 1060, {
-    size: 24, lineHeight: 34, color: COLORS.muted,
+  paintText(context, BRAND.subtitle, 70, 1334, 765, {
+    size: 24, lineHeight: 34, weight: 600,
   });
-  paintText(context, '「你」的示範回覆不代表你的意見。', 70, 1392, 1060, {
-    size: 24, lineHeight: 34, color: COLORS.muted,
+  paintText(context, BRAND.disclosure, 70, 1376, 765, {
+    size: 22, lineHeight: 32, color: COLORS.muted,
   });
-  paintText(context, '展示編號', 70, 1438, 1060, { size: 22, color: COLORS.muted });
-  context.font = '500 26px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
+  paintText(context, '「新北事民」的回覆是示範腳本，不代表你的意見。', 70, 1451, 765, {
+    size: 22, lineHeight: 32, color: COLORS.muted,
+  });
+  paintText(context, `事民卡編號 · V${conversation.version}`, 70, 1499, 765, { size: 20, lineHeight: 26, color: COLORS.muted });
+  context.font = '500 22px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace';
   context.fillStyle = COLORS.ink;
-  context.fillText(conversation.seed, 70, 1475);
-  paintText(context, '邀請你，來「川伯，聊聊」看看未來新北。', 70, 1530, 1060, { size: 30, weight: 700 });
+  context.fillText(normalizeSeed(conversation.seed), 70, 1533);
+  paintJourneyQr(context, conversation, { x: 900, y: 1274, size: 230 });
+  paintText(context, '掃描重看同一段對話', 920, 1508, 220, { size: 20, lineHeight: 26, weight: 500 });
+  paintText(context, 'hammerlee.ai', 932, 1540, 220, { size: 25, lineHeight: 30, weight: 700 });
   return canvas;
 }
 
@@ -183,6 +228,7 @@ function validateConversation(conversation) {
   if (!conversation || !normalizeSeed(conversation.seed) || !Array.isArray(conversation.messages)) {
     throw new TypeError('A conversation with a valid seed and messages is required.');
   }
+  canonicalJourneyUrl(conversation);
 }
 
 /**
@@ -190,9 +236,9 @@ function validateConversation(conversation) {
  * uses Canvas2D text; the interactive scene continues to use real 3D geometry.
  * Touch devices can use their native file sheet to save the PNG to Files/Photos.
  */
-export async function saveJourneyCard({ conversation, badgeCanvas, sceneCanvas }) {
+export async function saveJourneyCard({ conversation, badgeCanvas, sceneCanvas, selfieCanvas }) {
   validateConversation(conversation);
-  let canvas = renderCard({ conversation, badgeCanvas, sceneCanvas });
+  let canvas = renderJourneyCard({ conversation, badgeCanvas, sceneCanvas, selfieCanvas });
   let omittedMedia = false;
   let blob;
   try {
@@ -200,14 +246,14 @@ export async function saveJourneyCard({ conversation, badgeCanvas, sceneCanvas }
   } catch (error) {
     if (error.name !== 'SecurityError') throw error;
     // A third-party source could taint a canvas; text and seed remain exportable.
-    canvas = renderCard({ conversation }, false);
+    canvas = renderJourneyCard({ conversation }, false);
     blob = await canvasBlob(canvas);
     omittedMedia = true;
   }
 
-  const filename = `city-chat-${conversation.seed}.png`;
+  const filename = `new-taipei-citizen-card-v${conversation.version}-${normalizeSeed(conversation.seed)}.png`;
   const file = typeof File === 'function' ? new File([blob], filename, { type: 'image/png' }) : null;
-  const shareFiles = file ? { files: [file], title: `${BRAND.title}｜對話紀念卡` } : null;
+  const shareFiles = file ? { files: [file], title: '3D 新北事民卡｜川伯，聊聊' } : null;
   if (globalThis.navigator?.maxTouchPoints > 0 && navigator.share && navigator.canShare && shareFiles && navigator.canShare({ files: [file] })) {
     try {
       await navigator.share(shareFiles);

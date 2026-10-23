@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import fs from 'node:fs';
 import * as THREE from 'three';
 import { MeshType } from '../src/text3d.js';
+import { BRAND } from '../src/branding.js';
 
 const data = JSON.parse(fs.readFileSync(new URL('../public/assets/glyphs.json', import.meta.url), 'utf8'));
 
@@ -91,6 +92,7 @@ test('geometry caching remains stable after contour assignment', () => {
 test('published brand and photo captions have every Chinese glyph before deployment', () => {
   const files = ['../index.html', '../src/branding.js', '../src/photos.json'];
   const required = new Set(files.flatMap(file => fs.readFileSync(new URL(file, import.meta.url), 'utf8').match(/\p{Script=Han}/gu) || []));
+  for (const char of BRAND.visitor) required.add(char);
   const missing = [...required].filter(char => !data.glyphs[char]);
   assert.deepEqual(missing, [], 'Run npm run font after changing visible copy.');
 });
