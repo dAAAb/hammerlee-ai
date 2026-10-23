@@ -94,7 +94,7 @@ export async function requestSelfie() {
     dialog.setAttribute('aria-describedby', `${id}-privacy`);
     dialog.innerHTML = `
       <div class="selfie-heading"><h2 id="${id}-title">新北事民卡，加張自拍</h2><button type="button" class="selfie-cancel" aria-label="取消製作新北事民卡">取消</button></div>
-      <p id="${id}-privacy" class="selfie-privacy">自拍是自由選擇。照片只在你的裝置上合成，不會上傳到網站。</p>
+      <p id="${id}-privacy" class="selfie-privacy">自拍只在本機製卡，不會上傳到網站或出現在分享連結。若自行分享圖卡，收件者可看到自拍。</p>
       <div class="selfie-preview" aria-label="正方形自拍預覽">
         <div class="selfie-placeholder"><span aria-hidden="true">☺</span><p>想留張照片，就開啟相機。<br>不拍照也可以繼續。</p></div>
         <video class="selfie-video" muted autoplay playsinline hidden aria-label="鏡像自拍即時畫面"></video>

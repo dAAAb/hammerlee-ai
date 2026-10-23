@@ -80,6 +80,8 @@ test('card download waits for selfie choice, ignores repeated taps, and passes o
   await pending;
   assert.equal(setup.cards.length, 1);
   assert.equal(setup.cards[0].selfieCanvas, canvas);
+  assert.equal(canvas.width, 0);
+  assert.equal(canvas.height, 0);
   assert.equal(setup.$('#download').disabled, false);
 });
 
@@ -93,10 +95,31 @@ test('cancelled selfie or a replaced journey cannot export a stale card', async 
   setup.context.requestSelfie = () => new Promise(resolve => { decide = resolve; });
   const pending = vm.runInContext('downloadJourney()', setup.context);
   vm.runInContext('restartJourney()', setup.context);
-  decide({ cancelled: false });
+  const staleCanvas = { width: 768, height: 768 };
+  decide({ cancelled: false, canvas: staleCanvas });
   await pending;
   assert.equal(setup.cards.length, 0);
   assert.equal(setup.$('#download').disabled, false);
+  assert.equal(staleCanvas.width, 0);
+  assert.equal(staleCanvas.height, 0);
+});
+
+test('failed or cancelled card output clears the approved selfie and restores the download button', async () => {
+  for (const result of ['failure', 'cancelled']) {
+    const setup = fixture();
+    const canvas = { width: 768, height: 768 };
+    setup.context.requestSelfie = async () => ({ cancelled: false, canvas });
+    setup.context.console = { error() {} };
+    setup.context.saveJourneyCard = async options => {
+      assert.equal(options.selfieCanvas.width, 768, 'pixels remain available during encoding');
+      if (result === 'failure') throw new Error('Encoding failed');
+      return { method: 'cancelled' };
+    };
+    await vm.runInContext('downloadJourney()', setup.context);
+    assert.equal(canvas.width, 0);
+    assert.equal(canvas.height, 0);
+    assert.equal(setup.$('#download').disabled, false);
+  }
 });
 
 test('text-only startup keeps share, card export, and restart actions working without WebGL', async () => {

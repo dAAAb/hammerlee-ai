@@ -61,6 +61,28 @@ test('homepage and replay permit same-origin camera access while blocking microp
   }
 });
 
+test('pages, redirects, assets and errors block framing and avoid leaking replay URLs in referrers', async () => {
+  const worker = createWorker({ assets });
+  const cases = [
+    ['/', 200], [`/?s=${seed}&v=2`, 200], ['/index.html', 301],
+    ['/assets/app-12345678.js', 200], ['/og/default.png', 200],
+    ['/missing', 404], ['/?s=invalid', 400], ['/api/journeys', 405],
+  ];
+  for (const [pathname, status] of cases) {
+    const result = await worker.fetch(createRequest(pathname));
+    assert.equal(result.status, status, pathname);
+    assert.equal(result.headers.get('Referrer-Policy'), 'no-referrer', pathname);
+    assert.equal(result.headers.get('X-Frame-Options'), 'DENY', pathname);
+    const policy = new Map(result.headers.get('Content-Security-Policy').split(';').map(directive => {
+      const [name, ...values] = directive.trim().split(/\s+/);
+      return [name, values.join(' ')];
+    }));
+    assert.equal(policy.get('frame-ancestors'), "'none'", pathname);
+    assert.equal(policy.get('base-uri'), "'self'", pathname);
+    assert.equal(policy.get('object-src'), "'none'", pathname);
+  }
+});
+
 test('shared pages expose seed-specific metadata but canonicalise and noindex the parameterised page', async () => {
   const worker = createWorker({ assets });
   const result = await worker.fetch(createRequest(`/?s=${seed}&v=2`));

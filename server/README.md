@@ -78,8 +78,25 @@ New records return 201; existing records 200; unknown records 404; conflicting
 versions 409; throttled requests 429. Edge regenerates the script from the
 shared conversation module rather than accepting visitor-authored text. Edge
 owns rate limiting and stores a daily HMAC of the client address, not the raw
-address. Worker responses distinguish unavailable storage from successfully
+address. IPv6 addresses in the same /64 share a quota, like clients behind one
+IPv4 NAT. Only the day-scoped HMAC is stored, never an address or prefix.
+Worker responses distinguish unavailable storage from successfully
 stored records; the client must not claim registration after a failed request.
+
+All Worker responses suppress referrers, block framing, enable HSTS for the current
+host (without preload or includeSubDomains), and prohibit plugins and
+cross-origin base URLs. Sharing constructs a canonical URL from seed/version;
+unrelated queries, fragments, and preview hosts are never forwarded. The local
+selfie is only encoded into the downloaded card, and its temporary canvases are
+cleared afterward. Neither the journey API nor OG accepts selfie/image payloads.
+
+Application migrations run as `postgres`. New tables, sequences, and functions
+in `public`/`private` require explicit grants, including for `service_role`.
+The global default `PUBLIC EXECUTE` grant is revoked for new postgres-owned
+functions. Existing grants and platform-managed schemas are unchanged. The
+snapshot schema is `supabase/schema.sql`; subsequent changes are in
+`supabase/migrations/`. Do not create permissive RLS policies to silence the
+intentional "RLS enabled, no policy" advisory on server-only tables.
 
 ## OG images and SEO
 

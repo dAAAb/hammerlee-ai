@@ -58,7 +58,26 @@ export function normalizeClientIp(input) {
   } catch { return null; }
 }
 
-/** Day-scoped HMAC; no raw IP or stable cross-day identifier is persisted. */
+function rateAddress(ip) {
+  if (!ip.includes(':')) return ip;
+  // URL canonicalization has already validated the address and converted any
+  // dotted IPv4 suffix to hextets. Expand it before taking the network prefix.
+  const halves = ip.split('::');
+  const left = halves[0] ? halves[0].split(':') : [];
+  const right = halves.length === 2 && halves[1] ? halves[1].split(':') : [];
+  const words = (halves.length === 2
+    ? [...left, ...Array(8 - left.length - right.length).fill('0'), ...right]
+    : left).map(word => Number.parseInt(word, 16));
+  // Mapped IPv4 is the same address, not one shared IPv6 subnet for all IPv4.
+  if (words.slice(0, 5).every(word => word === 0) && words[5] === 0xffff) {
+    return [words[6] >> 8, words[6] & 255, words[7] >> 8, words[7] & 255].join('.');
+  }
+  // Privacy addresses can rotate within one IPv6 /64. Group them so rotation
+  // cannot multiply the per-client quota. This prefix never leaves the HMAC.
+  return `${words.slice(0, 4).map(word => word.toString(16)).join(':')}::/64`;
+}
+
+/** Day-scoped HMAC of IPv4 or IPv6 /64; no raw address/prefix is persisted. */
 export async function hashRateIdentity(input, secret, utcDay) {
   const ip = normalizeClientIp(input);
   if (!ip) throw new JourneyInputError('client_ip_unavailable', 503);
@@ -66,7 +85,7 @@ export async function hashRateIdentity(input, secret, utcDay) {
   if (!/^\d{4}-\d{2}-\d{2}$/.test(utcDay) || new Date(`${utcDay}T00:00:00Z`).toISOString().slice(0, 10) !== utcDay) throw new TypeError('Invalid UTC day.');
   const encoder = new TextEncoder();
   const key = await crypto.subtle.importKey('raw', encoder.encode(secret), { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']);
-  const digest = await crypto.subtle.sign('HMAC', key, encoder.encode(`journey-rate-v1\n${utcDay}\n${ip}`));
+  const digest = await crypto.subtle.sign('HMAC', key, encoder.encode(`journey-rate-v1\n${utcDay}\n${rateAddress(ip)}`));
   return [...new Uint8Array(digest)].map(byte => byte.toString(16).padStart(2, '0')).join('');
 }
 

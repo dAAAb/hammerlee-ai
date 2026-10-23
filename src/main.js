@@ -154,7 +154,7 @@ function revealThrough(index) {
 
 
 function toast(message) { $('#toast').textContent = message; $('#toast').classList.add('visible'); clearTimeout(toast.timer); toast.timer = setTimeout(() => $('#toast').classList.remove('visible'), 3400); }
-function setUrl() { const u = new URL(location.href); u.search = ''; u.searchParams.set('v', String(scriptVersion)); u.searchParams.set('s', seed); history.replaceState({}, '', u); }
+function setUrl() { const u = new URL(location.href); u.search = ''; u.hash = ''; u.searchParams.set('v', String(scriptVersion)); u.searchParams.set('s', seed); history.replaceState({}, '', u); }
 function lightScene(target) { target.add(new THREE.AmbientLight(0xffffff, .8)); const key = new THREE.DirectionalLight(0xfff3d7, 1.5); key.position.set(-300, 500, 700); target.add(key); const fill = new THREE.DirectionalLight(0xd1ebdd, .55); fill.position.set(500, 0, 400); target.add(fill); }
 
 function roundedShape(w, h, radius = 17) {
@@ -424,7 +424,7 @@ async function downloadSticker(kind = 'heart') {
 }
 function updateCloudStatus({ status, error }) {
   $('#cloud-status').textContent = status === 'saving' ? '正在保存這段預寫對話…'
-    : status === 'saved' ? '已保存至雲端。分享連結會重播相同劇本、照片與徽章。'
+    : status === 'saved' ? '已保存至雲端。分享連結會重播相同劇本、官方照片與徽章。'
     : status === 'failed' ? error.message
     : '完成後會將預寫劇本編號保存至雲端，不收集個人對話或政治偏好。';
   if (type) refreshUISources();
@@ -486,8 +486,9 @@ async function downloadJourney() {
   const button = $('#download');
   button.disabled = true; button.setAttribute('aria-busy', 'true');
   const current = conversation;
+  let selfie;
   try {
-    const selfie = await requestSelfie();
+    selfie = await requestSelfie();
     if (selfie.cancelled || current !== conversation) return;
     let badgeCanvas;
     if (renderer && !renderer.getContext().isContextLost()) {
@@ -500,6 +501,9 @@ async function downloadJourney() {
     if (result.method === 'download') toast('新北事民卡已產生，請查看下載項目。');
   } catch (error) { console.error(error); toast('圖卡下載失敗，請再試一次。'); }
   finally {
+    // requestSelfie transfers this detached canvas to us. Do not retain its
+    // pixels after an export, a failed save, or a journey changed mid-dialog.
+    if (selfie?.canvas) { selfie.canvas.width = 0; selfie.canvas.height = 0; }
     cardExportPending = false; button.disabled = false; button.removeAttribute('aria-busy');
     if (current === conversation && !document.hidden) button.focus?.({ preventScroll: true });
   }

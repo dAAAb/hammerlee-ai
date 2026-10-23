@@ -25,7 +25,7 @@ function contextRecorder() {
   return context;
 }
 
-function installDocument(t, { taintedFirst = false } = {}) {
+function installDocument(t, { taintedFirst = false, failEncoding = false } = {}) {
   const previous = Object.getOwnPropertyDescriptor(globalThis, 'document');
   const canvases = [];
   Object.defineProperty(globalThis, 'document', { configurable: true, value: {
@@ -37,6 +37,7 @@ function installDocument(t, { taintedFirst = false } = {}) {
         toBlob(callback, mime) {
           assert.equal(mime, 'image/png');
           if (taintedFirst && index === 0) throw new DOMException('Tainted media', 'SecurityError');
+          if (failEncoding) return callback(null);
           callback(new Blob(['png'], { type: mime }));
         },
       };
@@ -90,7 +91,10 @@ test('tainted media retries locally without images and keeps the QR plus version
   let shared;
   Object.defineProperty(globalThis, 'File', { configurable: true, value: File });
   Object.defineProperty(globalThis, 'navigator', { configurable: true, value: {
-    maxTouchPoints: 1, canShare: () => true, share: async data => { shared = data; },
+    maxTouchPoints: 1, canShare: () => true, share: async data => {
+      assert.ok(canvases.every(canvas => canvas.width === 0 && canvas.height === 0), 'temporary pixels are cleared before the native share sheet opens');
+      shared = data;
+    },
   } });
   t.after(() => {
     if (previousNavigator) Object.defineProperty(globalThis, 'navigator', previousNavigator); else delete globalThis.navigator;
@@ -106,4 +110,19 @@ test('tainted media retries locally without images and keeps the QR plus version
   assert.equal(canvases[1].context.images.length, 0);
   const qr = canvas => canvas.context.rectangles.filter(rect => rect.x >= 900 && rect.y >= 1274);
   assert.deepEqual(qr(canvases[1]), qr(canvases[0]), 'the exact QR survives the media-free retry');
+});
+
+test('failed PNG encoding clears temporary card pixels and never attempts a share', async t => {
+  const canvases = installDocument(t, { failEncoding: true });
+  const previous = Object.getOwnPropertyDescriptor(globalThis, 'navigator');
+  let shareCalls = 0;
+  Object.defineProperty(globalThis, 'navigator', { configurable: true, value: {
+    maxTouchPoints: 1, canShare: () => true, share: async () => { shareCalls++; },
+  } });
+  t.after(() => { if (previous) Object.defineProperty(globalThis, 'navigator', previous); else delete globalThis.navigator; });
+  await assert.rejects(saveJourneyCard({ conversation: createConversation(seed, 2), selfieCanvas: { width: 300, height: 400 } }), /圖片輸出失敗/);
+  assert.equal(shareCalls, 0);
+  assert.equal(canvases.length, 1);
+  assert.equal(canvases[0].width, 0);
+  assert.equal(canvases[0].height, 0);
 });

@@ -8,7 +8,12 @@ const MAX_UPSTREAM_BYTES = 65_536;
 const MAX_IMAGE_BYTES = 2_097_152;
 const COMMON_HEADERS = {
   'X-Content-Type-Options': 'nosniff',
-  'Referrer-Policy': 'strict-origin-when-cross-origin',
+  // Public replay links still should not travel as Referrer metadata. Blocking
+  // framing also prevents another site from disguising the optional camera UI.
+  'Referrer-Policy': 'no-referrer',
+  'Content-Security-Policy': "frame-ancestors 'none'; base-uri 'self'; object-src 'none'",
+  'X-Frame-Options': 'DENY',
+  'Strict-Transport-Security': 'max-age=31536000',
   'Permissions-Policy': 'camera=(self), microphone=(), geolocation=(), accelerometer=(self), gyroscope=(self)',
 };
 

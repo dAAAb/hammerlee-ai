@@ -221,6 +221,11 @@ function canvasBlob(canvas) {
     } catch (error) {
       reject(error);
     }
+  }).finally(() => {
+    // The encoded PNG is now owned by the save/share action. Release the extra
+    // canvas copy, including any selfie pixels, on success and on failure.
+    canvas.width = 0;
+    canvas.height = 0;
   });
 }
 
@@ -279,11 +284,11 @@ export async function saveJourneyCard({ conversation, badgeCanvas, sceneCanvas, 
 }
 
 /** Return the actual outcome so the UI never describes a copied URL as posted. */
-export async function shareJourney({ conversation, url }) {
+export async function shareJourney({ conversation }) {
   validateConversation(conversation);
-  const target = new URL(url, globalThis.location?.href);
-  if (!['https:', 'http:'].includes(target.protocol)) throw new TypeError('A web URL is required for sharing.');
-  const shareUrl = target.href;
+  // Share only the public script identity. Never forward the current address:
+  // its fragment, unrelated query parameters, or preview host may be private.
+  const shareUrl = canonicalJourneyUrl(conversation);
   const shareData = {
     title: BRAND.title,
     text: `${BRAND.subtitle}。${BRAND.disclosure}`,

@@ -145,7 +145,8 @@ test('opening and skipping the dialog never requests the camera', async () => {
   await withDOM(() => { calls++; return Promise.resolve(makeStream()); }, async ({ document }) => {
     const result = requestSelfie();
     assert.equal(document.dialog.open, true); assert.equal(calls, 0);
-    assert.match(document.dialog.html, /照片只在你的裝置上合成，不會上傳到網站。/);
+    assert.match(document.dialog.html, /自拍只在本機製卡，不會上傳到網站或出現在分享連結。/);
+    assert.match(document.dialog.html, /若自行分享圖卡，收件者可看到自拍。/);
     document.dialog.querySelector('.selfie-skip').click();
     assert.deepEqual(await result, { cancelled: false }); assert.equal(calls, 0);
     assert.equal(document.body.children.length, 0);

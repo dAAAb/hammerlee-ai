@@ -49,6 +49,31 @@ test('HMAC keys rotate by day and secret and never contain the raw address', asy
   await assert.rejects(hashRateIdentity('unknown', secret, '2026-10-23'));
 });
 
+test('rotating IPv6 interface addresses cannot multiply the daily registration quota', async () => {
+  const hash = ip => hashRateIdentity(ip, secret, '2026-10-24');
+  const network = await hash('2001:db8:1234:5678::1');
+  for (const address of [
+    '2001:db8:1234:5678::',
+    '2001:0DB8:1234:5678:0000:0000:0000:0001',
+    '2001:db8:1234:5678:ffff:ffff:ffff:ffff',
+    '2001:db8:1234:5678:ab:cd:ef:1234',
+  ]) assert.equal(await hash(address), network, address);
+  assert.notEqual(await hash('2001:db8:1234:5679::1'), network);
+  assert.notEqual(await hash('2001:db8:1235:5678::1'), network);
+  assert.equal(await hash('2001:db8::1'), await hash('2001:db8:0:0:ffff:ffff:ffff:ffff'));
+  assert.notEqual(await hash('2001:db8:0:1::1'), await hash('2001:db8::1'));
+});
+
+test('IPv4 rate limits remain per address and mapped IPv4 uses the same identity', async () => {
+  const hash = ip => hashRateIdentity(ip, secret, '2026-10-24');
+  const first = await hash('192.0.2.4');
+  assert.equal(await hash('192.000.002.004'), first);
+  assert.equal(await hash('::ffff:192.0.2.4'), first);
+  assert.equal(await hash('0:0:0:0:0:ffff:c000:0204'), first);
+  assert.notEqual(await hash('192.0.2.5'), first);
+  assert.notEqual(await hash('::ffff:192.0.2.5'), first);
+});
+
 test('proxy authorization fails closed for missing, weak, or incorrect secrets', async () => {
   assert.equal(await matchesProxySecret(secret, secret), true);
   assert.equal(await matchesProxySecret(`${secret}!`, secret), false);

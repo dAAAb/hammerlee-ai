@@ -7,6 +7,16 @@ create schema if not exists private;
 revoke all on schema private from public, anon, authenticated;
 grant usage on schema private to service_role;
 
+-- New application objects start closed. The global revoke is required for
+-- PostgreSQL's default PUBLIC EXECUTE grant; it changes future functions only.
+alter default privileges for role postgres revoke execute on functions from public;
+alter default privileges for role postgres in schema public, private
+  revoke all on tables from public, anon, authenticated, service_role;
+alter default privileges for role postgres in schema public, private
+  revoke all on sequences from public, anon, authenticated, service_role;
+alter default privileges for role postgres in schema public, private
+  revoke all on functions from public, anon, authenticated, service_role;
+
 create table if not exists private.journey_configuration (
   name text primary key check (name = 'proxy_secret_sha256'),
   value text not null check (value ~ '^[a-f0-9]{64}$')
