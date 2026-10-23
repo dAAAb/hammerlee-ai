@@ -1,0 +1,1621 @@
+{
+  "audited_date": "2026-10-23",
+  "scope": "Read-only source archive for neutral civic information prototype; no campaign copy created.",
+  "source_type": "Candidate-controlled Portaly site; first-party claims are not independent verification.",
+  "extraction_method": "Fetched public HTML and parsed its __NEXT_DATA__ object, which includes visible descriptions and internal page records; individually fetched all discovered internal pages.",
+  "theme": {
+    "source_theme": "blue",
+    "font_family": "sans",
+    "background_setting": {
+      "color": "",
+      "colorMode": "solid",
+      "gradient": {
+        "angle": 0,
+        "colors": [
+          "#e3e3e3",
+          "#fff"
+        ]
+      },
+      "imageMode": "default",
+      "variant": "none"
+    },
+    "visual_observations": [
+      "Saturated deep blue, cyan, turquoise and golden yellow in header artwork.",
+      "Slanted checkerboard background with white lettering and dark blue outlines.",
+      "Footer emblem consists of arched vertical bars, with thick white sticker outline."
+    ],
+    "visual_source_files": [
+      "source-assets/55b63b57f531.jpg",
+      "source-assets/5dcd114be93d.png",
+      "source-assets/04fadf126fec.jpg"
+    ],
+    "sampled_footer_palette": [
+      {
+        "hex": "#00449A",
+        "pixel_count": 143416
+      },
+      {
+        "hex": "#FFFFFF",
+        "pixel_count": 69859
+      },
+      {
+        "hex": "#0097E8",
+        "pixel_count": 60769
+      },
+      {
+        "hex": "#FFC107",
+        "pixel_count": 52537
+      },
+      {
+        "hex": "#28C8C8",
+        "pixel_count": 41517
+      },
+      {
+        "hex": "#003491",
+        "pixel_count": 584
+      },
+      {
+        "hex": "#008DE6",
+        "pixel_count": 556
+      },
+      {
+        "hex": "#FFBC00",
+        "pixel_count": 544
+      }
+    ],
+    "palette_method": "Exact most frequent opaque RGB pixels in downloaded footer PNG, excluding transparent pixels."
+  },
+  "pages": [
+    {
+      "slug": "",
+      "url": "https://portaly.cc/hammerlee",
+      "title": "新北市長候選人 李四川",
+      "items": [
+        {
+          "block_id": "99RLtTVkE29chu0Fwf1p",
+          "hidden": false,
+          "alt": null,
+          "label": "認識李四川",
+          "source_text": "",
+          "image_id": "e8da82e05338",
+          "linked_url": "page/about",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "83guICbQbNFzZrvfVsNN",
+          "hidden": true,
+          "alt": "挺李四川",
+          "label": "",
+          "source_text": "",
+          "image_id": "f434ff984467",
+          "linked_url": "https://www.facebook.com/permalink.php?story_fbid=1649084656828788&id=100051818071280",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "bYEI7MSc2STzlDZDpdBA",
+          "hidden": false,
+          "alt": null,
+          "label": "",
+          "source_text": "",
+          "image_id": "d11f72de56e8",
+          "linked_url": "page/childparty",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "T4n8K3bJaCIuPRNBlm5o",
+          "hidden": false,
+          "alt": null,
+          "label": "支持李四川，成為人民的靠山",
+          "source_text": "",
+          "image_id": null,
+          "linked_url": null,
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "3oq8i4osP85E6jxAzhRh",
+          "hidden": false,
+          "alt": null,
+          "label": "",
+          "source_text": "",
+          "image_id": "731e5cca0e63",
+          "linked_url": null,
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "ild4cUwZCMU7j6HNAmnT",
+          "hidden": false,
+          "alt": null,
+          "label": "四川開路，新北進步",
+          "source_text": "五大建設，蓋出新北下一個30年",
+          "image_id": null,
+          "linked_url": null,
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "DIxVZy1ovZNOjsczR0FU",
+          "hidden": false,
+          "alt": null,
+          "label": "",
+          "source_text": "",
+          "image_id": "0ecb14604e20",
+          "linked_url": "https://www.facebook.com/share/p/17tJAcyDYT/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "aowMgXwyATPW0ZzHBPAH",
+          "hidden": false,
+          "alt": null,
+          "label": "",
+          "source_text": "",
+          "image_id": "d820a06669f8",
+          "linked_url": "https://www.facebook.com/share/p/1JzB1gV6Gv/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "7nuayqJwd5AWtYIuQh7W",
+          "hidden": false,
+          "alt": null,
+          "label": "",
+          "source_text": "",
+          "image_id": "871dc4787cdd",
+          "linked_url": "https://www.facebook.com/share/p/1cKT9LyEGi/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "aAXcCYNhQdYYAPwRsFv9",
+          "hidden": false,
+          "alt": null,
+          "label": "",
+          "source_text": "",
+          "image_id": "c92a8174f194",
+          "linked_url": "https://www.facebook.com/share/p/1BUcxd1m5F/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "cMd6UgtMI2d6Vjb7cXgX",
+          "hidden": false,
+          "alt": null,
+          "label": "",
+          "source_text": "",
+          "image_id": "0449fcc16bee",
+          "linked_url": "https://www.facebook.com/share/p/14tiisFCLrd/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "Y4aQAhTa9HN6SJZ4VuM3",
+          "hidden": false,
+          "alt": null,
+          "label": "新北向前，川流不息",
+          "source_text": "李四川的新北城市解方",
+          "image_id": null,
+          "linked_url": null,
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "nXVnfRqTSUX2aMcP2pQy",
+          "hidden": false,
+          "alt": null,
+          "label": "",
+          "source_text": "",
+          "image_id": "f703b3ca1740",
+          "linked_url": "page/culture",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "nXVnfRqTSUX2aMcP2pQy",
+          "hidden": false,
+          "alt": null,
+          "label": "",
+          "source_text": "",
+          "image_id": "c73a0618c972",
+          "linked_url": "page/construction",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "nVOcqOYtlmBwU5AeMKkw",
+          "hidden": false,
+          "alt": null,
+          "label": "",
+          "source_text": "",
+          "image_id": "e2b29929d3dd",
+          "linked_url": "page/economy",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "nVOcqOYtlmBwU5AeMKkw",
+          "hidden": false,
+          "alt": null,
+          "label": "",
+          "source_text": "",
+          "image_id": "6b8751b1e1dd",
+          "linked_url": "page/education",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "yntUgMsu7SR2L2vi8GMy",
+          "hidden": false,
+          "alt": null,
+          "label": "",
+          "source_text": "",
+          "image_id": "42407153d4f0",
+          "linked_url": "page/healthcare",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "yntUgMsu7SR2L2vi8GMy",
+          "hidden": false,
+          "alt": null,
+          "label": "",
+          "source_text": "",
+          "image_id": "b6c42c2a71ef",
+          "linked_url": "page/Sustainability",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "TbOtomjZmYGkC1aSA4Ju",
+          "hidden": false,
+          "alt": null,
+          "label": "新北的下一段路，我知道怎麼鋪",
+          "source_text": "",
+          "image_id": null,
+          "linked_url": null,
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        }
+      ],
+      "local_html": "source-assets/portaly-home.html",
+      "fetch": {
+        "status": "downloaded",
+        "local_file": "source-assets/portaly-home.html"
+      },
+      "html_has_next_data": true,
+      "html_bytes": 426558
+    },
+    {
+      "slug": "culture",
+      "url": "https://portaly.cc/hammerlee/pages/culture",
+      "title": "觀光文化與族群",
+      "items": [
+        {
+          "block_id": "0VESrD1GohgTIzdcIGBd",
+          "hidden": false,
+          "alt": "李四川體育政策",
+          "label": "了解更多",
+          "source_text": "運動城市2.0\n\n\n\n\n世界來比賽，新北天天動。說實在，一座城市會不會運動，不是看蓋了幾座館，是看禮拜三晚上，館裡面有沒有人在打球。新北現在有 20 座國民運動中心，全台最多。今年《遠見》的運動縣市調查，新北第一次拿到六都第一。這是從朱立倫市長到侯友宜市長這幾年打下的底子。\n\n\n\n接下來，我想再往前推一步——運動城市 2.0。\n\n\n\n\n第一，新北運動幣\n\n\n一份 500 元，一年 15 萬份。可以買賽事門票、報名運動課程、租借場地、參加指定活動。\n\n錢不算多。但它要買的不只是一次消費，是一個習慣。\n\n\n\n\n第二，加速興建新北巨蛋城\n\n\n巨蛋不是給人看的，是給人進去的。\n\n我要把國際級場館、觀賽視野跟周邊交通做起來，然後去爭取世界棒球經典賽、大聯盟海外賽落腳新北。運動幣也可以拿來買賽事門票，讓市民真的走進場看球。說實在，孩子平常打球的地方是那 20 座運動中心，不會是巨蛋。但一座城市要有一個地方，讓孩子知道打得好，可以站上去。\n\n\n\n新北一直在培養球員，接下來也要給球員一座舞台。\n\n\n\n\n第三，全台第一座水陸共融運動園區\n\n\n把八里東海運動休閒中心跟八里水上運動中心整合起來，水上運動、陸上運動一次到位。SUP、獨木舟、帆船，還有身障者、親子、銀髮族都進得來的共融運動館。\n\n\n\n山、海、河，新北本來就有，只是還沒串起來。場館我來蓋，習慣大家一起養。挺運動，讓新北動起來，讓世界看見新北！",
+          "image_id": "440ab6bb92e0",
+          "linked_url": "https://www.facebook.com/permalink.php?story_fbid=pfbid02iLtnjFvgPwPBgApkVkmRFb6AZhGcJaS8zkrYfbv87FpmZgrPV4y1GNRDSnUqHv5l&id=100051818071280",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "Lz2El7gdhFws6SuSWVvm",
+          "hidden": false,
+          "alt": "李四川運動平權政策",
+          "label": "了解更多",
+          "source_text": "運動平權2.0\n\n\n\n\n今天在金山中角灣，我自己也下去試了衝浪。\n\n說實在，光是趴穩就不容易。但那個下午，我看最久的不是海。是輪椅怎麼走過那一段沙子。沙是軟的，輪子一壓就陷。要下到水邊那短短一段路，對很多人來說是走不過去的。勇氣他們自己有。缺的，是一條進得去的路。所以今天，我提出「運動平權 2.0」。\n\n\n\n\n一、國民運動中心設置身障運動專區\n\n\n新北的國民運動中心，是這十幾年一座一座蓋起來的。硬體有了，下一步是把不同障別用得到的器材補齊、把無障礙動線做順、把專業指導配上。不是把人隔開，是把設備補到位。\n\n\n二、打造輪椅友善的運動環境\n\n\n從入口、停車、通行動線、觀賽席位到器材設施，全面盤點改善。進得去、動得了、看得到比賽——這三件事，一件都不能少。\n\n\n三、打造無障礙親海環境\n\n\n中角灣這一段沙灘，還有新北其他的海岸，設置無障礙木棧道，改善輪椅的通行動線，接上輪椅衝浪跟其他適應體育活動。\n\n\n\n海洋無障礙，運動零距離。\n\n無障礙不是讓身障朋友「進得來」，是讓他們待得住。\n\n我鋪了一輩子的路。這一條，要鋪到海邊。",
+          "image_id": "7e958f876f3c",
+          "linked_url": "https://www.facebook.com/share/p/1DBki277at/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "M1jVof312fanSSBtyeUt",
+          "hidden": false,
+          "alt": "李四川客家政策",
+          "label": "了解更多",
+          "source_text": "李四川挺客家\n\n\n\n\n客家文化，不是逢年過節才想起的事\n\n它就在新北的日常裡\n\n\n\n說實在，在新北，客家文化在巷口的歌謠班裡、在哈客館的下課時間裡、在義民祭的人潮裡，這就是我們的「都會客家」。新北有67 萬客家鄉親，全台第二多，多元、包容，也最有活力。\n\n\n\n客家政策，我提出六大方向：\n\n\n1.社團補助加碼，每班最高 10 萬，跟台北市齊平\n\n\n\n2.哈客館繼續佈點，從第十一館朝「十二年十五館」走\n\n\n\n3.持續提升客語教育師資環境，鼓勵客語教師投入傳承\n\n\n\n4.義民祭辦更大、六大節分區辦，讓區區都有客家味\n\n\n\n5.客家文化園區轉型，不只是博物館，更是來新北必走的景點\n\n\n\n6.各局處建置客語無障礙環境，講客語在新北不卡關\n\n\n\n\n這些年客家場館，侯友宜市長基礎打得穩，哈客館「八年十館」達標，已蓋到第十一館，接下來，工程專業的我會持續蓋到十五館。\n\n這些館，是客家最好的基地——下一階段，我要讓客家文化走進生活，活在新北的每一條街上。",
+          "image_id": "ed55878d9828",
+          "linked_url": "https://www.facebook.com/share/p/1DNtx3XtR5/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "Mhc0dFdX9qVleaIPgp77",
+          "hidden": false,
+          "alt": "李四川文化三策",
+          "label": "了解更多",
+          "source_text": "李四川挺文化\n\n\n文化，是把地方的生命力帶向世界。說實在，文化不是只有大場館、大活動。是一群人在一個地方扎根幾十年，把地方的故事變成作品。\n\n\n\n新北的天主教育化民族舞蹈團，57年教了1000多個孩子跳舞， 很多是經濟弱勢家庭的孩子， 後來跳到國外，被叫做「台灣小花」。一個團隊能撐57年，靠的是有人買票、有舞台可以上、有地方可以練。\n\n\n\n所以我提出新北文化三策：\n\n\n一、文化幣600元，讓市民走進文化 \n\n\n每年規劃15萬份，設籍新北、不限年齡，抽籤發放。 補助是政府給的，買票是市民給的。後面這個，團隊才走得久。\n\n\n二、新北國際藝術節，讓世界看見新北 \n\n\n把國際團隊請進來，也把新北的團隊送出去。\n\n\n三、創作免場租，讓人才留在新北 \n\n\n舞團缺的常常不是掌聲，是一間排練室。 盤點閒置或可活化的公有空間，讓在地團隊免費進駐。\n\n\n\n做工程的人都知道，地基打穩，上面的東西才站得起來。\n\n我希望替新北的創作者，把這塊地基打好。",
+          "image_id": "608f4530fcb3",
+          "linked_url": "https://www.facebook.com/permalink.php?story_fbid=1650066950063892&id=100051818071280",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "O4j4LEwO64eNf25CUfSY",
+          "hidden": false,
+          "alt": "李四川觀光政策",
+          "label": "了解更多",
+          "source_text": "青春山海線2.0\n\n\n\n\n一天之內，你可以在九份看山、在東北角吹風、在淡水河上看夜景。這三個地方，全部都在新北。但現在要這樣玩，你得自己開車、自己找路、自己想辦法把它們兜起來。\n\n\n\n侯友宜市長推動「青春山海線」這幾年，把新北的山海美景帶到很多人面前。人潮進來了，接下來要處理的，就是怎麼讓大家玩得更順、待得更久。玩得順不順，是工程問題。玩得開不開心，是新北 29 區自己的本事。前面那一半，我來做。後面那一半，讓 29 區自己發光。所以下一步，是「青春山海線 2.0」，把山、海、河、城市跟 29 區接成一整趟旅程。\n\n\n\n\n🚡 搭纜車上山城\n\n\n瑞芳火車站旁邊興建「九份觀光纜車」，直達九份，不用塞車、不用找車位。「水金九舊坑道台車」也要讓它重新動起來，讓大家認識新北的礦業文化。\n\n\n🚲 騎單車到海邊\n\n\n打造濱海自行車道，深澳到貢寮的專用道，往西一路串到八里、淡水。淡江大橋不是拿來經過的，是讓你專程去看夕陽的。\n\n\n⛵ 搭遊船賞美景\n\n\n「河岸遊船觀光」要動起來，淡水河的船開航，忠孝碼頭接大稻埕碼頭。還要跟台北市一起辦河岸煙火節——淡水河兩岸一起放，這件事新北自己做不來，要雙北坐下來談。\n\n\n🚇 搭捷運遊山林\n\n\n四環八線加上軌道建設 123，下了捷運就接得上步道，微笑山線、淡蘭古道，城市直接走進山林。\n\n\n🎫 周遊券玩山海\n\n\n北北基好玩卡升級，把桃園拉進來，一張券玩遍北北基桃。\n\n\n\n新北 29 區，每一區都有自己的風景、自己的故事、自己的味道。不用出遠門，一趟就玩得到。路，我蓋了一輩子。接下來，換我帶大家去玩。",
+          "image_id": "ac78b6cf54dd",
+          "linked_url": "https://www.facebook.com/permalink.php?story_fbid=pfbid02hL8fG2DbBR3AudpCbq9K5xMkYHBphpsucEEBQomifJQ7DYjRWZktfSYH88SQbUtUl&id=100051818071280",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "QPU6DfFoMMfJmhMwIiX2",
+          "hidden": false,
+          "alt": "李四川原民政策",
+          "label": "了解更多",
+          "source_text": "原力新北・共榮未來\n\n\n\n\n我和族人朋友一起公布了我的原住民政策。\n\n北原山貓一開唱，全場就熱起來了。遇到他們開玩笑，把〈沒什麼了不起〉現場改了詞，唱「李四川真的了不起」，說實在，被這樣的傳奇樂團虧一下，我反而很開心，因為這代表族人把我當自己人。\n\n\n\n既然是自己人，我就講真的，原住民族要的從來不是被照顧，是一座站得上去的舞台。我想起有一年在貢寮的海洋音樂祭，我代替朱立倫市長頒獎，在台下站了大概半天。等到念第一名，我才發現，從第一名到第十名，幾乎都是原住民的孩子。歌聲、創作，一個比一個厲害。我那時候就在想：比賽只有第一名能簽約，那剩下這九個一樣有才華的孩子，他們的舞台在哪裡？\n\n\n\n所以今天我提出「原力新北・共榮未來」，四個原力一條一條來：\n\n\n【安居原力】我會新建原住民自己的社會住宅，擴大租金補貼。在都市打拚，先有一個安穩的家。\n\n\n\n【文化原力】原力廣場是侯市長開的頭，我接著把它做大，讓祭典、研習一年比一年豐富。文化有根，族人才站得穩。\n\n\n\n【青年原力】成立青年團、設青創基地。年輕人要創業，政府幫你扶第一把。讓青年有夢，敢做夢。\n\n\n\n【運動原力】我們原住民拿奧運獎牌的比例那麼高，天份不能被埋沒。國內賽事獎金，我提高到 18 萬，讓孩子從小就敢拚。\n\n\n\n\n所以我講的四個原力，每一個都是一座舞台——讓族人安居、讓文化扎根、讓青年圓夢、讓選手發光。因為原民好，新北就好；原力強，新北更強。",
+          "image_id": "8280332ff379",
+          "linked_url": "https://www.facebook.com/share/p/1EYsAjoHoV/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "mzv1jBeVEt3nJHi818ME",
+          "hidden": false,
+          "alt": "新北無菸害商圈",
+          "label": "了解更多",
+          "source_text": "新北無菸害商圈\n\n\n\n\n今天跟萬安市長一起，去看了中山捷運站旁邊的兩間吸菸室。那是一個小小的負壓空間，但裡面裝的，是一個城市對人的細膩。抽菸的朋友，有地方好好休息；不抽菸的市民、推嬰兒車的媽媽、剛下課的小朋友、來商圈散步的長輩，少了在騎樓間擦身而過的那口嗆味。\n\n\n\n萬安市長從去年的年貨大街、今年的燈節雙展區慢慢試起來，市民的肯定接近九成。我這陣子跑過 29 區，也聽到不少新北市民支持負壓吸菸室的主張，為雙北流動的市民朋友，都會有感。\n\n說實在，這就是「共治才共好」的實際行動。我想，把這個對的方向帶回新北。我今天提出一個政見：打造「無菸害商圈」。\n\n\n\n\n1. 商圈為原點，逐步擴張\n\n\n新北幅員更大，無菸害的主張也要因地制宜。我會先從人潮多、影響面更廣的商圈開始做起，包括板橋車站、林口商圈、新莊副都心、淡水老街，人多的商圈，我們一個一個來。\n\n\n2. 打造人性化的負壓吸菸室\n\n\n我做工程做了一輩子，什麼是好用的設計，看得出來。過去針對負壓吸菸室，我跟台北市新工處的同仁也討論過細節，這套合作經驗，我想帶回新北。由政府帶頭，邀民間一起參與，把硬體做到位、把細節顧到家。\n\n\n3. 新北耶誕城成為第一個示範區\n\n\n無菸害商圈的第一站，就放在年底的新北耶誕城。耶誕城是朱立倫市長與侯友宜市長過去留給新北最閃亮的一張招牌，每年都有幾百萬人擠進板橋市民廣場，那麼多孩子的眼睛在看燈，那麼多家庭推著嬰兒車，他們應該享有一口好空氣。我們就以這裡為起點，讓耶誕城變成新北第一個「無菸害商圈」示範區，把這張招牌擦得更亮。\n\n\n\n雙北就是一體，共治才共好。無菸害商圈——要走得到，也要呼吸得到。人潮，我們一起帶。 好空氣，我們一起顧。\n\n\n\n新北的這口好空氣——我來做。",
+          "image_id": "ad14abe5d913",
+          "linked_url": "https://www.facebook.com/share/p/1KL9SLDMab/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        }
+      ],
+      "local_html": "source-assets/portaly-culture.html",
+      "fetch": {
+        "url": "https://portaly.cc/hammerlee/pages/culture",
+        "local_file": "source-assets/portaly-culture.html",
+        "bytes": 257717,
+        "mime": "text/html; charset=utf-8",
+        "status": "downloaded"
+      },
+      "html_has_next_data": true,
+      "html_bytes": 257717
+    },
+    {
+      "slug": "Sustainability",
+      "url": "https://portaly.cc/hammerlee/pages/Sustainability",
+      "title": "環境永續與動物保護",
+      "items": [
+        {
+          "block_id": "QyN48cpUcInorqL1OZsf",
+          "hidden": false,
+          "alt": "李四川毛孩政策",
+          "label": "了解更多",
+          "source_text": "毛孩3政策\n\n\n新北是全台毛寶貝最多的城市，將近 36 萬隻犬貓。我常常在想——一座城市走得多前面，看的是牠怎麼對待這些生命。\n\n上一次我提了六大動保政策，從寵物醫院、生命紀念館到食品管理，得到不少飼主和動保團體的肯定。\n\n\n\n今天，我再往前走一步，提三件事：\n\n一、推動寵物可陪同洽公。\n\n在不影響公共秩序和安全的前提下，逐步開放特定場域。很多人辦結婚登記，也想帶著貓咪、狗狗一起留個紀念——人生重要的時刻，讓牠陪在身邊。\n\n二、每年辦一次新北寵物嘉年華。\n\n認養、市集、免費健檢、才藝互動，讓毛孩真正走進城市的公共生活。\n\n三、建立寵物友善城市指數。\n\n每一區的寵物設施、友善店家、認養、醫療，一項一項盤出來。哪一區還不夠，一目了然，就從那裡開始補。\n\n\n\n我是做工程的。管一條路、一座橋，靠的不是感覺，是一張逐項檢查、改得動的表。毛寶貝友善，我想用同一套方法做。說實在，毛寶貝已經是我們的家人。愛牠，靠愛心。顧牠，靠制度。家人，也是這座城市的市民。\n\n\n\n硬的我繼續蓋，軟的我繼續顧。",
+          "image_id": "93e4a7949402",
+          "linked_url": "https://www.facebook.com/share/p/1D3sdUrL66/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "ZAhnD8W9epn6WStMVc33",
+          "hidden": false,
+          "alt": "李四川六大動保政策",
+          "label": "了解更多",
+          "source_text": "六大動保政策\n\n\n現在很多家庭，毛寶貝就是家人。新北是全台灣毛寶貝最多的城市，光是登記在案的犬貓，就有將近 37 萬隻，全國第一，這代表照顧牠們，早就不是少數人的事，是很多家庭每天的生活。我一直認為，看一座城市進不進步，不只是看高樓蓋得多高，而是看對生命有沒有尊重。所以動物政策不能只停在「捕捉、收容、管理」。我想，下一步要做的是「治理」——從救援、醫療、生命教育到智慧管理，做成一套完整的制度。\n\n\n\n這次我提出六個方向，說白話就是：\n\n① 蓋一間市立動保醫院。\n\n認養回家的毛寶貝，基本照護免費，想養的人，不會再被醫療費嚇退。\n\n② 設公有的生命紀念園區。\n\n陪我們走過一程的牠，要走得有尊嚴，家人也付得起。\n\n③ 成立野生動物救傷中心。\n\n新北有山、有海、有河，受傷的野生動物，不能再只是臨時處理。\n\n④ 把八座動物之家升級。\n\n不只是收容，還要有醫療、長照、行為訓練，讓更多毛寶貝回得了家。\n\n⑤ 把毛寶貝產業管好。\n\n寵物食品該抽驗就抽驗，市民買得安心，毛寶貝用得放心。\n\n⑥ 建一個智慧治理平台。\n\n救援、捕蜂捉蛇、稽查、認養，整合成一張看得到的地圖。\n\n\n\n過去侯友宜市長做得很好，讓新北每年認養超過 3,000 隻、認養率 95%，也證明市民其實很有愛心。我們要做的，就是透過科技與制度，接著做得更好。\n\n\n\n照顧毛寶貝，其實也是在照顧市民。\n\n城市的高度，就看怎麼對待生命。\n\n讓這份愛，被支持、被接住。",
+          "image_id": "f53c5d592516",
+          "linked_url": "https://www.facebook.com/share/p/1G9d18Bh4F/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        }
+      ],
+      "local_html": "source-assets/portaly-Sustainability.html",
+      "fetch": {
+        "url": "https://portaly.cc/hammerlee/pages/Sustainability",
+        "local_file": "source-assets/portaly-Sustainability.html",
+        "bytes": 211464,
+        "mime": "text/html; charset=utf-8",
+        "status": "downloaded"
+      },
+      "html_has_next_data": true,
+      "html_bytes": 211464
+    },
+    {
+      "slug": "education",
+      "url": "https://portaly.cc/hammerlee/pages/education",
+      "title": "青年婦幼與教育",
+      "items": [
+        {
+          "block_id": "Bzg0VWDsKGcyZXRqf4SX",
+          "hidden": false,
+          "alt": "李四川青年創業政策",
+          "label": "了解更多",
+          "source_text": "第一桶金計畫\n\n\n年輕人不缺想法，缺的是第一桶金。說實在，我跟年輕人差的只有年紀。他們接下來二、三十年要走的路，我走過；有些苦，我痛過。所以今天我提出青年政策，「第一桶金計畫」，就是要讓有夢的青年順利跨出第一步。從輔導、融資到全程陪伴，一站到底。\n\n\n\n青年創業四大築夢計畫：\n\n✨一、青創貸款最高從 200 萬提高到 500 萬\n\n啟動資金一次備足。研發、拓點、撐過最難的第一年，錢要夠。\n\n✨二、放寬申請資格，青年團隊也能申請\n\n一群人的夢想，不能只看其中一個人。\n\n負責人或團隊成員之一設籍新北、已成年，就可以提出申請。\n\n✨三、強化信用保證，降低貸款門檻\n\n以前看你手上有什麼，以後看你打算做什麼。\n\n政府的信用保證與風險分攤，不再只看擔保品和財務報表，更看創業計畫、市場潛力、商業模式。\n\n✨四、創業導師全程陪跑\n\n不是撥完款就結束。創業課程、商業模式診斷、財務規劃、經營輔導，我們一路陪你走完。\n\n\n\n有些彎路，有些冤枉路，我走過。\n\n我走過，你就不必再走一遍。",
+          "image_id": "e290e3e07938",
+          "linked_url": "https://www.facebook.com/share/p/1BdrLAHW3z/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "C3kDmASfyKKYQJi8G0gh",
+          "hidden": false,
+          "alt": "李四川公托政策",
+          "label": "了解更多",
+          "source_text": "校校有公托\n\n\n「校校有公托」這件事，我想和萬安市長並肩前行。\n\n3/9那一天，也是我擔任臺北市副市長的最後一天，我陪同萬安市長參觀了新北市的埔墘及莊敬兩所公共托育中心。蔣市長表示，臺北市今年也要開始開辦公辦民營的托育機構，要達到的校校有公托的目標。\n\n\n\n這也是我的心願。在少子化的臺灣，我們對所有願意生養孩子的年輕父母親，都應該心懷感激，也應該推動各項托育配套措施，回報他們。歐洲這幾年生育率穩定或回升的國家，無一例外，都是以提供大量平價優質的公托設施為主要的配套政策。\n\n\n\n我當初也有參與新北市在民國100年設立的第一所公托。經過朱立倫與侯友宜兩位市長的努力，目前新北市的公托總數已經達到130家，收托的幼兒人數占全台公辦民營托嬰中心收托數的近5成。\n\n\n\n低薪以及托育問題，絕對是年輕人不生不養的主要原因。從少子化及勞動人力兩方面來說，我們都應該提供足夠的公托機構，父母親都不應該因為為生養子女而被迫離開職場。\n\n\n\n目前學校的閒置教室並沒有被充分運用，很重要的一個原因是法規限制公托中心只能設在3樓以下。相較於設置在一般公寓大廈的私托，學校是一個完全單純的環境，公托設在任何一個樓層，不僅安全，而且也方便父母親接送。若是顧慮到接送公托的幼兒會影響學校原本的教學或活動作息，那麼為公托設置獨立出入口動線，或在專屬樓層增建一部外掛式電梯就好。\n\n\n\n我將從這樣的標準再全面清理、運用新北市的閒置教室，讓各級學校都能夠增設公托中心或是公立幼兒園。政府要減輕年輕人的負擔，父母親不應該在生養子女和職場之間強迫只能二選一，因此我一定接下朱立倫、侯友宜兩位市長的棒子，全力推動公共托育。",
+          "image_id": "ff8c8e23731a",
+          "linked_url": "https://www.facebook.com/share/p/1FbFDsQPSM/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "IbF6ZU8oBX5r4i2yzjF5",
+          "hidden": false,
+          "alt": "李四川好孕政策",
+          "label": "了解更多",
+          "source_text": "好孕政策\n\n\n說實在，這次的「好孕政策」，是從一個很土的問題開始想的——一個家庭決定要生小孩，接下來要面對的不是一件事，是一長串的事。\n\n\n\n產檢要不要加做？高齡了誰幫我追蹤？凍了好幾年的卵，解凍要花多少錢？生完之後情緒掉下去，誰接得住？\n\n所以，我提出四個「安心」。\n\n\n\n💖安心檢：產前遺傳性疾病篩檢加碼補助，最高 3000 元。\n\n💖安心孕：妊娠糖尿病、妊娠高血壓、孕期憂鬱納入重點照護，有專人持續追蹤、必要時轉介。\n\n💖安心生：解凍卵補助，從 3 萬提高到 6 萬。這項補助新北是全國第一個做的，我要把它加倍。\n\n💖安心養：心理照護往前延伸到孕期，加碼 3 次免費心理諮商。\n\n\n\n很謝謝  陳菁徽 委員。她是婦產科醫師，也是不孕症權威，跟我們來回討論了很多次——政策不能只有辦公室想的，還要有診間裡看到的。\n\n\n\n我是做工程的人，我不會假裝我懂懷孕。但我懂一件事，一條路卡在哪一段最痛苦，補助就要補在那一段。\n\n\n\n橋蓋慢了可以趕。一個孕期，趕不回來。",
+          "image_id": "d38bbb8f9d0c",
+          "linked_url": "https://www.facebook.com/share/p/199yFpLKoJ/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "KVV44kXKdrtMeFn4HnWe",
+          "hidden": false,
+          "alt": "李四川 平權政策",
+          "label": "了解更多",
+          "source_text": "性別友善新北\n\n\n\n\n\n\n性別友善，要做在薪水單上、路燈上、設計圖上。照顧孩子，不能只是媽媽的責任。一座城市友不友善，也不能只從單一性別的角度去看。\n\n\n\n性別平權，我提三件事：\n\n\n\n\n第一件，育嬰留停薪資補足 100%\n\n\n說實在，孩子剛出生那幾個月，很多家庭都在算同一筆帳。\n\n請育嬰假，薪水剩八成。誰的薪水低，誰就留在家裡。\n\n算到最後，留下來的常常是媽媽。年底如果有機會回到新北市政府，剩下的兩成，市府補上。誰留下來顧小孩，夫妻自己商量，不用看薪水單。\n\n\n\n\n第二件，運動環境更安全、更友善\n\n\n晚上去公園、河濱運動的人越來越多，夏天也一年比一年熱。\n\n遮蔭、降溫、夜間照明、監視設備、安全動線，一項一項補上去。\n\n燈亮一點，安全就多一分。\n\n\n\n\n第三件，成立府級性別平等辦公室\n\n\n朱立倫市長、侯友宜市長，把新北的性平基礎打得很穩。\n\n下一步，交通、公園、場館、公共廁所，從設計圖就把每一種人放進去。\n\n\n\n做了四十多年工程，我很清楚：圖上沒畫到的人，蓋好就不好用。\n\n\n\n性別平等，我不太會講大道理。\n\n薪水補滿，燈裝亮，圖畫對。\n\n一件一件做。",
+          "image_id": "cd4d3df3a38d",
+          "linked_url": "https://www.facebook.com/permalink.php?story_fbid=1658747649195822&id=100051818071280",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "P3LO5Ygwdu5mTd0fcGW8",
+          "hidden": false,
+          "alt": "李四川親子政策",
+          "label": "了解更多",
+          "source_text": "三大親子政策\n\n\n到板橋的孕婦裝觀光工廠，穿上孕婦體驗衣，還縫了一雙嬰兒鞋，年輕時拉電線的手，這次改穿針引線。說實在，體驗衣比縫紉更辛苦。才背這麼一下下，腰就痠了——媽媽們，是整整十個月。所以我一直講：我們一定要對媽媽好一點。政府不能只是嘴巴上鼓勵生育，要實際把爸媽的負擔接過來。\n\n\n\n當選後，我要推三大親子政策：\n\n🚗 好孕專車延長到 1 歲 \n\n現在補助到產後 6 個月，我把它延長到孩子滿 1 歲，並擴大跟多元計程車合作。產檢、回診、打預防針，一路有車。\n\n🧸 運動中心免費臨托 \n\n很多爸媽想運動、想喘口氣，最大的問題就是孩子沒人顧。我們在國民運動中心試辦親子臨托：每週三下午 2 點到晚上 9 點，2 到 12 歲，憑當日消費證明 2 小時免費。你在樓上流汗，孩子在樓下玩，同一棟，安心。\n\n🏛 打造新北 BABY BOSS 成長館 \n\n興建室內大型親子館，共融遊具、感統探索、親子共學、職能體驗通通放進來。下雨天，孩子也有地方長大。\n\n\n\n好孕交通、免費臨托、親子空間，這三件事，我會像穿針引線一樣，一件一件串起來，織成一張網，接住每一個爸媽、每一個孩子。做工程的人知道，一座城市的地基，不是只有鋼筋水泥。\n\n願意在這裡生孩子、養孩子的家庭，才是新北最重要的地基。",
+          "image_id": "574bd65d6668",
+          "linked_url": "https://www.facebook.com/share/p/18msoXSK1N/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "cmP5NemZqH9FlbaWCscp",
+          "hidden": false,
+          "alt": "李四川教育政策",
+          "label": "了解更多",
+          "source_text": "挺教育3大亮點\n\n\n說實在，我能有今天，是因為讀書的時候，有老師拉了我一把。我在岡山農工讀書，家裡沒有錢。那時候學校開課後輔導，老師們願意花時間，把我們這二、三十個想升學的孩子留下來上課。對一個小琉球來的窮孩子，那不是普通的課後輔導，那是一條翻身的路。\n\n後來我考上台北工專。我一直記得那位教學組長。他讓我知道，一個孩子只要有人拉一把，人生真的會不一樣。\n\n\n\n而最常伸出那隻手的，就是老師。\n\n那，誰來拉老師一把？\n\n\n\n侯友宜市長這些年改善師生比、推動導師減課、建立教師支持制度，方向完全正確。我要站在這個基礎上，繼續做三件事：\n\n✏️ 打造AI校園：\n\n先讓AI進老師的備課桌，再讓AI陪孩子學習。讓AI是老師的助手，不是取代老師。\n\n✏️ 推動班班25人：\n\n115學年度國小每班降到28人，這是侯市長做到的。28到25，少的是人數，多的是每個孩子被看見。\n\n✏️ 教師心理支持加碼：\n\n老師也是人，也會累。提高免費心理諮商次數，把照顧老師的心，當成正式的市政工作。\n\n\n\n我在校園周圍蓋過天橋，也蓋了一輩子的橋和路。但我知道，一個城市真正的地基，是教育。五十年前，有一位老師做了我的貴人。\n\n\n\n現在，換我做老師的靠山。",
+          "image_id": "a30cacacb566",
+          "linked_url": "https://www.facebook.com/share/p/1LNeRYw77W/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        }
+      ],
+      "local_html": "source-assets/portaly-education.html",
+      "fetch": {
+        "url": "https://portaly.cc/hammerlee/pages/education",
+        "local_file": "source-assets/portaly-education.html",
+        "bytes": 248811,
+        "mime": "text/html; charset=utf-8",
+        "status": "downloaded"
+      },
+      "html_has_next_data": true,
+      "html_bytes": 248811
+    },
+    {
+      "slug": "economy",
+      "url": "https://portaly.cc/hammerlee/pages/economy",
+      "title": "產業經濟與勞工",
+      "items": [
+        {
+          "block_id": "3KWo1pStSt4zpfAwrpSi",
+          "hidden": false,
+          "alt": null,
+          "label": "了解更多",
+          "source_text": "企業托育\n\n\n為了打造友善職場育兒環境，新北市勞工局每年與勞動部聯合提供補助，企業興建托兒設施，可獲最高500萬元補助；更新或改善托兒設施，每年也有最高50萬元的補助；新北市還首創補助聘用教保人員的人事費。\n\n\n\n我在回程的路上想，除了大企業之外，中小企業難道就不能設立這種員工托兒所嗎？如果鄰近的幾家公司願意共同設立員工托兒所，只要其中一家公司有閒置空間，或是大家共同出資租下適當的空間，不是會有更多家庭受惠嗎？\n\n\n\n另一方面，我們可以用容積獎勵的方式，鼓勵開發公司在新建商辦大樓時，在開發計畫中就納入用做員工托育的空間，並對這些企業托兒所給予減免房屋稅等其他賦稅獎勵。整棟大樓各家公司的員工都能帶孩子上班，這大概是世界級的景觀了。我先前已經提出校校有公托的政見。是不是能夠鼓勵各型企業也普設員工托兒所，我選上市長後一定能想出辦法。",
+          "image_id": "c0f349287de3",
+          "linked_url": "https://www.facebook.com/share/p/1J924NJpZX/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "EkhtxSs5mbaS4syTjXYv",
+          "hidden": false,
+          "alt": "李四川勞工政策",
+          "label": "了解更多",
+          "source_text": "挺勞工\n\n\n說實在，我不是從辦公室開始認識勞工的。我半工半讀做水電、做冷氣。電匠、室內配線、工業配線甲級、空調甲級——四張技術士執照，都是自己一張一張考的。後來進了市政府，但工地我一直沒離開。所以我大概知道，做工的人真正在怕什麼，不是怕辛苦。辛苦是本來就有的。是怕出事那一天，家裡沒有人接得住。是怕夏天站在柏油路上，太陽不會因為你辛苦就變涼。是怕為了顧家人請假的那幾年，回過頭來，已經回不去了。\n\n\n\n今天發布的勞工政策，就是把這些「怕」，一件一件拿掉。\n\n📌 挺安全\n\n職災慰問金 30 萬提高到 36 萬，雙北同一個標準；失能、住院同步提高。\n\n高溫防護補助擴大——風扇衣、水冷衣，是穿在身上的降溫；水霧、遮陽棚，是撐在工地的遮蔭。\n\n📌 挺未來\n\n 30 到 45 歲想回職場的人，每月 5,000 元、最長 3 個月。不只給錢，職涯諮商、職業訓練、就業媒合一路陪。\n\n新北 9 站 15 台 5 駐點，從市區到偏鄉都走得到。\n\n📌 挺家庭 \n\n企業設職場托育，市府給獎勵、減房屋稅。企業發育兒津貼，市府再補助企業，最高 6,000 元。你在上班，孩子就在隔壁。\n\n📌 挺權益\n\n工會租金、行政費、交流補助全部提高。AI 與數位技能課程開起來，不讓人被時代甩掉。\n\n\n\n這些不是打掉重來，是在前面累積的基礎上，往上再加一階。我這雙手扛過冷氣、鎖過螺絲、拿過鐵鎚。現在我想用這雙手，扛新北勞工朋友的事。做過工的人，才知道工人缺什麼。",
+          "image_id": "5a7afee70602",
+          "linked_url": "https://www.facebook.com/share/p/1DX7wtarLj/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "PtIZb3JIBt292iBCdfUg",
+          "hidden": false,
+          "alt": null,
+          "label": "了解更多",
+          "source_text": "新北職人passport\n\n\n我一直尊敬每一個行業認真做事的人，我公布「新北職人 Passport」政策。 很多人不知道，我開過麵包店，我自己也烘烤過鳳梨酥跟鳳凰酥。\n\n\n\n今天到維格餅家，跟董事長、跟來校外教學的小朋友一起做鳳梨酥。有小朋友一眼認出我，喊「是川伯！」還拉著同學一起來打招呼。我幫旁邊的妹妹包餡、壓模，大家做出台灣、元寶、鳳梨的形狀，做得很開心。\n\n\n\n說實在，烘焙這一行不簡單。整個烤焙過程都在高溫裡，每一道工序都不能馬虎。以前我在麵包店做最多的工作是洗盤、洗攪拌桶——攪拌桶只要留一點油渣，蛋白放進去就打不發。成敗，常常就在你看不見的地方。\n\n\n\n一間觀光工廠，裝得下職人的手藝，也裝得下一家人的假日。\n\n所以有了「新北職人 Passport」：\n\n✅串聯 18 家觀光工廠跟產業文化館，一本護照就能入館體驗、集章換紀念品，18 館走完再送限量職人禮。\n\n✅小朋友可以做職涯探索，長輩可以透過導覽跟手作課程走出家門、動手動腦，讓觀光工廠成為新北最有代表性的親子旅遊品牌。\n\n\n\n把每一個細節做到位，就是職人精神。做糕餅是這樣，把一個城市做好，也是這樣。",
+          "image_id": "cd3987ebe96d",
+          "linked_url": "https://www.facebook.com/share/p/1JJ6Siqxfv/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "d78t6Byy4HQpna5zmzBe",
+          "hidden": false,
+          "alt": "李四川產業四箭",
+          "label": "了解更多",
+          "source_text": "產業四箭，打造AI之都\n\n\n在寶高智慧園區，一位進駐廠商的副總跟我說：「他們的工程師，凌晨兩點想到一個 idea，就直接開車進辦公室」我聽了很有感。AI 的競爭是全球的，但工程師的生活，是在一個城市裡過的。\n\n\n\n說實在，人才不是用口號留下來的。他要有地方做研發，公司要有地方擴產，下班要有捷運可以搭，凌晨兩點門要打得開。一個城市能不能留住人才，看它接不接得住凌晨兩點。\n\n\n\n所以我提出產業四箭：\n\n🏹 第一箭，AI 科技廊帶。興建蘆社大橋，不只是一條橋，而是銜接北士科與新北產業聚落的整體交通規劃，串起台64、台65，讓研發、製造、應用、出口在新北一條龍。\n\n🏹 第二箭，產業專區倍增。推動淡海二、三期與五股交流道周邊開發，產業專區只租不售，政府蓋標準廠房，讓企業進得來、留得住。\n\n🏹 第三箭，無人機產業起飛。新北有超過50家無人機重點廠商，我們要做台灣無人機產業發展中心。\n\n🏹 第四箭，AI 電競新經濟。成立第二間電競基地，同時拓展銀髮電競，讓年輕人的興趣，變成接軌世界的產業。\n\n\n\n我做工程整整40年，很清楚一件事：橋要一墩一墩蓋，產業鏈要一節一節接。蘆社大橋不只是一座橋，是新北下一個30年的起點。產業留在新北，人才留在新北，工作留在新北。\n\n\n\n新北的凌晨兩點，有人開車進辦公室。\n\n新北的下一個30年，有人已經開始蓋。",
+          "image_id": "b56c96657230",
+          "linked_url": "https://www.facebook.com/share/p/14oJL93PA6M/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "ivH4XIhgghtyw56a0WcO",
+          "hidden": false,
+          "alt": "李四川勞工政策",
+          "label": "了解更多",
+          "source_text": "給清潔隊員的五個承諾\n\n\n風雨往城裡灌，他們往外走\n\n照顧清潔隊的弟兄，就是守住我們的城市\n\n今天我在環保局工會，跟弟兄們報告 5 件要做的事。\n\n\n\n其中兩件，數字我先講明白：\n\n1️⃣ 夜點費：120 → 200\n\n半夜出勤的辛苦，要對得起。\n\n2️⃣ 早點費：新增 100\n\n清晨出班，一樣有照顧。\n\n3️⃣ 每年一次免費健檢\n\n身體先顧好，才顧得了城市。\n\n4️⃣ 編預算，汰換老舊垃圾車\n\n老車換新車，弟兄開得安心。\n\n5️⃣ 窄巷研擬定點收運\n\n讓清運過程，盡量安全又方便。\n\n\n\n說實在，我做工務、治水這麼多年，最知道這群弟兄的份量，風雨來之前，他們已經先把該清的清好。城市的安穩，是這樣一點一點顧出來的。\n\n這 5 件，不是選舉才開的支票。過去在台北，我就是這樣顧清潔隊的，編過預算、換過車。我做過，所以我知道怎麼做。照顧做事的人，台北我做過，新北我接著做。",
+          "image_id": "3d3667cae4d2",
+          "linked_url": "https://www.facebook.com/share/p/1DeN3XuoSc/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        }
+      ],
+      "local_html": "source-assets/portaly-economy.html",
+      "fetch": {
+        "url": "https://portaly.cc/hammerlee/pages/economy",
+        "local_file": "source-assets/portaly-economy.html",
+        "bytes": 236304,
+        "mime": "text/html; charset=utf-8",
+        "status": "downloaded"
+      },
+      "html_has_next_data": true,
+      "html_bytes": 236304
+    },
+    {
+      "slug": "healthcare",
+      "url": "https://portaly.cc/hammerlee/pages/healthcare",
+      "title": "銀髮與醫療照護",
+      "items": [
+        {
+          "block_id": "0KniHPdNmdBcZfRVlmQ5",
+          "hidden": false,
+          "alt": "李四川敬老卡升級",
+          "label": "了解更多",
+          "source_text": "敬老卡升級 2.0\n\n\n這陣子跑遍新北二十九區、參加長者共餐，跟長輩聊到敬老卡，尤其遇到偏遠地區長者，最常聽到一句話：「點數很多，但能用的地方，還可以更多。」\n\n\n\n新北的敬老卡，今年 7 月起每月 600 點，能搭公車、能搭捷運、能跨市搭台鐵，這個基礎，朱立倫市長奠定、侯友宜市長深化。\n\n現在新北已經邁入超高齡社會，65 歲以上的長輩超過 81 萬人，是全台灣高齡人口最多的城市。最多長輩的城市，敬老政策也要走在前面。\n\n\n\n下一階段，我們要打造一個長者宜居的城市，這本身就是一個大工程。對我們做工程的人來說，東西不是越多越好，是要用得到才算數。\n\n\n\n敬老卡升級 2.0\n\n600 點完全保留，其中 300 點悠遊卡化。\n\n🔹 就醫回診\n\n就醫、拿藥的開銷，悠遊卡一起幫\n\n🔹 長者後盾\n\n長照耗材、生活必需，每月 300 塊一起扛\n\n🔹 健康加分\n\n保健食品、自費項目，健保不到的，一起補位\n\n便利商店、超市、藥局、計程車、診所，悠遊卡能去的地方，敬老卡都能用。\n\n\n\n我做了 40 年的公務員，從三職等開始做起，我知道一件事——錢，要花在真正卡住的地方。長輩要的不只是更多點數，是要用的時候，真的用得到。\n\n\n\n新北要成為長者宜居的城市。\n\n把外面的路鋪平、把心裡的路打通。\n\n讓長輩願意走出來，每天都想出門看看。\n\n鋪了一輩子的路，這次要鋪到長輩心裡。",
+          "image_id": "64dc913ee776",
+          "linked_url": "https://www.facebook.com/share/p/14aDEVwjtTq/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "0k0hOBIvRkRa58puIlF1",
+          "hidden": false,
+          "alt": null,
+          "label": "了解更多",
+          "source_text": "新北醫療升級\n\n\n土城醫院，我從會勘、協調，到看著它一層一層蓋起來，整整跟了五年。所以我知道，一間醫院要從圖上走到地上，有多難。也知道，怎麼讓它走得快一點。\n\n\n\n今天我提出五大醫療政策——BOT 加速興建、分區補足量能：\n\n一、興建蘆洲醫院，近 20 萬人的蘆洲，該有一間自己的大醫院。\n\n二、加速板橋醫療園區，55 萬人的量能，要補上。\n\n三、推動淡海新市鎮醫院，長輩的復健照護，就近解決。\n\n四、強化土城醫療園區，超高齡社會，先準備好。\n\n五、協助恩主公醫院擴建，溪南的醫療網，更完整。\n\n\n\n醫院不是蓋給地圖看的，是蓋給每一個半夜掛急診的家庭、每一個帶爸媽回診的兒女。\n\n\n\n路，我鋪到了 29 區。醫療，我要蓋進每一個生活圈。",
+          "image_id": "b34a8e0b72ee",
+          "linked_url": "https://www.facebook.com/share/p/1H9i1BJPV8/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "1D2O3WjHoPsvq7g5d3nC",
+          "hidden": false,
+          "alt": "李四川老舊電梯政策",
+          "label": "了解更多",
+          "source_text": "讓長輩能夠出門走走\n\n\n你的阿公、阿嬤如果住在沒有電梯的老舊公寓裡，你一定會了解我的感受。生病的老人家，只能隔著窗戶往外看，很難走出家門。就算孩子們有心，就算有外勞看護協助，揹著長輩上下樓梯出門走走或是去看病，彼此都辛苦。\n\n\n\n新北市屋齡超過30年的老屋有100萬戶左右。我看過一篇報導，以過去幾年都更報拆的平均數量，要1000年才能完成新北市的老屋都更。我是個務實的人，我覺得在加速推動都更以外，另一個重點應該是為老舊公寓裝設電梯。老舊公寓裝電梯的最大阻力是一樓。電梯落椿在一樓是整合的最大困難，因為一樓完全不需要使用電梯，而且電梯落椿的地點往往是一樓的停車位或是庭院，因此必須優先解決一樓的停車問題。\n\n\n\n市府不能從做功德的角度去要求一樓配合施做電梯，必須要能解決一樓的停車問題，才能提高一樓的配合意願。以下是我們未來會考慮採取的作法。\n\n\n\n一、免費提供住家附近公有或私有停車場的專屬車位給一樓屋主，私有停車場部分由市府出面洽談優惠停車費；\n\n二、由交通局在附近的道路畫設一個專屬使用的停車位給一樓屋主；\n\n三、由市府補助停車津貼給屋主。 \n\n\n\n有人會質疑我這樣的作法涉及圖利。社會住宅政策不就是為了圖利年輕人嗎？租金補貼政策不就是為了圖利弱勢的租屋族嗎？我想要的就是讓行動不便的老人家能夠方便進出自己的家。我圖利的是他們，我是為民興利。如何解決老舊公寓裝設電梯的其他問題，未來我還會陸續提出我的想法。",
+          "image_id": "db8dada7439d",
+          "linked_url": "https://www.facebook.com/share/p/1AkxNM877p/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "1mGPQSsHroLsFo9q4uAV",
+          "hidden": false,
+          "alt": "李四川銀髮電競政策",
+          "label": "了解更多",
+          "source_text": "銀髮電競政策\n\n\n「我阿嬤都比你強」——這句電競圈的玩笑，今天我在三重，信了。我輸給一群阿公阿嬤。他們手速快，戰術清晰。\n\n對他們來說，這不只是玩，是走出家門、是動腦、是跟孫子終於有更多話聊。\n\n\n\n今天，我明確宣布兩件事：\n\n🎮 推動「銀髮電競升級計畫」\n\n擴大青銀電競課程，讓更多長輩走出家門、接觸電競、訓練反應力。\n\n🚇 爭取第二座新北電競基地\n\n選在捷運站周邊，讓電競資源從三重，延伸到新北更多地方。\n\n\n\n新北的電競基地，是全國第一個。從 朱立倫 前市長任內設立，到 侯友宜 市長這幾年把賽事、把產業總會一個一個做起來。\n\n\n\n下一階段，我要推廣給每一個世代——讓更多家長放心，這不是不務正業，是一條正路，一個專業。\n\n\n\n電競不分年齡，也不該被看輕。\n\n該為他們爭取的，我來爭取。",
+          "image_id": "fb1957b84758",
+          "linked_url": "https://www.facebook.com/share/p/1BrzBSWNqJ/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "89SBcPDByncM22EkTFoe",
+          "hidden": false,
+          "alt": "李四川護牙政策",
+          "label": "了解更多",
+          "source_text": "全齡護牙\n\n\n做工程四十年，我學會一件事：地基沒顧好，上面蓋再漂亮都沒用。牙齒，就是身體的地基。孩子牙不好，影響發育；媽媽牙不好，育兒再忙也只能忍；長輩缺了牙，一碗飯吃不完，營養跟著掉，身體就跟著垮。所以今天，我跟新北市牙醫師公會的高君華理事長、葉建陽名譽理事長一起，提出五大護牙政策。\n\n\n\n侯友宜市長打下的基礎，我接棒，再往前一步：\n\n📌 塗氟延伸到小一：孩子進校園第一年，口腔保健就跟上。\n\n📌 國中窩溝封填擴及第二大臼齒：守到恆齒長齊為止。\n\n📌 孕婦產後一年免費口腔保健：照顧孩子的人，也要有人照顧。\n\n📌 弱勢長者及55歲以上原住民，假牙補助最高5萬元：缺牙補起來，飯才吃得下。\n\n📌 重度失能失智：每年3000元口腔照護牙醫走進家裡、走進機構\n\n從小一的第一次塗氟，到阿嬤的一口假牙，這是一套從小顧到老的口腔照護體系。\n\n\n\n預防勝於治療。蓋房子是這樣，顧身體也是這樣。牙齒顧得好，身體更健康——這件事，從「個人負擔」走向「城市照顧」，新北一起扛。",
+          "image_id": "8603b4a1b51f",
+          "linked_url": "https://www.facebook.com/share/p/1CgUXfV8vM/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "CfC4LWsOHhIZLpwrSfCp",
+          "hidden": false,
+          "alt": "李四川老舊電梯政策2",
+          "label": "了解更多",
+          "source_text": "老舊公寓裝設電梯\n\n\n雙北市過去幾年都在推動老舊公寓裝設電梯，但是成案數不多。這並不表示沒有這個需求，事實上我們知道需求非常龐大。我先前已經提出如何解決一樓不願配合裝設電梯的一些想法，今天來談談其他幾個問題。\n\n\n\n比一樓更棘手的是法令的問題。增建電梯必須取得建築法中所規定的「雜項執照」。如果電梯落椿的位置是屬於社區的公共空間，依照一個名稱落落長的法規—「建築物於共有土地增設昇降機應檢附土地及建築物權利證明文件作業規定」，申請雜項執照必須取得過半數土地與建築物所有權人的土地使用同意書。\n\n\n\n30年以上的老舊公寓，如果是獨棟的透天厝，問題可能單純一點；如果是雙併或是大型連棟式的社區，經過多年來的買賣、繼承、租賃，要找到過半數土地和建築物所有權人取得土地使用同意書，你只能等到地老天荒。\n\n\n\n徒法不足以自行。我呼籲中央盡快修改相關法規，將老舊公寓裝設電梯視為無障礙設施，以許可制取代目前必須取得過半數土地與建築物所有權人同意的規定。對於那些被一樓佔用的公共空間，政府應該強制拆除違建，為公共使用的電梯找出空間。\n\n\n\n目前中央和地方政府都對老舊公寓裝設電梯提出高額的補助辦法，但是相關法令不鬆綁，這些補助都只是畫餅。如果我當選新北市長，這會列為我向立委請托修法的優先待辦事項。",
+          "image_id": "1abcf4c09f44",
+          "linked_url": "https://www.facebook.com/share/p/19FhQHJxWv/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "KMsew0QpYvJH7MVgknir",
+          "hidden": false,
+          "alt": "李四川敬老卡升級2",
+          "label": "了解更多",
+          "source_text": "敬老卡悠遊卡化\n\n\n會喊的政策很多，會兌現的不多。\n\n敬老卡升級，我跟侯友宜市長一直有共識，今天侯友宜市長宣布要落實了。\n\n\n\n📍今年 7 月起，每月點數提高至 600 點，還能騎 YouBike 電輔車\n\n📍2027 年上半年，健檢、溫泉、觀光巴士、復康巴士陸續上路\n\n📍2027 年下半年，300 點能用在農會、藥局、超商\n\n📍2029 年，二代卡換發完畢、實施點數累積制度\n\n一步一步，照時程走。\n\n\n\n今年我提的「敬老卡悠遊卡化」，就是讓 600 點裡的 300 點，能用在長輩日常真正需要的地方——看病、拿藥、買生活用品。今天新北市政府宣布往這個方向走，我要謝謝侯友宜市長的肯定。侯友宜市長率先把農會、藥局、超商這一步開出來；剩下的我接著做，讓敬老卡更貼近每一位長輩的需求。\n\n\n\n照顧長輩的福利提升，朱立倫市長奠定 、侯友宜市長深化，能夠一棒接一棒，是因為我們有共同的理念。照顧長輩，最實在的不是又一個承諾，是真的用得上的那一天。屬於長輩的卡，比的不是誰喊得多，是真的幫得上忙。",
+          "image_id": "5ae8c3769031",
+          "linked_url": "https://www.facebook.com/share/p/14iAFWd4EQ4/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "r1wudv55wZOLOtGoPsm2",
+          "hidden": false,
+          "alt": "李四川 高齡政策",
+          "label": "了解更多",
+          "source_text": "李四川 高齡政策\n\n\n新北超過 80 萬位長輩，每五位市民就有一位。超高齡社會不是要來了，是已經來了。\n\n\n\n我提出「安心生活三大行動」：\n\n\n\n\n1. 把家顧好：高齡安心六大檢查\n\n\n做工程的人看房子，先看電線、瓦斯、扶手。\n\n專人到宅，用電、防火、防災、防跌、無障礙、急難，一次看完。65 歲以上都能申請，75 歲以上獨居、失智失能的長輩，不用等你來，政府主動上門。該換的電線、該換的瓦斯爐，每戶最高補助 3 萬元。\n\n\n\n\n2. 把照顧提前：主動發掘高齡風險\n\n\n照顧不能等跌倒了才開始。\n\n用 AI 結合訪視、送餐跟第一線服務，哪位長輩開始衰弱，早一步發現、早一步照顧。以前是長輩來找政府，以後換政府去找長輩。\n\n\n\n\n3. 把舞台留著：新北銀髮人才中心\n\n\n很多長輩退休了，體力還在、專業還在。\n\n成立新北銀髮人才中心，彈性工時、專案工作、志願服務，想做的找得到機會。退休不是退場。\n\n\n\n過去侯友宜市長把長照跟醫療的底打好了，接下來，要走進長輩家裡。做了 40 年工程，我知道一間房子安不安全，不是看外觀，是看細節。\n\n\n\n長輩的生活也一樣，看的是細節。\n\n活得久不夠，要活得安心。",
+          "image_id": "a1578d6db54d",
+          "linked_url": "https://www.facebook.com/permalink.php?story_fbid=1661681502235770&id=100051818071280",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        }
+      ],
+      "local_html": "source-assets/portaly-healthcare.html",
+      "fetch": {
+        "url": "https://portaly.cc/hammerlee/pages/healthcare",
+        "local_file": "source-assets/portaly-healthcare.html",
+        "bytes": 262865,
+        "mime": "text/html; charset=utf-8",
+        "status": "downloaded"
+      },
+      "html_has_next_data": true,
+      "html_bytes": 262865
+    },
+    {
+      "slug": "about",
+      "url": "https://portaly.cc/hammerlee/pages/about",
+      "title": "關於",
+      "items": [
+        {
+          "block_id": "o15A2J4VA2eJN95b9iAQh",
+          "hidden": "",
+          "alt": null,
+          "label": "查看我的作品集",
+          "source_text": "我是李四川，做事的人\n\n\n\n\n經歷：\n\n臺北市政府副市長\n\n高雄市政府副市長\n\n新北市政府副市長\n\n中國國民黨秘書長\n\n行政院秘書長\n\n臺北縣政府副縣長\n\n臺北縣政府工務局局長\n\n臺北市政府衛工處處長\n\n臺北市政府新工處處長\n\n\n\n學歷：\n\n國立臺北科技大學電機工程研究所碩士\n\n臺灣省立臺北工業專科學校電機科\n\n臺灣省立岡山高級農工職業學校電工科\n\n屏東縣立琉球國民中學",
+          "image_id": "ba8706f86f6e",
+          "linked_url": null,
+          "classification": "biographical_self_report"
+        }
+      ],
+      "local_html": "source-assets/portaly-about.html",
+      "fetch": {
+        "url": "https://portaly.cc/hammerlee/pages/about",
+        "local_file": "source-assets/portaly-about.html",
+        "bytes": 194143,
+        "mime": "text/html; charset=utf-8",
+        "status": "downloaded"
+      },
+      "html_has_next_data": true,
+      "html_bytes": 194143
+    },
+    {
+      "slug": "construction",
+      "url": "https://portaly.cc/hammerlee/pages/construction",
+      "title": "交通建設與區域發展",
+      "items": [
+        {
+          "block_id": "NdZNzOI7KtuhUlHZj6jm",
+          "hidden": false,
+          "alt": "李四川軌道建設",
+          "label": "了解更多",
+          "source_text": "軌道建設123\n\n\n\n\n「軌道建設123」，大家先看到的是三個數字： 一加速、兩快線、三連通。加起來，是30分鐘。\n\n\n一加速，是汐東線接東環段\n——汐止、汐科進台北的那個瓶頸，先打通。\n\n\n兩快線，是淡北快線跟大漢溪捷運縱貫線。\n一條往北接北士科、淡海；一條往西串三重、新莊、塭仔圳、土城。長距離的線要能跑快車，市民才願意把機車留在家裡。\n\n\n三連通，是蘆社大橋接北士科、中和光復線南北延伸、深坑輕軌延伸石碇。\n\n\n\n\n內行的朋友一看就知道，這三件事其實在講同一件事——把雙北捷運斷掉的地方，接起來。不是台北的線多延一站，也不是新北的線多蓋一段。是把兩邊斷鍊的地方縫回去，讓人在站內就轉得了車，不必出站、不必再等下一班公車。\n\n\n\n我常講，離開台北市不是放棄台北市，是為了兩岸共治。這個兩岸，不是台灣海峽，是淡水河兩岸。三環三線，朱立倫市長奠基；四環八線，侯友宜市長深化。基礎很扎實了，我一路都在現場。下一步，我會把它們連成一張網。我記得，三環三線剛提出來的時候，很多人不相信蓋得成，民進黨還編了一句「三環三線，夢裡相見」來笑。現在，環狀線在跑、機場線在跑、淡海輕軌在跑。\n\n笑話會過期，捷運不會。\n\n\n\n新北捷運公司第一任董事長、也做過交通部長的陳建宇跟我說，他小時候唱的是「123到台灣，台灣有個阿里山」，現在他想改一句：「123到新北，新北有個李四川。」我聽了不好意思。我只想說一句——省下來的30分鐘，不是給捷運的，是給家人的。該做的，我接著做。",
+          "image_id": "f014442db553",
+          "linked_url": "https://www.facebook.com/share/p/1EnKA6QiQG/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "Qevepcb4cOCfhHHpeqG5",
+          "hidden": false,
+          "alt": "新北巨蛋城",
+          "label": "了解更多",
+          "source_text": "南有巨蛋城，北有科學城\n\n\n\n\n一座城市要往前走，先要看骨架撐不撐得住。\n\n侯友宜市長任內從捷運路網、第二行政中心、新北美術館，到剛宣布的新北巨蛋城，已經把底子打得很好。我要做的，除了把好的建設延續下去，還要在這個基礎上，讓新北跨進下一個世代。\n\n所以今天提出「南有巨蛋城、北有科學城」。\n\n\n\n南邊，以新北巨蛋城為核心，帶動樹林、土城、新莊、塭仔圳、三峽、鶯歌，做成溪南的新都心。\n\n北邊，以淡海科學城串聯北士科、台北雙子星、台北港，做一條國際級的科技走廊。\n\n\n\n要撐住這兩個引擎，交通必須先到位。三件事：\n\n\n一、分階段推動樹林鐵路地下化，並延伸到鶯歌。\n鐵路下去，前後站接起來，樹林車站立體化成為巨蛋城的新門戶。\n\n\n二、延伸民生汐止線，推動大漢溪捷運縱貫線。\n從大稻埕出發，串聯三重、新北第二行政中心、新莊、塭仔圳、樹林巨蛋城、土城產業園區，未來可以再往桃園、基隆延伸。\n\n\n三、推動淡北快線\n，與台北市規劃中的社子捷運整合，從台北車站雙子星到淡海新市鎮，目標 15 分鐘到士北科、30 分鐘進台北核心區。\n\n\n\n我想，這不只是交通建設，是城市格局的重新安排。不是為了滿足今天，是為了布局未來三十年。",
+          "image_id": "d5e3ab73b8ab",
+          "linked_url": "https://www.facebook.com/share/p/1Jn8H5AnXj/",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "ROjMvkc4nQ6lfjOl4m4M",
+          "hidden": false,
+          "alt": "李四川交通政策",
+          "label": "了解更多",
+          "source_text": "李四川拚交通\n\n\n說實在，做工程做了四十多年。路蓋了不少，橋也接了幾座，三環三線就是這樣一段一段接起來的。做到後來，我越來越確定一件事：交通建設最後看的，不只是蓋了多少路、多少橋。\n\n\n\n路是手段，人才是目的，最重要的是市民出門有沒有更方便，上班上學有沒有少花一點時間，一家人出門，能不能平平安安回家。\n\n\n\n三環三線到四環八線，新北的基礎已經打好。下一步不是另起爐灶，是接上去、打得通、做得更安全。\n\n\n\n\n30 分鐘更快，雙北核心生活圈：\n雙北本來就是一塊，路網不該在市界斷掉。建立「北北基桃四市首長級跨域治理平台」一起規劃，捷運、公車、國道一起看；淡江大橋接桃園機場，智駕電巴示範廊道；雙北自行車通勤網，跨河不斷點。\n\n\n\n\n15 分鐘更近，車站為中心的日常生活圈：\n人本友善城市委員會先成立，整合交通、捷運、都市規劃與公共空間。車站、學校、醫院、市場走出來，人行道要接得起來。人行斷點優先打通；停車往路外移，停車有地方，行人有路走。\n\n\n\n\n零死亡願景，更安心：\n以人為本，一條一條路做出來。道路設計、速限、路口、號誌一個一個改，高風險路段先處理；AI 動態號誌、車路協同，救護車先過，公車準時。\n\n\n\n交通少塞一點，市民就多一點時間。\n\n道路安全一點，家人就多一點安心。\n\n這就是我拚交通最重要的目的。",
+          "image_id": "a219251e511f",
+          "linked_url": "https://www.facebook.com/permalink.php?story_fbid=1645299650540622&id=100051818071280",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        },
+        {
+          "block_id": "WxnuRk1bzHMudDwCUNwo",
+          "hidden": false,
+          "alt": "李四川居住政策",
+          "label": "了解更多",
+          "source_text": "居住新五箭\n\n\n\n\n我做了一輩子工程，蓋過路、蓋過橋、蓋過捷運。但這幾年我一直在想一件事——路通了，人還是要有地方可以回去。那個地方，才叫家。新北，有很多有理想的年輕人一起來打拚，我們要做的，是讓他們安心落腳。\n\n\n\n說實在，過去八年侯友宜市長一步一腳印，把都更跟社會住宅的底子打下來。我接著走，不是重來，是往上疊。新北 3.9 萬戶社會住宅，我接著蓋完，也會把新北該有的份額爭回來。各界好的方案我都納進來評估，包括民眾黨提出的 1.2 萬戶規劃，住宅這件事，不分黨派。\n\n\n\n然後是「居住新五箭」🏹🏹🏹\n\n\n捷運到哪，安居到哪：\n淡海二三期、大柑園、麥仔園，規劃 5% 以上土地留給社會住宅。\n\n\n有開發，就有社宅：\n利用容積獎勵，取得社宅回饋。城市發展的紅利，要回到市民身上。\n\n\n企業一起蓋勞工宅：\n只租不賣，留人也留才。\n\n\n婚育宅再加碼：\n兩個孩子以上的家庭，研議把社宅住得更久，租金階梯往下走。\n\n\n高齡友善社宅：\n延續「銀新未來城」，讓長輩住在醫院附近、菜市場走得到的地方。\n\n\n\n我想，住宅政策最怕的就是只剩數字。一戶社宅，對市府是一個數字；對一個家庭，是終於敢把行李箱放下來。\n\n\n\n當然，能安居的前提是安全。「都更 5 夠力」加速老屋、危樓更新，這一關同步在走。捷運到哪，安居到哪。房子要蓋在有生活的地方，那才叫家。",
+          "image_id": "e9faf9b3a99f",
+          "linked_url": "https://www.facebook.com/permalink.php?story_fbid=pfbid06dHLFsbbqD2kmpN9P6e1StrW4rcxezodSCgLa1X8oaDecZvBiZFNRReNkgkatFcfl&id=100051818071280",
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        }
+      ],
+      "local_html": "source-assets/portaly-construction.html",
+      "fetch": {
+        "url": "https://portaly.cc/hammerlee/pages/construction",
+        "local_file": "source-assets/portaly-construction.html",
+        "bytes": 230139,
+        "mime": "text/html; charset=utf-8",
+        "status": "downloaded"
+      },
+      "html_has_next_data": true,
+      "html_bytes": 230139
+    },
+    {
+      "slug": "childparty",
+      "url": "https://portaly.cc/hammerlee/pages/childparty",
+      "title": "李四川親子派對",
+      "items": [
+        {
+          "block_id": "WxonVMMiF0ujHXcABchw",
+          "hidden": false,
+          "alt": null,
+          "label": "了解更多",
+          "source_text": "說實在，看到小朋友玩得開心，大人的心情也會跟著好起來。我們小時候玩石頭、玩泥巴，現在的小朋友，需要一個可以放心玩的地方。\n\n\n\n排隊、輪流、玩完把東西收好，這些事玩著玩著就學會了。這次的親子派對，有遊戲室，也有旋轉木馬。各位老師、各位爸爸媽媽，歡迎帶小朋友來玩。\n\n\n\n📍 新北市板橋區三民路一段129號之1\n\n👉 團體預約：兒童閱覽室\n\n\nhttps://forms.gle/ABnrWe6ndpg57tKdA\n\n\n\n\n\n\n👉 團體預約：旋轉木馬\n\n\nhttps://forms.gle/4ChPE4jD92qxuqU49",
+          "image_id": "6b3962a25c09",
+          "linked_url": null,
+          "classification": "campaign_material_or_proposal; not evidence of completion"
+        }
+      ],
+      "local_html": "source-assets/portaly-childparty.html",
+      "fetch": {
+        "url": "https://portaly.cc/hammerlee/pages/childparty",
+        "local_file": "source-assets/portaly-childparty.html",
+        "bytes": 194563,
+        "mime": "text/html; charset=utf-8",
+        "status": "downloaded"
+      },
+      "html_has_next_data": true,
+      "html_bytes": 194563
+    }
+  ],
+  "images": [
+    {
+      "id": "e8da82e05338",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2Fblocks%2F99RLtTVkE29chu0Fwf1p%2FitemMap.rEi9MX3rBWFCYRt7EJbFQ.image?alt=media&token=b1c3803c-63f2-44a8-b01b-515367b61b1e",
+      "captions": [
+        "認識李四川"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/e8da82e05338.png",
+      "bytes": 562554,
+      "mime": "image/png",
+      "status": "downloaded"
+    },
+    {
+      "id": "f434ff984467",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2Fblocks%2F83guICbQbNFzZrvfVsNN%2FitemMap.VTD5d6DvHj1jitdrlcbuB.image?alt=media&token=a8574759-ada8-4b75-a801-69369095c673",
+      "captions": [
+        "挺李四川"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": true,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/f434ff984467.jpg",
+      "bytes": 439477,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "d11f72de56e8",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2Fblocks%2FbYEI7MSc2STzlDZDpdBA%2FitemMap.UKtAe3BEt3Ms4NllmfT4E.image?alt=media&token=0adb8946-9ea1-4d79-9e9c-5755e47df7fd",
+      "captions": [],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/d11f72de56e8.jpg",
+      "bytes": 403519,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "731e5cca0e63",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2Fblocks%2F3oq8i4osP85E6jxAzhRh%2FitemMap.Uc76SEYlYgAZuk1L-02zI.image?alt=media&token=0d6214a1-54fa-4eff-9ff2-92cd9c30cee8",
+      "captions": [],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/731e5cca0e63.jpg",
+      "bytes": 280847,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "0ecb14604e20",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2Fblocks%2FDIxVZy1ovZNOjsczR0FU%2FitemMap.AFnuyeyz34ASCLKHQJj6B.image?alt=media&token=5972b3f9-ed58-48c7-957b-8e6bca122d1a",
+      "captions": [],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/0ecb14604e20.jpg",
+      "bytes": 334922,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "d820a06669f8",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2Fblocks%2FaowMgXwyATPW0ZzHBPAH%2FitemMap.48f3QVktG_zgoEeHCE3Eb.image?alt=media&token=59bbf32c-b0bb-432e-add6-664a209bde9c",
+      "captions": [],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/d820a06669f8.jpg",
+      "bytes": 372235,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "871dc4787cdd",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2Fblocks%2F7nuayqJwd5AWtYIuQh7W%2FitemMap.kg6wd9AO4IaahWlSw5_C6.image?alt=media&token=89a14519-f06e-4f4a-848c-4da68d4e8864",
+      "captions": [],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/871dc4787cdd.jpg",
+      "bytes": 328756,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "c92a8174f194",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2Fblocks%2FaAXcCYNhQdYYAPwRsFv9%2FitemMap.RmKulv9-RjoSC-V56-7j4.image?alt=media&token=7703a5ee-10d3-42a5-bcfb-b99e32dc0e69",
+      "captions": [],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/c92a8174f194.jpg",
+      "bytes": 349766,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "0449fcc16bee",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2Fblocks%2FcMd6UgtMI2d6Vjb7cXgX%2FitemMap.flCJkqbMCFEOMuEEngAKS.image?alt=media&token=c211376d-b70e-4acb-88c0-95023c5b52da",
+      "captions": [],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/0449fcc16bee.jpg",
+      "bytes": 224482,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "f703b3ca1740",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2Fblocks%2FnXVnfRqTSUX2aMcP2pQy%2FitemMap.OWvsUOVFjzuMj88cV-4bn.image?alt=media&token=8f079081-1ffb-4bb5-8bd9-1b1ff128df07",
+      "captions": [],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/f703b3ca1740.png",
+      "bytes": 2427456,
+      "mime": "image/png",
+      "status": "downloaded"
+    },
+    {
+      "id": "c73a0618c972",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2Fblocks%2FnXVnfRqTSUX2aMcP2pQy%2FitemMap.Z5dA5wkzYC5z4tQJ0V7n5.image?alt=media&token=c2ab7ea1-cff0-425e-b1a5-aa5a6b72b376",
+      "captions": [],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/c73a0618c972.png",
+      "bytes": 2352006,
+      "mime": "image/png",
+      "status": "downloaded"
+    },
+    {
+      "id": "e2b29929d3dd",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2Fblocks%2FnVOcqOYtlmBwU5AeMKkw%2FitemMap.qsnZYHoe3fNez88QV-U5Z.image?alt=media&token=0d8bb656-fcc7-4bf9-98c0-5b7fdd1f55bf",
+      "captions": [],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/e2b29929d3dd.png",
+      "bytes": 2106733,
+      "mime": "image/png",
+      "status": "downloaded"
+    },
+    {
+      "id": "6b8751b1e1dd",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2Fblocks%2FnVOcqOYtlmBwU5AeMKkw%2FitemMap.uLjcp6tQf_dx9rIkYcxUR.image?alt=media&token=0a84cd3f-7384-438f-83ea-4e8d86f3b5d0",
+      "captions": [],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/6b8751b1e1dd.png",
+      "bytes": 2032864,
+      "mime": "image/png",
+      "status": "downloaded"
+    },
+    {
+      "id": "42407153d4f0",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2Fblocks%2FyntUgMsu7SR2L2vi8GMy%2FitemMap.hbxCT9PjKF5vUhsKKCzef.image?alt=media&token=300936b9-5acb-47ee-8b9c-40c5fc277502",
+      "captions": [],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/42407153d4f0.png",
+      "bytes": 2313959,
+      "mime": "image/png",
+      "status": "downloaded"
+    },
+    {
+      "id": "b6c42c2a71ef",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2Fblocks%2FyntUgMsu7SR2L2vi8GMy%2FitemMap.-fV-h4rmgl_aInib--J8q.image?alt=media&token=1846a186-1bf2-4620-91ce-ce1d897ae54f",
+      "captions": [],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/b6c42c2a71ef.png",
+      "bytes": 2187857,
+      "mime": "image/png",
+      "status": "downloaded"
+    },
+    {
+      "id": "440ab6bb92e0",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2F0VESrD1GohgTIzdcIGBd%2FitemMap.yKfd5C46vlLC-Ty9gpk9Q.image?alt=media&token=c2d33f18-4bca-491a-a306-bec4ddbcb9f2",
+      "captions": [
+        "李四川體育政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/culture"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/440ab6bb92e0.jpg",
+      "bytes": 407264,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "7e958f876f3c",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FLz2El7gdhFws6SuSWVvm%2FitemMap.wJH1brA2QxfbTurRcBbJ_.image?alt=media&token=b8a04112-0592-4e33-a263-f55693769511",
+      "captions": [
+        "李四川運動平權政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/culture"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/7e958f876f3c.jpg",
+      "bytes": 351609,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "ed55878d9828",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FM1jVof312fanSSBtyeUt%2FitemMap.tga472DGQRTkimhDOn0SS.image?alt=media&token=dc669f09-2411-4675-8b25-e5d13d82a0d9",
+      "captions": [
+        "李四川客家政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/culture"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/ed55878d9828.jpg",
+      "bytes": 363843,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "608f4530fcb3",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FMhc0dFdX9qVleaIPgp77%2FitemMap.MN3t-Cljr9PnlJa2jV2ze.image?alt=media&token=92088e19-3f4b-4871-8856-3b7c27da1cfb",
+      "captions": [
+        "李四川文化三策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/culture"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/608f4530fcb3.jpg",
+      "bytes": 489700,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "ac78b6cf54dd",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FO4j4LEwO64eNf25CUfSY%2FitemMap.yrvxtvNTupLsrk-eN_Tu9.image?alt=media&token=6ed0707b-fb99-4882-be6c-45e598bbff25",
+      "captions": [
+        "李四川觀光政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/culture"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/ac78b6cf54dd.jpg",
+      "bytes": 284479,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "8280332ff379",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FQPU6DfFoMMfJmhMwIiX2%2FitemMap.z7tKkEPcLfdxtuDhwJHvo.image?alt=media&token=c8e505e1-874c-4c25-958d-5c5690019d16",
+      "captions": [
+        "李四川原民政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/culture"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/8280332ff379.jpg",
+      "bytes": 298577,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "ad14abe5d913",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2Fmzv1jBeVEt3nJHi818ME%2FitemMap.OKfOpvit_z4GkATo1lqaD.image?alt=media&token=423ec5e4-e767-44fd-88f3-1f7fcd99aea0",
+      "captions": [
+        "新北無菸害商圈"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/culture"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/ad14abe5d913.jpg",
+      "bytes": 425336,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "93e4a7949402",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FQyN48cpUcInorqL1OZsf%2FitemMap.jYWjfX245sRwHDGhtzBKE.image?alt=media&token=b96e3a70-76e3-47ac-9236-34bf47c634b9",
+      "captions": [
+        "李四川毛孩政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/Sustainability"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/93e4a7949402.jpg",
+      "bytes": 353789,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "f53c5d592516",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FZAhnD8W9epn6WStMVc33%2FitemMap.fMScPsVc9QPFqi27z99UA.image?alt=media&token=a3bc69f7-2677-4d31-bf57-cda941f0931b",
+      "captions": [
+        "李四川六大動保政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/Sustainability"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/f53c5d592516.jpg",
+      "bytes": 270976,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "e290e3e07938",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FBzg0VWDsKGcyZXRqf4SX%2FitemMap.VydQCEUqR8vTRlbNEcVeF.image?alt=media&token=269ed414-dd41-472e-88ab-8f9d94857b7e",
+      "captions": [
+        "李四川青年創業政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/education"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/e290e3e07938.jpg",
+      "bytes": 336215,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "ff8c8e23731a",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FC3kDmASfyKKYQJi8G0gh%2FitemMap.5mMwRZqzzNVU-aTaKhoLP.image?alt=media&token=66cd43fc-463e-48f6-905d-d7e13e53070a",
+      "captions": [
+        "李四川公托政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/education"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/ff8c8e23731a.jpg",
+      "bytes": 319003,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "d38bbb8f9d0c",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FIbF6ZU8oBX5r4i2yzjF5%2FitemMap.sghHeLsBgqebFpdksmEXU.image?alt=media&token=610b8202-db2e-43ca-a711-0534e4567b24",
+      "captions": [
+        "李四川好孕政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/education"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/d38bbb8f9d0c.jpg",
+      "bytes": 284752,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "cd4d3df3a38d",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FKVV44kXKdrtMeFn4HnWe%2FitemMap.xxgTphVHwPVlYEa4kQuyK.image?alt=media&token=99cb773c-2112-4e52-aa51-de5f2cecab22",
+      "captions": [
+        "李四川 平權政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/education"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/cd4d3df3a38d.jpg",
+      "bytes": 318221,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "574bd65d6668",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FP3LO5Ygwdu5mTd0fcGW8%2FitemMap.ReoH5Ys6hb7hAB0o3dB6m.image?alt=media&token=cdc1ffb9-9310-4953-aa2f-222552af481d",
+      "captions": [
+        "李四川親子政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/education"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/574bd65d6668.jpg",
+      "bytes": 548329,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "a30cacacb566",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FcmP5NemZqH9FlbaWCscp%2FitemMap.BP4jtNMbDr1tAWw9dRT9w.image?alt=media&token=88348c82-12ee-4ec8-bc1c-5e3dba8e66ba",
+      "captions": [
+        "李四川教育政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/education"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/a30cacacb566.jpg",
+      "bytes": 178397,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "c0f349287de3",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2F3KWo1pStSt4zpfAwrpSi%2FitemMap.ZRcM0MiZu4_F4A_Fbi3r7.image?alt=media&token=694c3da7-b76b-40cc-a05c-89e52c02dd88",
+      "captions": [
+        "了解更多"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/economy"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/c0f349287de3.jpg",
+      "bytes": 117353,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "5a7afee70602",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FEkhtxSs5mbaS4syTjXYv%2FitemMap.n4BKNYpbFIy7l7WwFWPnM.image?alt=media&token=5d5e021f-eca0-4443-a7d9-1bcdcbbd711d",
+      "captions": [
+        "李四川勞工政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/economy"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/5a7afee70602.jpg",
+      "bytes": 398658,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "cd3987ebe96d",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FPtIZb3JIBt292iBCdfUg%2FitemMap.9U5I36LtAzmN5VimhlQWK.image?alt=media&token=a58dc471-d4ec-4064-9930-8171b2901e5e",
+      "captions": [
+        "了解更多"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/economy"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/cd3987ebe96d.jpg",
+      "bytes": 348584,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "b56c96657230",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2Fd78t6Byy4HQpna5zmzBe%2FitemMap.KcJKFb2ozFQ904o3ms_7Z.image?alt=media&token=5dd7cc3e-1a8a-42e8-8ee8-07e0ddd70c17",
+      "captions": [
+        "李四川產業四箭"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/economy"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/b56c96657230.jpg",
+      "bytes": 349766,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "3d3667cae4d2",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FivH4XIhgghtyw56a0WcO%2FitemMap.XhVez6txxlOH2tChTScFy.image?alt=media&token=ae299e9b-dec7-4953-b83f-810a6a549326",
+      "captions": [
+        "李四川勞工政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/economy"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/3d3667cae4d2.jpg",
+      "bytes": 365927,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "64dc913ee776",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2F0KniHPdNmdBcZfRVlmQ5%2FitemMap.9LFMMzWMiPef6thudXjKJ.image?alt=media&token=74755852-04f9-4eb1-b5a7-25dd546a5c52",
+      "captions": [
+        "李四川敬老卡升級"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/healthcare"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/64dc913ee776.jpg",
+      "bytes": 227175,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "b34a8e0b72ee",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2F0k0hOBIvRkRa58puIlF1%2FitemMap.T8EpCbHOBi64_Mx9GZzg9.image?alt=media&token=e964a881-df46-4ebf-9035-582f4b13f374",
+      "captions": [
+        "了解更多"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/healthcare"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/b34a8e0b72ee.jpg",
+      "bytes": 224482,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "db8dada7439d",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2F1D2O3WjHoPsvq7g5d3nC%2FitemMap.TTqOwK769DmI2EKjBNsck.image?alt=media&token=cd3c5b22-d274-46df-985f-bacd93b4cc84",
+      "captions": [
+        "李四川老舊電梯政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/healthcare"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/db8dada7439d.jpg",
+      "bytes": 395786,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "fb1957b84758",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2F1mGPQSsHroLsFo9q4uAV%2FitemMap.LdwNNuzQk27yN-tmp9kJL.image?alt=media&token=6e89ce6c-9d33-4028-8887-da7d0ea91ea9",
+      "captions": [
+        "李四川銀髮電競政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/healthcare"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/fb1957b84758.jpg",
+      "bytes": 383945,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "8603b4a1b51f",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2F89SBcPDByncM22EkTFoe%2FitemMap.S2vPiuayvR6QcJ0W-EH7t.image?alt=media&token=c0f03627-6414-469f-bc81-4c39fe6a885b",
+      "captions": [
+        "李四川護牙政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/healthcare"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/8603b4a1b51f.jpg",
+      "bytes": 374658,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "1abcf4c09f44",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FCfC4LWsOHhIZLpwrSfCp%2FitemMap.wusEOgfZXGY_HtZl59gsV.image?alt=media&token=9e7b6375-a2ab-4a14-9fec-aa52738873b0",
+      "captions": [
+        "李四川老舊電梯政策2"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/healthcare"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/1abcf4c09f44.jpg",
+      "bytes": 525826,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "5ae8c3769031",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FKMsew0QpYvJH7MVgknir%2FitemMap.takCAGkn9ejMzLEP5xmID.image?alt=media&token=7ee964a8-9359-4d85-a7a2-b513eb3be646",
+      "captions": [
+        "李四川敬老卡升級2"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/healthcare"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/5ae8c3769031.jpg",
+      "bytes": 305110,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "a1578d6db54d",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2Fr1wudv55wZOLOtGoPsm2%2FitemMap.ZcRdc7JcT2_XhBbiKAeVy.image?alt=media&token=07c34724-9e65-4190-8a12-ff1407533f56",
+      "captions": [
+        "李四川 高齡政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/healthcare"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/a1578d6db54d.jpg",
+      "bytes": 346010,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "ba8706f86f6e",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2Fo15A2J4VA2eJN95b9iAQh%2FitemMap.bQRiYQakrfM0PXbiFAIiu.image?alt=media&token=1c6e23aa-eed5-4803-9852-5fa7973f6c13",
+      "captions": [
+        "查看我的作品集"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/about"
+      ],
+      "hidden_in_source": "",
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/ba8706f86f6e.jpg",
+      "bytes": 239469,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "f014442db553",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FNdZNzOI7KtuhUlHZj6jm%2FitemMap.T6CghUjqJT2syBflRegBv.image?alt=media&token=eee32ffd-abff-4d98-b831-5b980e5da370",
+      "captions": [
+        "李四川軌道建設"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/construction"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/f014442db553.jpg",
+      "bytes": 372235,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "d5e3ab73b8ab",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FQevepcb4cOCfhHHpeqG5%2FitemMap.rJ4hLREHtTFxGb8y7MT8y.image?alt=media&token=91c929d1-d7d4-4cbd-8f63-260653db2c23",
+      "captions": [
+        "新北巨蛋城"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/construction"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/d5e3ab73b8ab.jpg",
+      "bytes": 334922,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "a219251e511f",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FROjMvkc4nQ6lfjOl4m4M%2FitemMap.yJHI13KAV0VP_g2A13JiY.image?alt=media&token=3dd3fd02-92e9-46ca-90dc-db1efbdfd782",
+      "captions": [
+        "李四川交通政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/construction"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/a219251e511f.png",
+      "bytes": 1118854,
+      "mime": "image/png",
+      "status": "downloaded"
+    },
+    {
+      "id": "e9faf9b3a99f",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FWxnuRk1bzHMudDwCUNwo%2FitemMap.ZQUFJPaOyLVJQj8eSfYZc.image?alt=media&token=762b50b6-bb7f-4b13-a4db-5eac249820f7",
+      "captions": [
+        "李四川居住政策"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/construction"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/e9faf9b3a99f.jpg",
+      "bytes": 388510,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "6b3962a25c09",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FpagesBlocks%2FWxonVMMiF0ujHXcABchw%2FitemMap.kIdCGMP-bNTXy1o8xzfs4.image?alt=media&token=e9f38ea6-7378-4442-b747-21c057aa7cbe",
+      "captions": [
+        "了解更多"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee/pages/childparty"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/6b3962a25c09.jpg",
+      "bytes": 403519,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "04fadf126fec",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2Favatar?alt=media&token=9f4298ec-a56e-4c1e-9a49-347b42f96f54",
+      "captions": [
+        "avatar"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/04fadf126fec.jpg",
+      "bytes": 207111,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "55b63b57f531",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FheaderBanner?alt=media&token=aabd4c0a-fe92-4872-8529-024b8b711393",
+      "captions": [
+        "headerBanner"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/55b63b57f531.jpg",
+      "bytes": 125359,
+      "mime": "image/jpeg",
+      "status": "downloaded"
+    },
+    {
+      "id": "5dcd114be93d",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FfooterCustomImage?alt=media&token=7432e000-eeed-4636-b09f-ff68ea38ef64",
+      "captions": [
+        "footerCustomImage"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/5dcd114be93d.png",
+      "bytes": 530396,
+      "mime": "image/png",
+      "status": "downloaded"
+    },
+    {
+      "id": "8fbe06565e2d",
+      "url": "https://firebasestorage.googleapis.com/v0/b/portaly-ca9e1.appspot.com/o/Ywf2Uj00rhhzoMmK7HZL%2FogImage?alt=media&token=bea8123e-c49a-4a65-90f2-e260bf46ddc8",
+      "captions": [
+        "ogImage"
+      ],
+      "source_pages": [
+        "https://portaly.cc/hammerlee"
+      ],
+      "hidden_in_source": false,
+      "verification": "first_party_campaign_source; not independently verified",
+      "local_file": "source-assets/8fbe06565e2d.png",
+      "bytes": 98348,
+      "mime": "image/png",
+      "status": "downloaded"
+    }
+  ],
+  "facebook": {
+    "url": "https://www.facebook.com/share/p/1BUcxd1m5F/",
+    "status": "not_fetched",
+    "reason": "web tool returned cache miss; no authenticated access used. Link also found in public Portaly homepage metadata."
+  },
+  "observations": [
+    "Eight internal pages discovered from public page data: about, culture, Sustainability, education, economy, healthcare, construction, childparty.",
+    "Most policy cards include machine-readable HTML descriptions in page data, alongside image graphics.",
+    "Future proposals require explicit proposal labeling; source material is not proof that proposals are completed.",
+    "About page lists previous positions and education but those biographies were not independently verified in this audit.",
+    "The supplied about page contains a résumé and education list, not a sourced narrative establishing NVIDIA headquarters negotiations or personal attribution."
+  ],
+  "limitations": [
+    "Portaly campaign claims, figures, and proposals were not comprehensively verified. A separate government-project news record provides limited corroboration only for the NVIDIA land-rights signing and named team participation.",
+    "Publicly accessible assets were archived for source review; no license or permission to republish is asserted.",
+    "Hidden blocks are flagged and should not be assumed to be currently presented content.",
+    "Facebook shared post content was unavailable.",
+    "Image text has not yet been independently transcribed or compared against its HTML description."
+  ],
+  "coverage": {
+    "homepage_html": 1,
+    "internal_pages_discovered": 8,
+    "internal_page_html_downloaded": 8,
+    "images_discovered": 53,
+    "images_downloaded": 53,
+    "machine_readable_item_records": 53
+  },
+  "external_corroboration": [
+    {
+      "subject": "NVIDIA 北投士林科技園區設點與地上權簽約",
+      "publisher": "臺北市政府北投士林科技園區官方網站",
+      "published_date": "2026-02-12",
+      "reported_event_date": "2026-02-11",
+      "url": "https://bstp.gov.taipei/news_content/北市府與輝達完成簽約　蔣萬安：臺北就是輝達的家",
+      "retrieval": "Search tool returned the official news body. Direct open returned HTTP 503.",
+      "supported_facts": [
+        "臺北市政府宣布與台灣輝達經典股份有限公司完成地上權簽約。",
+        "市長公開感謝李四川副市長及跨局處團隊等各方。"
+      ],
+      "not_established": [
+        "該報導不是總部大樓已落成或已營運的證據。",
+        "該報導不支持將整件事單獨歸功於一人。",
+        "未核實截至查閱日期的最新施工或營運狀態。"
+      ],
+      "verification_level": "limited corroboration from government project primary source; not a comprehensive independent fact-check"
+    }
+  ]
+}

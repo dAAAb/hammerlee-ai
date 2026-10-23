@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#245c55" />
+    <meta name="robots" content="noindex,nofollow" />
+    <meta name="description" content="川伯，聊聊｜預先編寫的未來新北市政資訊展示。雙方對話皆為預寫腳本，非真人即時聊天，也非李四川本人原話。" />
+    <title>川伯，聊聊｜預先編寫的未來新北市政資訊展示</title>
+  </head>
+  <body>
+    <div id="app">
+      <canvas id="scene" aria-hidden="true"></canvas>
+      <header class="masthead">
+        <a class="brand" href="#" aria-label="川伯，聊聊，回到開頭"><span class="brand-mark">川</span><span>川伯，聊聊<small>HAMMER LEE · IN CONVERSATION</small></span></a>
+        <div class="header-note"><span class="status-dot"></span>一段立體的城市日常</div>
+        <button id="dimension" class="round-button" aria-label="側看真正立體的對話" aria-pressed="false">3D</button>
+        <button id="about" class="round-button" aria-label="體驗設定與展示說明">i</button>
+      </header>
+      <aside class="intro-panel">
+        <div class="eyebrow">一點好奇，一起聊聊</div>
+        <h1>把城市的事，<br>聊成<span>生活的事。</span></h1>
+        <p>不用打字，不用趕時間。<br>往下滑，就從一聲你好開始。</p>
+        <div class="intro-rule"></div>
+        <div class="chapter-heading"><span>今天，聊這些</span><span id="chapter-number">01 / 08</span></div>
+        <nav id="topics" aria-label="對話主題"></nav>
+        <div class="edition"><span class="edition-star">✳</span><span>每一段旅程，都有自己的模樣。<br><small>YOUR OWN LITTLE CITY STORY</small></span></div>
+      </aside>
+      <main id="chat-shell">
+        <div class="chat-header">
+          <button class="avatar-placeholder" aria-label="查看李四川人物資料"></button>
+          <div class="chat-header-title"><h2 class="speaker-name">李四川-川伯｜做事的人，做成事的人</h2><p><span class="status-dot"></span>預先編寫的未來新北市政資訊展示</p></div>
+          <button id="text-size" class="round-button" aria-label="放大對話文字" aria-pressed="false">A<span>＋</span></button>
+        </div>
+        <div class="notice">雙方皆為預寫腳本 · 非真人即時回覆 · 非李四川本人原話</div>
+        <div id="chat-space" aria-label="市政資訊預寫對話"></div>
+        <div id="transcript" class="sr-only"></div>
+        <div id="end-card" hidden>
+          <div class="eyebrow">這段旅程，收藏起來</div>
+          <h2>謝謝你，一起聊城市。</h2>
+          <p>這枚小小的城市徽章，<br>記得我們剛剛走過的對話。</p>
+          <div id="badge-space" aria-label="你的專屬三維城市徽章"></div>
+          <div class="badge-alias">Hammer Lee</div>
+          <code id="journey-id"></code>
+          <div class="end-actions"><button id="share" class="primary-button">分享這段對話 ↗</button><button id="download" class="secondary-button">下載對話紀念卡 ↓</button><button id="download-sticker" class="secondary-button">收藏 3D 貼圖 ↓</button><button id="restart" class="text-button">再聊一段新的日常 ↻</button></div>
+          <p class="small-note" id="cloud-status" role="status">完成後會將預寫劇本編號保存至雲端，不收集個人對話或政治偏好。</p>
+        </div>
+      </main>
+      <aside class="right-panel"><div class="stamp">HELLO,<br><strong>NEIGHBOR.</strong></div><div class="worker-caption">城市小工班<br><small>點點他，打個招呼</small></div><button id="worker-button" class="worker-hit" aria-label="和城市小工班打招呼，讓他跳一下"></button><div class="field-note"><span>散步筆記 001</span><p>好的城市，<br>從每一件小事開始。</p><div>↙ 慢慢滑，慢慢聊</div></div></aside>
+      <div class="composer-wrap"><div id="progress-track"><div id="progress-fill"></div></div><div class="composer"><button id="motion" class="round-button" aria-label="減少動畫" aria-pressed="false">Ⅱ</button><div class="composer-copy"><span id="composer-label">示範回覆 · 不需要輸入</span><span id="composer-text">你好，想從城市的日常聊起。</span></div><button id="next" class="send-button" aria-label="看下一則對話">↓</button></div><div class="composer-bottom"><span id="progress-label">01 / 48 則</span><span>往下滑，對話就會繼續</span><button id="skip">直接到結尾 ↓</button></div></div>
+      <button id="mobile-worker-button" aria-label="和城市小工班打招呼，讓他跳一下"></button>
+      <div id="loading"><div class="loading-symbol">✳</div><strong>正在把城市，變成立體的。</strong><span id="loading-status">準備中文字與小小工班…</span></div>
+      <div id="toast" role="status" aria-live="polite"></div>
+      <dialog id="info-dialog"><button id="close-dialog" class="round-button" aria-label="關閉說明">×</button><div class="eyebrow">關於「川伯，聊聊」</div><h2>讓資訊，多一點親近。</h2><p>這是預先編寫的未來新北市政資訊展示。兩邊的對話、回應與貼圖皆為預先編寫，非李四川本人原話、承諾或真人即時回覆；「你」的示範回覆不代表你的意見，也沒有收集你的政治偏好。</p><p>內容示範如何理解公共政策議題，不表示已完成的政績。照片取自官方公開貼文或由使用者提供，附有來源；照片不等於特定建設已完成的證明。</p><p>對話與主畫面文字、對話框、表情及貼圖皆為三維幾何。點選頁首 3D 按鈕可從側面觀察。此說明視窗、通知與純文字模式使用原生文字，支援鍵盤、輔助閱讀及減少動畫。</p><p>完成的旅程會以編號保存至 Supabase。只保存預寫劇本、版本與建立時間，不收集你的政治偏好。分享連結會重播相同內容；公開連結持有人可以查看。</p><div id="experience-settings" role="group" aria-labelledby="experience-settings-title"><h3 id="experience-settings-title">體驗設定</h3><p>可以依照你的喜好開啟；支援情況依裝置與瀏覽器而定。</p><div class="experience-setting-actions"><button id="sound-toggle" type="button" class="secondary-button" aria-pressed="false" aria-describedby="experience-settings-status">開啟聲音</button><button id="vibration-toggle" type="button" class="secondary-button" aria-pressed="false" aria-describedby="experience-settings-status">開啟震動</button><button id="tilt-toggle" type="button" class="secondary-button" aria-pressed="false" aria-describedby="experience-settings-status">開啟立體感應</button></div><p id="experience-settings-status" role="status" aria-live="polite" aria-atomic="true">聲音、震動與立體感應目前皆為關閉。</p></div><button id="reading-mode" class="secondary-button">切換純文字閱讀模式</button></dialog>
+    </div>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
