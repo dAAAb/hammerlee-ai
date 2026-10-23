@@ -118,8 +118,14 @@ dialog p { font-size: 16px; line-height: 1.8; color: var(--secondary-ink); }
 .chat-header { min-height: 92px; }
 .chat-header h2.speaker-name { margin-bottom: 0; }
 .card-download { width: 100%; }
-.card-download #download { width: 100%; }
-.card-download #selfie-hint { margin: 8px 0 0; color: var(--secondary-ink); }
+.card-download #download { width: 100%; display: flex; align-items: center; justify-content: center; gap: 12px; }
+.card-camera-icon { display: block; width: 36px; height: 32px; flex-shrink: 0; }
+.camera-icon-fallback { display: block; width: 100%; height: 100%; }
+.camera-mesh-ready .camera-icon-fallback { visibility: hidden; }
+body.reading-mode .camera-icon-fallback { visibility: visible; }
+.card-download-copy { display: flex; flex-direction: column; gap: 5px; text-align: left; }
+.card-download-title { display: block; font-size: 16px; line-height: 1.4; }
+.card-download-hint { display: block; font-size: 14px; line-height: 1.4; color: var(--secondary-ink); }
 #download:disabled { cursor: wait; opacity: .65; }
 
 .badge-ar { max-width: 330px; margin: 0 auto 22px; }

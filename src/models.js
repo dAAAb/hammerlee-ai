@@ -124,6 +124,24 @@ function face(parent, y = 0, z = 0.55, size = 1) {
   add(parent, tube([[-0.10 * size, y - 0.09 * size, z], [0, y - 0.15 * size, z + 0.01], [0.10 * size, y - 0.09 * size, z]], 0.023 * size, INK, { outline: false }));
 }
 
+/** Five solid meshes, centred at the origin, with the camera lens facing +Z. */
+export function createCameraIcon() {
+  const camera = new THREE.Group();
+  camera.name = 'citizen-card-camera';
+  const simple = { outline: false };
+  add(camera, box(1.44, 0.84, 0.40, 0x74b6a6, 0.15, simple), 0, -0.065, 0);
+  const rim = add(camera, cylinder(0.30, 0.30, 0.14, palette.cream, simple), 0.06, -0.065, 0.245);
+  rim.rotation.x = Math.PI / 2;
+  const lens = add(camera, cylinder(0.225, 0.225, 0.046, 0x2f6266, { outline: false, metalness: 0.2, roughness: 0.24 }), 0.06, -0.065, 0.327);
+  lens.rotation.x = Math.PI / 2;
+  const highlight = add(camera, cylinder(0.06, 0.06, 0.012, palette.white, simple), -0.015, 0.015, 0.359);
+  highlight.rotation.x = Math.PI / 2;
+  add(camera, box(0.25, 0.12, 0.22, palette.cream, 0.04, simple), 0.40, 0.45, -0.015);
+  const center = new THREE.Box3().setFromObject(camera, true).getCenter(new THREE.Vector3());
+  for (const part of camera.children) part.position.sub(center);
+  return camera;
+}
+
 /** A fictional, friendly construction helper, approximately three world units tall. */
 export function createWorker() {
   const worker = new THREE.Group();
