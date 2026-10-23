@@ -1,65 +1,63 @@
-# 川伯，聊聊
+<p align="center">
+  <a href="https://hammerlee.ai"><img src="docs/media/cover.svg" alt="川伯，聊聊：滑一段對話，收藏一枚屬於這段旅程的徽章" width="100%"></a>
+</p>
 
-Three.js 立體市政資訊互動網站。雙方對話皆為預寫腳本，非李四川本人原話或即時回覆；示範回覆不代表訪客意見。本站僅使用 `hammerlee.ai`；`hammerlee.tw` 保留給其他用途，不連接此站。
+<p align="center">
+  <strong>不用打字，往下滑就開始。</strong><br>
+  以 Three.js 做成的立體城市日常：預寫對話、可愛小工班、事民卡與 AR 徽章。
+</p>
 
-## 開發與建置
+<p align="center">
+  <a href="https://hammerlee.ai"><strong>開啟體驗 ↗</strong></a> ·
+  <a href="#看看它怎麼動">看看它怎麼動</a> ·
+  <a href="docs/DEVELOPMENT.md">開發文件</a> ·
+  <a href="LICENSE">MIT 程式碼授權</a>
+</p>
+
+> 這是預先編寫的市政資訊互動展示。雙方台詞都是示範腳本，非李四川本人即時回覆或原話；「你」的回覆不代表訪客意見，內容也不是政見承諾。本專案並非 LINE 產品，亦不代表 LINE 的認可。
+
+## 從一聲你好，到一枚小小的城市徽章
+
+熟悉的對話介面，換上一點立體的想像。往下滑，訊息會一則一則出現；停下來可以慢慢看，也可以直接到結尾收藏這段旅程。
+
+| 滑動，就能聊 | 看得見的立體感 | 把這段日常帶走 |
+| :--- | :--- | :--- |
+| 不需輸入文字；可快速捲動、回看與跳到結尾。 | 主要對話文字、氣泡、表情、貼圖與小工班都是 3D 幾何。 | 同一組編號可重播同一段腳本，並產生對應徽章、事民卡與分享連結。 |
+| 大字、大按鈕；另有純文字閱讀和減少動畫模式。 | 通知音、震動與手機傾斜由使用者選擇開啟。 | 自拍可跳過；支援的 iPhone／iPad Safari 可用 Apple Quick Look 看 AR 徽章。 |
+
+[![實際桌面畫面：立體對話、主題選單與小工班](docs/media/desktop.png)](https://hammerlee.ai)
+
+## 看看它怎麼動
+
+<table>
+  <tr>
+    <td align="center" width="50%"><strong>滑動對話 · 側看厚度</strong><br><br><img src="docs/media/conversation.gif" width="280" alt="網站實際操作節錄：逐步往下滑動對話，並切換立體視角"><br><a href="docs/media/mobile.png">查看靜態畫面</a></td>
+    <td align="center" width="50%"><strong>收藏一張新北事民卡</strong><br><br><a href="docs/media/citizen-card.png"><img src="docs/media/citizen-card.png" width="320" alt="實際產生的新北事民卡，包含立體徽章、對話片段與可重播的 QR Code"></a><br>自拍是選項；不拍照，也能製卡。</td>
+  </tr>
+</table>
+
+*上方 GIF 為網站操作節錄；圖卡為實際匯出。AR 空間擺放需支援的實體裝置，這裡沒有以示意動畫冒充實機 AR。*
+
+## 用心對待每一次閱讀
+
+- **在地、好讀。** 使用臺灣繁體中文，從交通、照護、步行等日常議題出發，尊重不同經驗與立場。
+- **展示與事實分清楚。** 台詞明確標示為預寫腳本；照片保留來源，第一方宣傳資料不當作獨立查證的成果。
+- **選擇留給使用者。** 自拍與 USDZ 在裝置上處理；自拍不會上傳。雲端保存腳本版本與隨機編號，不保存自由輸入的對話。
+- **統計說清楚。** 正式站使用 GA4 做一般使用統計，可能使用 Cookie；自訂事件不傳送自拍、對話文字或體驗編號，並尊重 DNT／GPC。詳見[資料處理說明](docs/DEVELOPMENT.md#google-analytics)。
+
+## 一起把它做得更好
+
+想修正文字、改善操作或回報裝置問題，歡迎提出 [Issue](https://github.com/dAAAb/hammerlee-ai/issues) 或 Pull Request。貢獻前請看[參與方式](CONTRIBUTING.md)；安全弱點請使用[私密回報](SECURITY.md)，不要公開貼出憑證或個人資料。
 
 ```sh
-npm install
+npm ci
 npm run dev
-npm test
-npm run build
 ```
 
-Vite 本機預覽提供畫面；雲端保存 API 由正式 Worker 提供。正式建置會將客戶端資源包入 `dist/server/index.js`，部署規格與環境變數見 `server/README.md`。秘密僅保存在主機環境，禁止放入 `VITE_` 變數或 Git。
+完整建置、測試、字型與部署設定收在[開發文件](docs/DEVELOPMENT.md)。目前的實機限制與檢查範圍列於[公開檢查紀錄](docs/REVIEW.md)。
 
-## 互動
+## 授權與致謝
 
-- 固定 48 則對話，依閱讀位置逐則送出；可回看、跳至任一主題或直接到結尾。
-- 8 個主題各 4 套腳本，`8! × 4^8 = 2,642,411,520` 種順序與說法組合。128-bit seed 決定劇本與徽章。v1 重播保留，新旅程使用 v2。
-- 主畫面中文字為輪廓擠出幾何；氣泡、表情、貼圖、小工班及徽章也是真正三維模型。照片使用影像材質與立體框。
-- 官方照片頭貼可開人物卡、完整照片、下載、官方粉專與官網。資料來源與使用限制見 `research/`。
-- 通知音、震動與手機感應預設關閉，由訪客點選開啟。瀏覽器不支援時明確提示。快轉與回看不連續觸發通知。
-- 大字模式、鍵盤操作、減少動畫、語意文字副本與純文字閱讀。
-- 原生分享、相同旅程連結、對話紀念卡及三維貼圖 PNG 下載。
-- 對話結尾可開啟 Apple AR Quick Look 或下載 USDZ。徽章沿用相同 seed 的幾何與配色，最大尺寸 18 公分；接近結尾才在獨立 Worker 準備，不阻塞對話捲動。重新體驗會取消舊工作並釋放舊檔案。
+程式碼採 **[MIT](LICENSE)**。第三方套件、Noto 字形資料各自保留原授權；照片、人物肖像與品牌素材不包含在程式碼的 MIT 授權中，另行使用請確認權利。[素材來源與範圍](docs/ASSETS.md) · [第三方授權聲明](docs/THIRD_PARTY_NOTICES.md)
 
-說明視窗、人物卡、錯誤通知及純文字模式使用原生介面，保留輔助技術相容性。匯出紀念卡為 2D 圖片，含實際三維徽章渲染。
-
-AR 按鈕依瀏覽器的 `rel="ar"` 支援能力顯示；iPhone／iPad Safari 開啟系統的 3D／AR 檢視器，實際切換 AR 與相機權限由系統處理。其他瀏覽器提供同一份 USDZ 下載。模型只在裝置本機產生，不上傳；網頁分享仍使用原本的版本與編號連結。
-
-## Supabase
-
-專案：`moydlexgxsrqawsqqttm`，東京區域。schema 見 `supabase/schema.sql`。所有資料表啟用 RLS，瀏覽器角色沒有直接讀寫權；`journeys` Edge Function 以伺服器專用秘密驗證每次請求。秘密在資料庫只保存 SHA-256 digest。
-
-只保存預寫劇本、版本、隨機編號與時間，不收集訪客姓名、自由輸入或政治偏好。劇本不可修改；相同編號綁定同一版本。分享連結可公開閱讀。PNG 社群預覽由可信劇本生成，失敗時使用品牌備用圖。
-
-初始保護限制為每個日別匿名 HMAC 來源 30 次新建、全站每天 1,000 次新建。相同編號重播不計入新建。上線大規模推廣前應依實際容量與帳單調整 `register_journey` 的限額及監控。IP 不寫入應用資料表；託管平台存取紀錄依各平台保留政策處理。
-
-## Google Analytics
-
-GA4 Measurement ID 設定在 `src/analytics-config.js`。只在 `https://hammerlee.ai` 延遲載入非同步 Google tag；本機、預覽及其他網域均不載入。每次頁面載入只送一次 `page_view`，重開旅程不新增瀏覽次數。
-
-自訂事件只有 `journey_complete`、`share`、`download`，不接受自由參數。完成事件每段旅程只記一次；分享只在原生分享成功返回或連結成功複製時記錄，取消與手動複製提示不計。下載記錄圖片成功產生並啟動下載、原生匯出成功返回，或使用者點選照片下載連結；不代表作業系統已完成保存。
-
-所有事件固定 `page_location=https://hammerlee.ai/`、清空 `page_referrer`，不傳送旅程編號、完整 query、對話文字或政治偏好，也不設定使用者屬性。Google Signals 與廣告個人化關閉，廣告用途的 consent 預設 denied；尊重瀏覽器 DNT／GPC，不載入分析。Google Analytics 的一般使用統計可能使用 Cookie。
-
-**正式 GA 網頁資料串流必須關閉 Enhanced Measurement**，尤其瀏覽器 history pageviews、Site Search、Outbound clicks、File downloads 和 Form interactions；這些自動事件會獨立讀取網址，Site Search 預設搜尋參數 `s` 更會把分享編號當作搜尋詞。維持 Google Signals、User-provided data collection 及廣告個人化關閉，不建立政治偏好或人口特徵廣告受眾。參考 [Google pageviews](https://developers.google.com/analytics/devguides/collection/ga4/views) 與 [設定欄位](https://developers.google.com/analytics/devguides/collection/ga4/reference/config)。
-
-## 字型與資源
-
-`public/assets/glyphs.json` 為 Noto Sans CJK TC Medium 的輪廓子集，授權在 `public/assets/OFL.txt`。修改文字後須重建，避免 3D 字元缺漏：
-
-```sh
-NOTO_FONT=/absolute/path/NotoSansCJKtc-Medium.otf npm run font
-```
-
-原字型：https://github.com/notofonts/noto-cjk/tree/main/Sans/OTF/TraditionalChinese
-
-照片出處見 `research/photo-audit.json`、`research/profile-source.json`。原始來源檔保存在本機 `research/source-assets/`，不進入 Git 或部署。公開照片保留來源連結，不作為特定人物完成工程的證據。
-
-視覺方向參考 https://april-zhu.com/colorfigures ，模型與程式為本專案撰寫。資料盤點：https://portaly.cc/hammerlee 。本版對話為中性議題展示，不將競選宣傳主張當作已查證事實。
-
-## 驗證範圍
-
-單元測試涵蓋版本重播、字形洞孔、訊息通知與感應權限、輸入驗證、資料庫請求、轉址、SEO 和社群圖。瀏覽器檢查涵蓋桌面與手機尺寸、人物卡、逐則訊息及分享下載。實體手機的震動、感應器與低階裝置效能仍需實機驗收。
+感謝 [Three.js](https://threejs.org/)、[Noto CJK](https://github.com/notofonts/noto-cjk) 及本專案使用的開源元件。視覺方向參考 [April Zhu — Color Figures](https://april-zhu.com/colorfigures)；市政議題與照片來源紀錄見 [research](research/)。互動與幾何生成由本專案實作，參考與第三方素材分別標示。

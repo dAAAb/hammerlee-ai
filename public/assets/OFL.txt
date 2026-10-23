@@ -1,3 +1,7 @@
+Copyright 2014-2021 Adobe (http://www.adobe.com/).
+Noto Sans CJK TC Medium, Version 2.004.
+Noto is a trademark of Google Inc.
+
 This Font Software is licensed under the SIL Open Font License,
 Version 1.1.
 

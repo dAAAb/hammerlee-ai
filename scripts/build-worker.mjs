@@ -13,7 +13,7 @@ const types = {
   '.css': 'text/css; charset=utf-8', '.json': 'application/json; charset=utf-8',
   '.png': 'image/png', '.webp': 'image/webp', '.jpg': 'image/jpeg', '.jpeg': 'image/jpeg',
   '.svg': 'image/svg+xml', '.ico': 'image/x-icon', '.woff2': 'font/woff2',
-  '.txt': 'text/plain; charset=utf-8',
+  '.txt': 'text/plain; charset=utf-8', '.md': 'text/plain; charset=utf-8',
 };
 
 await fs.rm(output, { recursive: true, force: true });
@@ -40,6 +40,11 @@ async function walk(directory) {
 }
 await walk(client);
 await addAsset(path.join(root, 'server/assets/og-fallback.png'), '/og/default.png');
+// Minified dependencies still require their full attribution alongside the
+// published application. Keep the source notices authoritative, not hand-copied.
+await addAsset(path.join(root, 'LICENSE'), '/licenses/MIT.txt');
+await addAsset(path.join(root, 'docs/THIRD_PARTY_NOTICES.md'), '/licenses/THIRD_PARTY_NOTICES.txt');
+await addAsset(path.join(root, 'docs/ASSETS.md'), '/licenses/ASSETS.txt');
 
 // The Sites Worker-ESM contract is a self-contained dist/server/index.js.
 // Raster images and the Vite output are embedded, with no external asset binding.
