@@ -2,15 +2,20 @@
 
 `npm run build` first builds the Vite application into `dist/client/`, then embeds
 those assets and `server/assets/og-fallback.png` into one ESM module at
-`dist/server/index.js`. The module exports `default.fetch(request, env, ctx)`.
+`dist/server/index.js`. It verifies the embedded routes and removes the
+temporary `dist/client/` directory before packaging. Standalone client assets
+must not be published alongside this Worker: Sites would serve them before the
+Worker, bypassing homepage SEO, per-journey OG metadata and host redirects.
+The module exports `default.fetch(request, env, ctx)`.
 No runtime filesystem, asset binding, Node compatibility flag, or WASM import is
 required. The Sites Worker-ESM package includes `dist/server/index.js` and its
 hosting metadata; assets are served from embedded bytes.
 
 The build copies an existing `.openai/hosting.json` to the generated output but
 never changes the source manifest. A Worker manifest must omit `static`. Local
-builds succeed before Site registration. `npm run dev` and `npm run preview`
-retain the Vite client workflow; the Worker API is covered by request-level
+builds succeed before Site registration. `npm run dev` retains the Vite client
+workflow; for client-only preview, run `npm run build:client` followed by
+`npm run preview`. The Worker API is covered by request-level
 tests and requires runtime secrets when hosted.
 
 ## Runtime values

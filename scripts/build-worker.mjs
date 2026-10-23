@@ -72,5 +72,29 @@ const source = await fs.readFile(path.join(output, 'server/index.js'), 'utf8');
 const runtime = await import(`data:text/javascript;base64,${Buffer.from(source).toString('base64')}`);
 if (typeof runtime.default?.fetch !== 'function') throw new Error('Built Worker must export default.fetch.');
 const homepage = await runtime.default.fetch(new Request('https://hammerlee.ai/'), {});
-if (homepage.status !== 200 || !(await homepage.text()).includes('rel="canonical"')) throw new Error('Built homepage validation failed.');
+const homepageHtml = await homepage.text();
+if (homepage.status !== 200 || !homepageHtml.includes('rel="canonical"')
+  || !homepageHtml.includes('content="index, follow, max-image-preview:large"')) throw new Error('Built homepage validation failed.');
+const replay = await runtime.default.fetch(new Request('https://hammerlee.ai/?v=2&s=00112233445566778899aabbccddeeff'), {});
+const replayHtml = await replay.text();
+if (replay.status !== 200 || !replayHtml.includes('content="noindex, follow"')
+  || !replayHtml.includes('/og/v2/00112233445566778899aabbccddeeff.png')) throw new Error('Built replay metadata validation failed.');
+const redirected = await runtime.default.fetch(new Request('https://www.hammerlee.ai/?v=2&s=00112233445566778899aabbccddeeff'), {});
+if (redirected.status !== 301 || redirected.headers.get('Location') !== 'https://hammerlee.ai/?v=2&s=00112233445566778899aabbccddeeff') {
+  throw new Error('Built canonical redirect validation failed.');
+}
+for (const [route, asset] of Object.entries(assets)) {
+  if (route === '/index.html') continue;
+  const served = await runtime.default.fetch(new Request(`https://hammerlee.ai${route}`), {});
+  if (served.status !== 200 || served.headers.get('Content-Type') !== asset.type) throw new Error(`Built embedded asset validation failed: ${route}`);
+  await served.arrayBuffer();
+}
+
+// Sites gives standalone client assets precedence over the Worker. Keeping
+// index.html here bypasses host redirects and per-journey SEO/OG metadata.
+// Assets have already been embedded and verified, so publish only the ESM
+// Worker and hosting metadata, as required by the Worker-ESM contract.
+await fs.rm(client, { recursive: true, force: true });
+const publishedEntries = await fs.readdir(output);
+if (publishedEntries.some(entry => !['server', '.openai'].includes(entry))) throw new Error('Worker output contains standalone assets.');
 console.log(JSON.stringify({ worker: 'dist/server/index.js', embeddedAssets: Object.keys(assets).length, bytes: Buffer.byteLength(source), gzipBytes: gzipSync(source).byteLength }));
