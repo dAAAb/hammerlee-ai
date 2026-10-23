@@ -216,16 +216,16 @@ function rebuildMessages() {
   const shellWidth = $('#chat-shell').clientWidth;
   const mobile = shellWidth < 450; const fontSize = enlarged ? (mobile ? 28 : 29) : (mobile ? 23 : 24);
   let topOffset=0;
-  messages = conversation.messages.map((message, index) => {
+  messages = displayEntries().map(({ message, sourceIndex }, index) => {
     const visitor = message.role === 'visitor', system = message.role === 'system';
     // The larger portrait uses the left gutter; recover space from the right
     // margin so even a 320px screen keeps the existing dialogue line length.
     const maxW = shellWidth - (mobile ? 88 : 128);
     const lines = type.wrap(message.text, fontSize, maxW - 36);
     const textWidth = Math.max(...lines.map(line => [...line].reduce((sum, c) => sum + type.advance(c, fontSize), 0)));
-    const photo=scriptVersion>=2 && message.role==='guide' && !message.sticker && !conversation.messages.slice(0,index).some(m=>m.topic===message.topic && m.role==='guide' && !m.sticker) ? photos.find(p=>p.relevantTopic===message.topic && p.relevantTopic!=='health') : null;
+    const photo=scriptVersion>=2 && message.role==='guide' && !message.sticker && !conversation.messages.slice(0,sourceIndex).some(m=>m.topic===message.topic && m.role==='guide' && !m.sticker) ? photos.find(p=>p.relevantTopic===message.topic && p.relevantTopic!=='health') : null;
     const bubbleWidth = Math.max(message.sticker || photo ? Math.min(280,maxW) : 100, Math.min(maxW, textWidth + 36));
-    const emoji = !system && !message.sticker && index % 7 === 3 ? 'thumb' : !system && !message.sticker && index % 11 === 1 ? 'sun' : null;
+    const emoji = !system && !message.sticker && sourceIndex % 7 === 3 ? 'thumb' : !system && !message.sticker && sourceIndex % 11 === 1 ? 'sun' : null;
     const captionHeight = photo ? type.wrap(photo.title+' · 官方照片', messageLayout.captionSize, bubbleWidth-28).length * messageLayout.captionLineHeight : 0;
     const bubbleHeight = lines.length * fontSize * 1.54 + 34 + (message.sticker ? 128 : 0) + (emoji ? 40 : 0) + (photo ? (bubbleWidth-28)*photo.height/photo.width+captionHeight+38 : 0);
     const slotHeight = system ? type.wrap(message.text, messageLayout.systemSize, shellWidth - 48).length * messageLayout.systemLineHeight + 36 : messageLayout.bubbleTop + bubbleHeight + messageLayout.footerHeight + (message.sticker || photo ? messageLayout.actionHeight : 0);
@@ -239,9 +239,11 @@ function rebuildMessages() {
   });
   totalMessageHeight=topOffset;
   refreshSentSlots();
+  $('#progress-label').textContent = `${String(currentIndex + 1).padStart(2, '0')} / ${messages.length} 則`;
+  $('#progress-fill').style.width = `${(currentIndex + 1) / messages.length * 100}%`;
   $('#journey-id').textContent = `CITY / ${seed.match(/.{8}/g).join(' · ').toUpperCase()}`;
   const transcript = $('#transcript'); transcript.replaceChildren();
-  conversation.messages.forEach(m => { const article = document.createElement('article'); article.className = `transcript-message ${m.role}`; const name = document.createElement('strong'); name.textContent = m.role === 'visitor' ? '你（示範回覆）：' : m.role === 'system' ? '展示說明：' : BRAND.shortSpeaker+'：'; article.append(name, document.createTextNode(m.text)); transcript.appendChild(article); });
+  displayEntries().forEach(({message:m}) => { const article = document.createElement('article'); article.className = `transcript-message ${m.role}`; const name = document.createElement('strong'); name.textContent = m.role === 'visitor' ? '你（示範回覆）：' : m.role === 'system' ? '展示說明：' : BRAND.shortSpeaker+'：'; article.append(name, document.createTextNode(m.text)); transcript.appendChild(article); });
   $('#topics').replaceChildren();
   conversation.topicOrder.forEach((id, i) => { const topic = TOPICS.find(t => t.id === id); const button = document.createElement('button'); const n = document.createElement('span'); n.textContent = String(i + 1).padStart(2, '0'); button.append(n, document.createTextNode(topic.title)); button.dataset.topic = id; button.addEventListener('click', () => {const target=messages.find(m=>m.message.topic===id);if(target){revealThrough(target.index);target.slot.scrollIntoView({behavior:reduced?'instant':'smooth',block:'center'});}}); $('#topics').appendChild(button); });
   if (badge) disposeGroup(badge); badge = createBadge(seed); badgeScene.add(badge);
@@ -300,7 +302,7 @@ function animateComposer(index) {
   clearInterval(composerTimer);
   // Fast scrolling should not keep resetting a typewriter to an empty field.
   const stillText = reduced || document.body.classList.contains('reading-mode') || (scrollVelocity > 1 && performance.now() - lastDownAt < 700);
-  const upcoming = conversation.messages.slice(index + 1).find(m => m.role === 'visitor');
+  const upcoming = messages.slice(index + 1).find(m => m.message.role === 'visitor')?.message;
   const text = completed ? '把這段城市日常，分享給朋友。' : upcoming?.text || '今天就聊到這裡，謝謝你。';
   $('#composer-label').textContent = completed ? '這段旅程已完成' : '示範回覆 · 不需要輸入';
   $('#composer-text').textContent = stillText ? text : text.slice(0, 2);
@@ -317,8 +319,8 @@ function updateProgress(nextIndex) {
     if(!completionTracked){completionTracked=true;trackEvent('journey_complete');}
     void persistJourney();
   }
-  $('#progress-label').textContent = `${String(nextIndex + 1).padStart(2, '0')} / 48 則`;
-  $('#progress-fill').style.width = `${(nextIndex + 1) / 48 * 100}%`;
+  $('#progress-label').textContent = `${String(nextIndex + 1).padStart(2, '0')} / ${messages.length} 則`;
+  $('#progress-fill').style.width = `${(nextIndex + 1) / messages.length * 100}%`;
   const rawTopic = messages[nextIndex]?.message.topic;
   const topic = rawTopic === 'ending' ? conversation.topicOrder.at(-1) : rawTopic === 'intro' ? conversation.topicOrder[0] : rawTopic;
   const topicIndex = conversation.topicOrder.indexOf(topic);
@@ -429,9 +431,16 @@ function setReadingMode(enabled) {
   needsLayout = true; uiDirty = true;
 }
 
+// The opening notices live in the info dialog. Keep source indices so replayed
+// journeys retain the same photos and emoji while the displayed slots shift.
+function displayEntries() {
+  return conversation.messages.flatMap((message, sourceIndex) =>
+    message.role === 'system' && message.topic === 'intro' ? [] : [{ message, sourceIndex }]);
+}
+
 function renderTextTranscript() {
   const transcript = $('#transcript'); transcript.replaceChildren();
-  for (const message of conversation.messages) {
+  for (const { message } of displayEntries()) {
     const article = document.createElement('article'); article.className = `transcript-message ${message.role}`;
     article.textContent = `${message.role === 'visitor' ? '你（示範回覆）' : message.role === 'system' ? '展示說明' : BRAND.shortSpeaker}：${message.text}`;
     transcript.appendChild(article);

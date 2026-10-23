@@ -66,7 +66,7 @@ test('reading mode cancels pending delivery and exposes the ending before animat
 test('text-only startup keeps share, card export, and restart actions working without WebGL', async () => {
   const setup = fixture();
   vm.runInContext('messages=[];renderTextTranscript();setReadingMode(true);bindEndActions();bindEndActions();', setup.context);
-  assert.equal(setup.$('#transcript').children.length, 48);
+  assert.equal(setup.$('#transcript').children.length, 46);
   assert.equal(setup.$('#end-card').hidden, false);
   assert.equal(setup.$('#share').handlers.click.length, 1);
   setup.$('#share').handlers.click[0]();
@@ -76,7 +76,7 @@ test('text-only startup keeps share, card export, and restart actions working wi
   assert.equal(setup.cards[0].badgeCanvas, undefined);
   setup.$('#restart').handlers.click[0]();
   assert.equal(vm.runInContext('conversation.seed', setup.context), 'ffeeddccbbaa99887766554433221100');
-  assert.equal(setup.$('#transcript').children.length, 48);
+  assert.equal(setup.$('#transcript').children.length, 46);
   assert.equal(setup.$('#end-card').hidden, false);
 });
 

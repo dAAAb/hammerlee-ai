@@ -148,7 +148,7 @@ function renderCard({ conversation, badgeCanvas, sceneCanvas }, includeImages = 
     context.fillStyle = '#e3e9d8';
     roundRect(context, 70, 1110, 1060, 141, 25);
     context.fill();
-    paintText(context, '8 個生活話題 · 48 則預寫對話', 103, 1138, 990, { size: 32, weight: 700 });
+    paintText(context, '8 個生活話題 · 一段預寫對話', 103, 1138, 990, { size: 32, weight: 700 });
     paintText(context, '捲一捲，看看這座城市裡的日常小事。', 103, 1188, 990, { size: 27, color: COLORS.muted });
   }
 
