@@ -13,3 +13,103 @@ body{overflow-anchor:none}.composer-bottom #skip{min-height:44px;font-size:12px}
 @media(max-width:1180px){#mobile-worker-button{right:auto;left:0;width:55px}}
 .chat-header{height:112px;min-height:112px}.chat-header-title{min-width:0;flex:1}.chat-header h2.speaker-name{font-size:17px;line-height:1.5;margin-bottom:5px}.chat-header p{font-size:10px;line-height:1.5}.notice{top:112px}.badge-alias{font-size:14px;letter-spacing:2px;margin-bottom:12px;color:#557052}.avatar-placeholder{padding:0;cursor:pointer;background:#fffdf4}.experience-setting-actions{display:grid;gap:10px}.experience-setting-actions button[aria-pressed=true]{background:#d8e9bd}#experience-settings{border-top:1px solid #cad4bb;margin:24px 0;padding-top:10px}#experience-settings-status{font-size:13px;min-height:50px}dialog{max-height:88dvh;overflow:auto}#info-dialog{z-index:40}.photo-actions{position:absolute;left:68px;bottom:2px;display:flex;gap:14px;pointer-events:auto;font-size:12px;color:#4d6a52}.photo-actions a{min-height:44px;display:flex;align-items:center;text-decoration:underline}.message-avatar{position:absolute;left:15px;top:20px;width:42px;height:48px;border:0;background:transparent;pointer-events:auto}.message-slot[hidden],#end-card[hidden]{display:none!important}.profile-dialog{width:min(92vw,480px);padding:0 0 24px;text-align:center;overflow:auto}.profile-cover{height:230px;position:relative;overflow:hidden;background:#e8eee6}.profile-cover>img{width:100%;height:100%;object-fit:cover;object-position:50% 70%;filter:brightness(.84)}.profile-close{position:absolute;right:14px;top:14px}.profile-portrait{width:112px;height:112px;border:5px solid #fffdf4;border-radius:35px;overflow:hidden;position:relative;margin:-55px auto 0;padding:0;display:block;box-shadow:4px 4px 0 #c3d0b7}.profile-portrait img{width:100%;height:100%;object-fit:cover;transform:scale(2.3);transform-origin:50% 26%}.profile-dialog h2{margin:20px 0 0;font-size:26px}.profile-dialog p{margin:6px 20px}.profile-alias{font-size:13px!important;letter-spacing:2px}.profile-links{display:flex;margin:25px 20px;gap:10px}.profile-links>a,.profile-links>button{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;background:#f1f4e9;border:1px solid #becbb1;border-radius:14px;padding:14px 3px;font-size:14px;box-shadow:none}.profile-links span{font-size:27px;font-weight:bold}.profile-note{font-size:12px!important;line-height:1.6!important}.photo-dialog{width:min(94vw,720px);padding:14px;background:#f5f5ed;text-align:center}.photo-dialog>img{display:block;width:100%;max-height:72dvh;object-fit:contain;margin:12px 0 20px}.photo-close{position:absolute;right:18px;top:18px}.photo-download{display:inline-block;margin:0 auto 10px}.profile-dialog::backdrop,.photo-dialog::backdrop{background:#173e32b8}
 @media(max-width:580px){.chat-header{height:112px;padding:12px;gap:9px}.chat-header h2.speaker-name{font-size:15px}.chat-header p{font-size:10px}.notice{top:112px;font-size:9px}.chat-header .round-button{width:44px;height:44px}.avatar-placeholder{width:44px;height:44px;min-height:44px}.photo-actions{left:60px}.message-avatar{left:10px}.profile-cover{height:210px}}
+
+/* Keep supporting information readable beside the 23/28px conversation text.
+   Main.js measures the chrome so wrapped labels do not cover the conversation. */
+:root {
+  --secondary-ink: #4d6654;
+  --chat-header-height: 112px;
+  --chat-notice-height: 44px;
+  --composer-height: 155px;
+}
+.brand { min-width: 0; }
+.brand-mark { flex-shrink: 0; }
+.brand small { font-size: 14px; line-height: 1.35; letter-spacing: .3px; }
+.header-note, .eyebrow, .chapter-heading, .edition, .worker-caption small,
+.field-note>span, .field-note>div, #loading-status {
+  font-size: 14px;
+  color: var(--secondary-ink);
+}
+.eyebrow, .chapter-heading, .field-note>span { letter-spacing: 1px; }
+.intro-panel>p, #topics button { font-size: 16px; color: var(--secondary-ink); }
+#topics button { min-height: 44px; }
+#topics button span { font-size: 14px; }
+.edition small { font-size: 14px; letter-spacing: .4px; }
+.stamp, .stamp strong { font-size: 14px; }
+.worker-caption { font-size: 16px; }
+.chat-header { height: auto; min-height: 112px; }
+.chat-header h2.speaker-name { font-size: 17px; line-height: 1.5; letter-spacing: 0; }
+.chat-header p { font-size: 14px; line-height: 1.5; color: var(--secondary-ink); align-items: flex-start; }
+.chat-header p .status-dot { margin-top: 7px; }
+.chat-header .round-button span, .tiny-label { font-size: 14px; }
+.avatar-placeholder { width: 60px; height: 60px; min-height: 60px; border-radius: 20px; }
+.notice {
+  top: var(--chat-header-height);
+  padding: 8px 12px;
+  font-size: 14px;
+  line-height: 1.5;
+  letter-spacing: 0;
+  color: var(--secondary-ink);
+}
+.message-slot, #end-card { scroll-margin-top: calc(var(--chat-header-height) + var(--chat-notice-height) + 16px); }
+.message-slot .sticker-download {
+  left: 66px;
+  right: 24px;
+  bottom: 8px;
+  width: max-content;
+  max-width: calc(100% - 90px);
+  min-height: 44px;
+  padding: 6px 4px;
+  font-size: 16px;
+  line-height: 1.5;
+  color: var(--secondary-ink);
+}
+.message-slot.visitor .sticker-download { left: auto; right: 28px; }
+.photo-actions { left: 66px; right: 24px; bottom: 8px; gap: 16px; font-size: 16px; line-height: 1.5; color: var(--secondary-ink); }
+.photo-actions a { min-height: 44px; white-space: nowrap; }
+.message-avatar { left: 10px; top: 32px; width: 48px; height: 48px; min-height: 48px; }
+.composer-wrap { padding-left: 12px; padding-right: 12px; }
+#progress-track { margin-left: -12px; margin-right: -12px; }
+.composer { height: auto; min-height: 104px; padding: 10px 0; gap: 10px; }
+.composer-copy { gap: 4px; }
+.composer-copy #composer-label { font-size: 14px; line-height: 1.5; letter-spacing: 0; color: var(--secondary-ink); }
+.composer-copy #composer-text { font-size: 16px; line-height: 1.5; min-height: 48px; max-height: 48px; color: #294d3c; }
+.composer-bottom { min-height: 44px; gap: 8px; font-size: 14px; letter-spacing: 0; color: var(--secondary-ink); }
+.composer-bottom #skip { flex-shrink: 0; min-height: 44px; font-size: 16px; color: #294d3c; }
+.composer-bottom>span:nth-child(2) { font-size: 14px; }
+#mobile-worker-button { bottom: calc(var(--composer-height) + 14px); }
+#end-card { padding-bottom: calc(var(--composer-height) + 24px); }
+#end-card p { font-size: 16px; color: var(--secondary-ink); }
+#journey-id { font-size: 14px; line-height: 1.6; letter-spacing: .5px; color: var(--secondary-ink); }
+.badge-alias { font-size: 16px; color: var(--secondary-ink); }
+.primary-button, .secondary-button, .text-button { font-size: 16px; line-height: 1.5; }
+#end-card .small-note, .small-note { font-size: 14px!important; line-height: 1.7; }
+#toast { bottom: calc(var(--composer-height) + 12px); font-size: 16px; line-height: 1.5; }
+dialog { max-width: min(520px, calc(100vw - 24px)); padding: 28px; }
+dialog p { font-size: 16px; line-height: 1.8; color: var(--secondary-ink); }
+#experience-settings-status { font-size: 14px; }
+.profile-alias, .profile-note { font-size: 14px!important; color: var(--secondary-ink); }
+.profile-links>a, .profile-links>button { font-size: 16px; }
+.profile-portrait { width: 140px; height: 140px; border-radius: 42px; margin-top: -70px; }
+.profile-portrait img { transform: scale(2.174); transform-origin: 47.2% 10.2%; }
+@media(max-width:580px) {
+  .masthead { height: auto; min-height: 94px; padding: 14px 12px; gap: 8px; }
+  .brand { flex: 1; gap: 8px; }
+  .brand>span:last-child { min-width: 0; }
+  .brand small { font-size: 14px; line-height: 1.35; overflow-wrap: normal; }
+  .masthead .round-button { width: 44px; height: 44px; min-height: 44px; flex-shrink: 0; }
+  .chat-header { height: auto; min-height: 112px; padding: 12px; gap: 9px; }
+  .chat-header h2.speaker-name { font-size: 17px; }
+  .chat-header p, .notice { font-size: 14px; }
+  .avatar-placeholder { width: 56px; height: 56px; min-height: 56px; border-radius: 19px; }
+  .message-avatar { left: 8px; }
+  .message-slot .sticker-download { left: 64px; max-width: calc(100% - 88px); }
+  .message-slot.visitor .sticker-download { left: auto; right: 23px; }
+  .photo-actions { left: 64px; right: 20px; gap: 12px; }
+  .composer { gap: 8px; }
+  .composer .round-button { width: 44px; min-height: 44px; }
+  .composer-copy #composer-label, .composer-bottom { font-size: 14px; }
+  .composer-copy #composer-text, .composer-bottom #skip { font-size: 16px; }
+  .composer-bottom>span:nth-child(2) { display: none; }
+  #info-dialog { padding: 24px 20px; }
+}
