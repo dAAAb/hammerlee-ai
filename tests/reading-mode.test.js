@@ -33,6 +33,7 @@ function fixture() {
     clearTimeout: id => cancelled.push(['timeout', id]), clearInterval: id => cancelled.push(['interval', id]),
     refreshUISources() {}, animateComposer() {}, setUrl() {}, rebuildMessages() { $('#end-card').hidden = true; },
     journeyFlow: { reset() {} }, share: () => shared.push('share'), downloadSticker() {},
+    badgeAR: { reset() {}, prepare: async () => ({ state: 'ready' }) },
     saveJourneyCard: async options => { cards.push(options); return { method: 'download' }; },
     requestSelfie: async () => ({ cancelled: false }),
     trackEvent() {}, toast() {}, persistJourney: async () => true,

@@ -7,6 +7,7 @@ import { createWorker, createSticker, createBadge } from './models.js';
 import { TOPICS, VERSION, createConversation, newSeed } from './conversation.js';
 import { saveJourneyCard, shareJourney } from './export.js';
 import { requestSelfie } from './selfie.js';
+import { createBadgeAR } from './badge-ar.js';
 import { BRAND } from './branding.js';
 import photos from './photos.json';
 import { createExperienceControls } from './experience-controls.js';
@@ -46,6 +47,16 @@ const tilt = {x:0,y:0};
 const textureCache = new Map();
 const profile = createProfile();
 const profileDialog = document.querySelector('.profile-dialog');
+const badgeAR = createBadgeAR({
+  link: $('#badge-ar-link'), status: $('#badge-ar-status'), prepareButton: $('#badge-ar-prepare'),
+  onChange({ state, label }) {
+    $('#badge-ar-label').textContent = label;
+    $('#badge-ar-label').hidden = state !== 'ready';
+    $('#badge-ar-link').setAttribute('aria-label', label);
+    if (type) refreshUISources();
+  },
+});
+badgeAR.reset({ seed, version: scriptVersion });
 const controls = createExperienceControls({
   onTilt(value) { tilt.x=value.x; tilt.y=value.y; needsLayout=true; },
   onStatus({message,state}) { updateControlUI(state); $('#experience-settings-status').textContent=message; }
@@ -321,6 +332,7 @@ function updateProgress(nextIndex) {
   if(completed){
     if(!completionTracked){completionTracked=true;trackEvent('journey_complete');}
     void persistJourney();
+    prepareBadgeAR();
   }
   $('#progress-label').textContent = `${String(nextIndex + 1).padStart(2, '0')} / ${messages.length} 則`;
   $('#progress-fill').style.width = `${(nextIndex + 1) / messages.length * 100}%`;
@@ -450,9 +462,14 @@ function renderTextTranscript() {
   }
 }
 
+function prepareBadgeAR() {
+  void badgeAR.prepare({ seed, version: scriptVersion });
+}
+
 function restartJourney() {
   clearTimeout(sendTimer);sendTimer=null;sendDueAt=0;sentCount=0;desiredSentCount=0;lastSentAt=-Infinity;forceSend=false;followNextMessage=false;scrollVelocity=0;lastDownAt=-Infinity;
   scriptVersion=VERSION;seed=newSeed();conversation=createConversation(seed,scriptVersion);journeyFlow.reset(conversation);setUrl();
+  badgeAR.reset({ seed, version: scriptVersion });
   currentIndex=0;completed=false;completionTracked=false;
   if(type && renderer && scene)rebuildMessages();else renderTextTranscript();
   if(document.body.classList.contains('reading-mode'))setReadingMode(true);
@@ -492,11 +509,18 @@ function bindEndActions() {
   $('#download').addEventListener('click', downloadJourney);
   $('#download-sticker').addEventListener('click', () => downloadSticker('badge'));
   $('#restart').addEventListener('click', restartJourney);
+  if (typeof IntersectionObserver === 'function') {
+    const observer = new IntersectionObserver(entries => {
+      if (entries.some(entry => entry.isIntersecting)) prepareBadgeAR();
+    }, { rootMargin: '900px 0px' });
+    observer.observe($('#end-card'));
+  }
   window.addEventListener('scroll', () => {
     if (!document.body.classList.contains('reading-mode') || completed || $('#end-card').getBoundingClientRect().top >= innerHeight * .65) return;
     completed = true;
     if (!completionTracked) { completionTracked = true; trackEvent('journey_complete'); }
     void persistJourney();
+    prepareBadgeAR();
   }, { passive: true });
 }
 
