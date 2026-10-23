@@ -26,7 +26,7 @@ const stored = (status = 200, version = 2) => new Response(JSON.stringify({ jour
 
 test('all secondary hosts permanently redirect to the primary domain preserving share information', async () => {
   const worker = createWorker({ assets });
-  for (const origin of ['https://hammerlee.tw', 'https://www.hammerlee.tw', 'https://www.hammerlee.ai', 'http://hammerlee.ai']) {
+  for (const origin of ['https://www.hammerlee.ai', 'http://hammerlee.ai']) {
     const result = await worker.fetch(new Request(`${origin}/?s=${seed}&v=1`));
     assert.equal(result.status, 301);
     assert.equal(result.headers.get('Location'), `${CANONICAL_ORIGIN}/?s=${seed}&v=1`);

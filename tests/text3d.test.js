@@ -87,3 +87,10 @@ test('geometry caching remains stable after contour assignment', () => {
   assert.equal(type.geometry('好'), type.geometry('好'));
   for (const geometry of type.cache.values()) geometry.dispose();
 });
+
+test('published brand and photo captions have every Chinese glyph before deployment', () => {
+  const files = ['../index.html', '../src/branding.js', '../src/photos.json'];
+  const required = new Set(files.flatMap(file => fs.readFileSync(new URL(file, import.meta.url), 'utf8').match(/\p{Script=Han}/gu) || []));
+  const missing = [...required].filter(char => !data.glyphs[char]);
+  assert.deepEqual(missing, [], 'Run npm run font after changing visible copy.');
+});

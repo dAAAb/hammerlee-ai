@@ -87,9 +87,10 @@ objects use the fallback with `X-OG-Image-Source: fallback`; valid objects use
 
 The Supabase Edge function generates a PNG from the selected script when a journey is first saved. It uses trusted glyph outlines and a pinned, integrity-checked SVG renderer. Failures leave the conversation intact and the Worker serves the shared fallback; no visitor-authored image uploads are accepted.
 
-`hammerlee.tw`, `www.hammerlee.tw`, and `www.hammerlee.ai` redirect with 301 to
+Only `www.hammerlee.ai` redirects with 301 to
 `https://hammerlee.ai`, preserving path and query. Only the canonical homepage
 is listed in the sitemap. Preview hosts are noindex and disallow crawlers.
+`hammerlee.tw` is reserved for another site and is not bound here.
 DNS, TLS, public audience settings, and runtime secrets must be configured by
 the owner workflow before deployment; this build does not make those changes.
 

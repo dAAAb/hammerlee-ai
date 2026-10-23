@@ -1,6 +1,6 @@
 # 川伯，聊聊
 
-Three.js 立體市政資訊互動網站。雙方對話皆為預寫腳本，非李四川本人原話或即時回覆；示範回覆不代表訪客意見。主網域 `hammerlee.ai`，`hammerlee.tw` 以 301 轉往主網域。
+Three.js 立體市政資訊互動網站。雙方對話皆為預寫腳本，非李四川本人原話或即時回覆；示範回覆不代表訪客意見。本站僅使用 `hammerlee.ai`；`hammerlee.tw` 保留給其他用途，不連接此站。
 
 ## 開發與建置
 
@@ -32,6 +32,16 @@ Vite 本機預覽提供畫面；雲端保存 API 由正式 Worker 提供。正�
 只保存預寫劇本、版本、隨機編號與時間，不收集訪客姓名、自由輸入或政治偏好。劇本不可修改；相同編號綁定同一版本。分享連結可公開閱讀。PNG 社群預覽由可信劇本生成，失敗時使用品牌備用圖。
 
 初始保護限制為每個日別匿名 HMAC 來源 30 次新建、全站每天 1,000 次新建。相同編號重播不計入新建。上線大規模推廣前應依實際容量與帳單調整 `register_journey` 的限額及監控。IP 不寫入應用資料表；託管平台存取紀錄依各平台保留政策處理。
+
+## Google Analytics
+
+GA4 Measurement ID 設定在 `src/analytics-config.js`。只在 `https://hammerlee.ai` 延遲載入非同步 Google tag；本機、預覽及其他網域均不載入。每次頁面載入只送一次 `page_view`，重開旅程不新增瀏覽次數。
+
+自訂事件只有 `journey_complete`、`share`、`download`，不接受自由參數。完成事件每段旅程只記一次；分享只在原生分享成功返回或連結成功複製時記錄，取消與手動複製提示不計。下載記錄圖片成功產生並啟動下載、原生匯出成功返回，或使用者點選照片下載連結；不代表作業系統已完成保存。
+
+所有事件固定 `page_location=https://hammerlee.ai/`、清空 `page_referrer`，不傳送旅程編號、完整 query、對話文字或政治偏好，也不設定使用者屬性。Google Signals 與廣告個人化關閉，廣告用途的 consent 預設 denied；尊重瀏覽器 DNT／GPC，不載入分析。Google Analytics 的一般使用統計可能使用 Cookie。
+
+**正式 GA 網頁資料串流必須關閉 Enhanced Measurement**，尤其瀏覽器 history pageviews、Site Search、Outbound clicks、File downloads 和 Form interactions；這些自動事件會獨立讀取網址，Site Search 預設搜尋參數 `s` 更會把分享編號當作搜尋詞。維持 Google Signals、User-provided data collection 及廣告個人化關閉，不建立政治偏好或人口特徵廣告受眾。參考 [Google pageviews](https://developers.google.com/analytics/devguides/collection/ga4/views) 與 [設定欄位](https://developers.google.com/analytics/devguides/collection/ga4/reference/config)。
 
 ## 字型與資源
 

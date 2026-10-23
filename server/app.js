@@ -2,7 +2,7 @@ import { BRAND } from '../src/branding.js';
 import { createConversation, normalizeSeed, VERSION } from '../src/conversation.js';
 
 export const CANONICAL_ORIGIN = 'https://hammerlee.ai';
-const REDIRECT_HOSTS = new Set(['hammerlee.tw', 'www.hammerlee.tw', 'www.hammerlee.ai']);
+const REDIRECT_HOSTS = new Set(['www.hammerlee.ai']);
 const MAX_REQUEST_BYTES = 1024;
 const MAX_UPSTREAM_BYTES = 65_536;
 const MAX_IMAGE_BYTES = 2_097_152;
@@ -208,7 +208,7 @@ function pageHtml(source, url, details) {
     const selected = createConversation(details.seed, details.version).messages.filter(message => message.topic !== 'intro' && message.role !== 'system').slice(0, 2);
     description = `${BRAND.subtitle}。${selected.map(message => message.text).join(' ')} 雙方皆為預寫腳本，非本人原話。`;
   }
-  const title = `${BRAND.title}｜${BRAND.subtitle}`;
+  const title = BRAND.title;
   const metadata = [
     `<meta name="robots" content="${robots}">`,
     `<link rel="canonical" href="${canonical}">`,

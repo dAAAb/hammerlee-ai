@@ -10,6 +10,7 @@ import photos from './photos.json';
 import { createExperienceControls } from './experience-controls.js';
 import { createProfile, PROFILE_URL } from './profile.js';
 import { saveJourney } from './journey-store.js';
+import { initAnalytics, trackEvent } from './analytics.js';
 
 const $ = selector => document.querySelector(selector);
 const params = new URLSearchParams(location.search);
@@ -29,10 +30,15 @@ const liveMeshes = new Map();
 const canvas = $('#scene');
 const badgeScene = new THREE.Scene();
 let savePromise=null, savedKey=null;
+let completionTracked = false;
 let sentCount = 0, sendTimer = null, forceSend = false;
+let desiredSentCount = 0, sendDueAt = 0, queuedAt = 0, lastSentAt = -Infinity, followNextMessage = false;
+let scrollVelocity = 0, lastScrollAt = performance.now(), lastDownAt = -Infinity, lastInputAt = -Infinity;
+let runwayHeight = 0, totalMessageHeight = 0;
 const tilt = {x:0,y:0};
 const textureCache = new Map();
 const profile = createProfile();
+const profileDialog = document.querySelector('.profile-dialog');
 const controls = createExperienceControls({
   onTilt(value) { tilt.x=value.x; tilt.y=value.y; needsLayout=true; },
   onStatus({message,state}) { updateControlUI(state); $('#experience-settings-status').textContent=message; }
@@ -46,39 +52,85 @@ function photoTexture(url, portrait=false) {
   const key=url+(portrait?':portrait':'');
   if (!textureCache.has(key)) {
     const texture=new THREE.TextureLoader().load(url,()=>{needsLayout=true;}); texture.colorSpace=THREE.SRGBColorSpace;
-    if(portrait){ texture.repeat.set(.43,.43); texture.offset.set(.28,.45); }
+    // Square crop includes the full face, with the eyes above centre and no
+    // surrounding campaign lettering. Texture coordinates are bottom-up.
+    if(portrait){ texture.repeat.set(.46,.46); texture.offset.set(.255,.485); }
     textureCache.set(key,texture);
   }
   return textureCache.get(key);
 }
 function portrait(size) {
   const group=panel(size,size,'#fffdf4',6, size/3);
-  const geometry=new THREE.PlaneGeometry(size-4,size-4); const mesh=new THREE.Mesh(geometry,new THREE.MeshBasicMaterial({map:photoTexture(PROFILE_URL,true),toneMapped:false}));
-  mesh.userData.ownedGeometry=true; mesh.position.set(size/2,-size/2,7); group.add(mesh); return group;
+  // Fill the rounded front face itself rather than placing a smaller square
+  // inside it; the extruded side and outline still provide the 3D frame.
+  const geometry=new THREE.ShapeGeometry(roundedShape(size,size,size/3),12);
+  const vertices=geometry.attributes.position, uv=geometry.attributes.uv;
+  for(let index=0;index<vertices.count;index++)uv.setXY(index,vertices.getX(index)/size,1+vertices.getY(index)/size);
+  const mesh=new THREE.Mesh(geometry,new THREE.MeshBasicMaterial({map:photoTexture(PROFILE_URL,true),toneMapped:false}));
+  mesh.userData.ownedGeometry=true; mesh.position.z=7.1; group.add(mesh); return group;
 }
 function refreshSentSlots() {
-  for(const info of messages){info.slot.hidden=info.index>sentCount;info.slot.classList.toggle('pending-message',info.index===sentCount);info.slot.style.height=info.index===sentCount?'90px':`${info.slotHeight}px`;for(const b of info.slot.querySelectorAll('button,a'))b.hidden=info.index>=sentCount;}
+  for(const info of messages){
+    const hidden=info.index>=sentCount;
+    if(info.hidden===hidden)continue;
+    info.hidden=hidden;info.slot.hidden=hidden;
+    for(const action of info.actions)action.hidden=hidden;
+  }
+  // A bounded runway keeps native scrolling available while the next few
+  // messages arrive. It never creates a 48-message blank document.
+  const revealedHeight=sentCount ? messages[sentCount-1].bottomOffset : 0;
+  const nextRunway=sentCount<messages.length ? Math.min(totalMessageHeight-revealedHeight,Math.max(260,height*.75)) : 0;
+  if(nextRunway!==runwayHeight){runwayHeight=nextRunway;scrollRoot.style.paddingBottom=`${runwayHeight}px`;}
   $('#end-card').hidden=sentCount<messages.length;
 }
-function maybeSend() {
-  if(sendTimer||sentCount>=messages.length||document.hidden||$('#info-dialog').open||document.querySelector('.profile-dialog[open]'))return;
-  const next=messages[sentCount];if(!next)return;
-  const rect=next.slot.getBoundingClientRect();
-  if(!forceSend && rect.top>innerHeight-120)return;
-  const scrollAfter=forceSend;forceSend=false;
-  const delay=next.message.role==='system'?250:Math.min(1500,600+next.message.text.length*14);
-  $('#composer-label').textContent=next.message.role==='visitor'?'示範回覆正在輸入…':'川伯正在準備下一則…';
-  if(next.message.role==='visitor')animateComposer(sentCount-1);
+function firstMessageAfter(offset, limit=messages.length) {
+  let low=0,high=limit;
+  while(low<high){const middle=(low+high)>>>1;if(messages[middle].bottomOffset<=offset)low=middle+1;else high=middle;}
+  return low;
+}
+function maybeSend(now=performance.now(),rootTop=scrollRoot.getBoundingClientRect().top) {
+  if(sentCount>=messages.length||document.hidden||$('#info-dialog').open||profileDialog?.open)return;
+  const speed=scrollVelocity*Math.exp(-Math.max(0,now-lastDownAt)/420);
+  const frontier=height-130-rootTop+Math.min(height*.25,90+speed*65);
+  desiredSentCount=Math.max(desiredSentCount,Math.min(messages.length,firstMessageAfter(frontier)+1));
+  if(forceSend){desiredSentCount=Math.max(desiredSentCount,sentCount+1);followNextMessage=true;forceSend=false;}
+  if(desiredSentCount<=sentCount)return;
+  const next=messages[sentCount];
+  const catchingUp=now-lastDownAt<700 && (speed>1 || desiredSentCount-sentCount>2);
+  const delay=catchingUp||followNextMessage ? 70 : next.message.role==='system' ? 300 : Math.max(300,Math.min(650,650-speed*180));
+  if(!sendTimer){
+    queuedAt=now;
+    $('#composer-label').textContent=next.message.role==='visitor'?'示範回覆正在輸入…':'川伯正在準備下一則…';
+    if(next.message.role==='visitor')animateComposer(sentCount-1);
+  }
+  const deadline=Math.max(lastSentAt+70,queuedAt+delay);
+  // A quick gesture shortens a pending slow send immediately. It never waits
+  // behind the old timer and never delivers a burst of overlapping messages.
+  if(sendTimer && deadline>=sendDueAt-8)return;
+  clearTimeout(sendTimer);sendDueAt=deadline;
   sendTimer=setTimeout(()=>{
-    sendTimer=null;if(document.hidden)return;
-    next.revealTime=performance.now();sentCount++;refreshSentSlots();
-    if(next.message.role!=='system')controls.notifyMessage(next.message.role);
-    if(scrollAfter)next.slot.scrollIntoView({behavior:reduced?'instant':'smooth',block:'center'});
+    sendTimer=null;sendDueAt=0;
+    if(document.hidden||$('#info-dialog').open||profileDialog?.open)return;
+    const message=messages[sentCount];if(!message)return;
+    lastSentAt=performance.now();message.revealTime=lastSentAt;sentCount++;refreshSentSlots();
+    if(message.message.role!=='system')controls.notifyMessage(message.message.role);
+    if(followNextMessage){followNextMessage=false;message.slot.scrollIntoView({behavior:reduced?'instant':'smooth',block:'center'});}
     needsLayout=true;refreshUISources();
-  },delay);
+  },Math.max(0,deadline-now));
+}
+function noteScrollIntent(delta,now=performance.now()) {
+  if(delta<=0||document.hidden||$('#info-dialog').open||profileDialog?.open)return;
+  const elapsed=Math.max(16,Math.min(120,now-lastInputAt));lastInputAt=now;
+  scrollVelocity=Math.max(scrollVelocity*.65,Math.min(12,delta/elapsed));lastDownAt=now;
+  // Wheel/touch intent still arrives at the current document boundary, even
+  // when the browser cannot emit another scroll event until content expands.
+  const atFrontier=scrollY+height>=document.documentElement.scrollHeight-100;
+  if(atFrontier)desiredSentCount=Math.max(desiredSentCount,Math.min(messages.length,sentCount+Math.max(2,Math.min(8,Math.ceil(delta/120)))));
+  needsLayout=true;
 }
 function revealThrough(index) {
-  clearTimeout(sendTimer);sendTimer=null;sentCount=Math.max(sentCount,Math.min(index+1,messages.length));
+  clearTimeout(sendTimer);sendTimer=null;sendDueAt=0;forceSend=false;followNextMessage=false;
+  sentCount=Math.max(sentCount,Math.min(index+1,messages.length));desiredSentCount=Math.max(desiredSentCount,sentCount);
   refreshSentSlots();needsLayout=true;refreshUISources();
 }
 
@@ -156,6 +208,7 @@ function rebuildMessages() {
   liveMeshes.forEach(disposeGroup); liveMeshes.clear(); scrollRoot.replaceChildren();
   const shellWidth = $('#chat-shell').clientWidth;
   const mobile = shellWidth < 450; const fontSize = enlarged ? (mobile ? 28 : 29) : (mobile ? 23 : 24);
+  let topOffset=0;
   messages = conversation.messages.map((message, index) => {
     const visitor = message.role === 'visitor', system = message.role === 'system';
     const maxW = shellWidth - (mobile ? 98 : 128);
@@ -171,10 +224,12 @@ function rebuildMessages() {
     if(photo){ const actions=document.createElement('div');actions.className='photo-actions';const link=document.createElement('a');link.href=photo.sourceUrl;link.target='_blank';link.rel='noopener noreferrer';link.textContent='官方原文 ↗';const download=document.createElement('a');download.href=photo.url;download.download=photo.id+'.webp';download.textContent='下載照片 ↓';actions.append(link,download);slot.appendChild(actions);}
     if(!visitor&&!system){const avatarButton=document.createElement('button');avatarButton.className='message-avatar';avatarButton.setAttribute('aria-label','查看李四川人物資料');avatarButton.onclick=()=>profile.open();slot.appendChild(avatarButton);}
     scrollRoot.appendChild(slot);
-    return { message, index, slot, shellWidth, fontSize, lines, bubbleWidth, bubbleHeight, slotHeight, emoji, photo, x: visitor ? shellWidth - bubbleWidth - (mobile ? 23 : 28) : (mobile ? 56 : 66), revealTime: -1 };
+    const info={ message, index, slot, shellWidth, fontSize, lines, bubbleWidth, bubbleHeight, slotHeight, topOffset, bottomOffset:topOffset+slotHeight, actions:[...slot.querySelectorAll('button,a')], emoji, photo, x: visitor ? shellWidth - bubbleWidth - (mobile ? 23 : 28) : (mobile ? 56 : 66), revealTime: -1 };
+    topOffset+=slotHeight;return info;
   });
+  totalMessageHeight=topOffset;
   refreshSentSlots();
-  $('#journey-id').textContent = `CITY / ${seed.slice(0, 8).toUpperCase()} · ${seed.slice(8, 16).toUpperCase()}`;
+  $('#journey-id').textContent = `CITY / ${seed.match(/.{8}/g).join(' · ').toUpperCase()}`;
   const transcript = $('#transcript'); transcript.replaceChildren();
   conversation.messages.forEach(m => { const article = document.createElement('article'); article.className = `transcript-message ${m.role}`; const name = document.createElement('strong'); name.textContent = m.role === 'visitor' ? '你（示範回覆）：' : m.role === 'system' ? '展示說明：' : BRAND.shortSpeaker+'：'; article.append(name, document.createTextNode(m.text)); transcript.appendChild(article); });
   $('#topics').replaceChildren();
@@ -246,7 +301,10 @@ function updateProgress(nextIndex) {
   const changed = nextIndex !== currentIndex || nextCompleted !== completed;
   if (!changed) return;
   currentIndex = nextIndex; completed = nextCompleted;
-  if(completed)void persistJourney();
+  if(completed){
+    if(!completionTracked){completionTracked=true;trackEvent('journey_complete');}
+    void persistJourney();
+  }
   $('#progress-label').textContent = `${String(nextIndex + 1).padStart(2, '0')} / 48 則`;
   $('#progress-fill').style.width = `${(nextIndex + 1) / 48 * 100}%`;
   const rawTopic = messages[nextIndex]?.message.topic;
@@ -263,7 +321,8 @@ function resize() { width = innerWidth; height = innerHeight; renderer.setPixelR
 function render(time = 0) {
   frame = requestAnimationFrame(render);
   if (document.hidden || document.body.classList.contains('reading-mode')) return;
-  maybeSend();
+  const messageTop=scrollRoot.getBoundingClientRect().top;
+  maybeSend(time||performance.now(),messageTop);
   if (reduced && !needsLayout && !uiDirty) return;
   // Limit animated rendering to 30 fps; scroll input continues to update every frame.
   if (time - lastTime < 29 && !needsLayout && !uiDirty) return;
@@ -271,18 +330,18 @@ function render(time = 0) {
   const t = time / 1000;
   if (uiDirty) rebuildUI();
   const shell = $('#chat-shell').getBoundingClientRect(); const header = $('.chat-header').getBoundingClientRect(); const notice = $('.notice').getBoundingClientRect(); const composer = $('.composer-wrap').getBoundingClientRect();
-  let active = currentIndex;
-  for (const info of messages) {
-    if(info.index>=sentCount){if(liveMeshes.has(info.index)){disposeGroup(liveMeshes.get(info.index));liveMeshes.delete(info.index);}continue;}
-    const rect = info.slot.getBoundingClientRect(); const visible = rect.bottom > notice.bottom - 30 && rect.top < composer.top + 60;
-    if (rect.top < height * .65) active = info.index;
-    if (visible) {
+  const active=Math.max(0,Math.min(sentCount-1,firstMessageAfter(height*.65-messageTop,sentCount)));
+  const firstVisible=firstMessageAfter(notice.bottom-30-messageTop,sentCount);
+  let lastVisible=firstVisible;
+  while(lastVisible<sentCount && messages[lastVisible].topOffset+messageTop<composer.top+60)lastVisible++;
+  for(const [index,mesh] of liveMeshes){if(index<firstVisible||index>=lastVisible){disposeGroup(mesh);liveMeshes.delete(index);}}
+  for(let index=firstVisible;index<lastVisible;index++) {
+      const info=messages[index];
       if (!liveMeshes.has(info.index)) { const mesh = buildMessage(info); liveMeshes.set(info.index, mesh); scene.add(mesh); if (info.revealTime < 0) info.revealTime = time; }
       const mesh = liveMeshes.get(info.index); const p = reduced ? 1 : Math.min(1, (time - info.revealTime) / 440); const ease = 1 - Math.pow(1 - p, 3);
-      setPosition(mesh, shell.left + (1 - ease) * (info.message.role === 'visitor' ? 20 : -20), rect.top + (1 - ease) * 15);
+      setPosition(mesh, shell.left + (1 - ease) * (info.message.role === 'visitor' ? 20 : -20), messageTop+info.topOffset + (1 - ease) * 15);
       if(mesh.userData.bubble)mesh.userData.bubble.rotation.set((inspecting?.21:.055)+tilt.y*.035,(inspecting?-.27:-.055)+tilt.x*.045,0);
       if (mesh.userData.sticker) mesh.userData.sticker.rotation.z = -.08 + (reduced ? 0 : Math.sin(t * 1.6 + info.index) * .055);
-    } else if (liveMeshes.has(info.index)) { disposeGroup(liveMeshes.get(info.index)); liveMeshes.delete(info.index); }
   }
   const endVisible = sentCount===messages.length && $('#end-card').getBoundingClientRect().top < height * .65;
   if (active !== currentIndex || endVisible !== completed || needsLayout) updateProgress(active);
@@ -319,7 +378,7 @@ async function downloadSticker(kind = 'heart') {
   try {
     const model = createSticker(kind, seed); const snapshot = snapshotModel(model); disposeGroup(model);
     const blob = await new Promise((resolve, reject) => snapshot.toBlob(value => value ? resolve(value) : reject(new Error('無法產生貼圖')), 'image/png'));
-    const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `city-sticker-${kind}-${seed.slice(0, 8)}.png`; a.style.display = 'none'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 60000); toast('貼圖已產生，請查看下載項目。');
+    const url = URL.createObjectURL(blob); const a = document.createElement('a'); a.href = url; a.download = `city-sticker-${kind}-${seed.slice(0, 8)}.png`; a.style.display = 'none'; document.body.appendChild(a); a.click(); a.remove(); setTimeout(() => URL.revokeObjectURL(url), 60000); trackEvent('download'); toast('貼圖已產生，請查看下載項目。');
   } catch (error) { console.error(error); toast('貼圖下載失敗，請再試一次。'); }
 }
 async function persistJourney() {
@@ -334,11 +393,17 @@ async function persistJourney() {
 async function share() {
   await persistJourney();
   const result = await shareJourney({ conversation, url: location.href });
+  if (result.method === 'native' || result.method === 'clipboard') trackEvent('share');
   if (result.method === 'clipboard') toast('同一段對話的連結已複製。');
   else if (result.method === 'manual') { $('#info-dialog').showModal(); let link = $('#manual-share-link'); if (!link) { link = document.createElement('input'); link.id = 'manual-share-link'; link.readOnly = true; link.setAttribute('aria-label', '分享連結'); $('#info-dialog').appendChild(link); } link.value = result.url; link.focus(); link.select(); toast('請複製下方連結分享。'); }
 }
 
 function bind() {
+  // Real photo-link activations only. Generated PNG downloads are recorded after
+  // successful generation below, so their synthetic clicks are not counted twice.
+  document.addEventListener('click', event => {
+    if (event.isTrusted && !event.defaultPrevented && event.button === 0 && event.target.closest?.('a[download]')) trackEvent('download');
+  });
   $('.avatar-placeholder').onclick=()=>profile.open();
   $('#sound-toggle').onclick=()=>controls.toggleSound();
   $('#vibration-toggle').onclick=()=>controls.toggleVibration();
@@ -356,12 +421,35 @@ function bind() {
   $('#motion').addEventListener('click', () => { reduced = !reduced; $('#motion').setAttribute('aria-pressed', String(reduced)); $('#motion').setAttribute('aria-label', reduced ? '開啟動畫' : '減少動畫'); $('#motion').textContent = reduced ? '▷' : 'Ⅱ'; document.documentElement.style.scrollBehavior = reduced ? 'auto' : 'smooth'; animateComposer(currentIndex); toast(reduced ? '已減少動畫，仍可自由捲動。' : '已開啟動畫。'); });
   motionQuery.addEventListener('change', event => { reduced = event.matches; $('#motion').setAttribute('aria-pressed', String(reduced)); needsLayout = true; });
   $('#next').addEventListener('click', () => { if (completed) share(); else if(currentIndex+1<sentCount)messages[currentIndex+1].slot.scrollIntoView({behavior:reduced?'instant':'smooth',block:'center'});else{forceSend=true;maybeSend();} });
-  $('#skip').addEventListener('click', () => {revealThrough(messages.length-1);$('#end-card').scrollIntoView({behavior:reduced?'instant':'smooth',block:'start'});});
+  $('#skip').addEventListener('click', () => {
+    revealThrough(messages.length-1);
+    // Put the badge and the primary share action together in the usable area,
+    // rather than stopping at an end-card heading above the actual actions.
+    const badgeTop=$('#badge-space').getBoundingClientRect().top+scrollY;
+    const shareBottom=$('#share').getBoundingClientRect().bottom+scrollY;
+    const topInset=$('.chat-header').offsetHeight+$('.notice').offsetHeight+16;
+    const bottomInset=$('.composer-wrap').offsetHeight+20;
+    const available=height-topInset-bottomInset;
+    const target=badgeTop-topInset-Math.max(0,(available-(shareBottom-badgeTop))/2);
+    window.scrollTo({top:Math.max(0,target),behavior:reduced?'instant':'smooth'});
+  });
   $('#share').addEventListener('click', share);
-  $('#download').addEventListener('click', async () => { try { const model = createBadge(seed); const badgeCanvas = snapshotModel(model); disposeGroup(model); const result = await saveJourneyCard({ conversation, badgeCanvas }); if (result.method === 'download') toast('對話紀念卡已產生，請查看下載項目。'); } catch (error) { console.error(error); toast('圖卡下載失敗，請再試一次。'); } });
+  $('#download').addEventListener('click', async () => { try { const model = createBadge(seed); const badgeCanvas = snapshotModel(model); disposeGroup(model); const result = await saveJourneyCard({ conversation, badgeCanvas }); if (result.method === 'download' || result.method === 'native') trackEvent('download'); if (result.method === 'download') toast('對話紀念卡已產生，請查看下載項目。'); } catch (error) { console.error(error); toast('圖卡下載失敗，請再試一次。'); } });
   $('#download-sticker').addEventListener('click', () => downloadSticker('badge'));
-  $('#restart').addEventListener('click', () => { savePromise=null;savedKey=null;clearTimeout(sendTimer);sendTimer=null;sentCount=0;scriptVersion=VERSION;seed = newSeed(); conversation = createConversation(seed,scriptVersion); setUrl(); currentIndex = 0; completed = false; rebuildMessages(); window.scrollTo({ top: 0, behavior: 'instant' }); animateComposer(0); });
-  window.addEventListener('scroll', () => { movement = Math.min(15, movement + Math.abs(window.scrollY - lastScroll) * .04); lastScroll = scrollY; needsLayout = true; clearTimeout(window.uiScrollTimer); window.uiScrollTimer = setTimeout(() => { uiDirty = true; }, 100); }, { passive: true });
+  $('#restart').addEventListener('click', () => { savePromise=null;savedKey=null;clearTimeout(sendTimer);sendTimer=null;sendDueAt=0;sentCount=0;desiredSentCount=0;lastSentAt=-Infinity;forceSend=false;followNextMessage=false;scrollVelocity=0;lastDownAt=-Infinity;scriptVersion=VERSION;seed = newSeed(); conversation = createConversation(seed,scriptVersion); setUrl(); currentIndex = 0; completed = false; completionTracked = false; rebuildMessages(); window.scrollTo({ top: 0, behavior: 'instant' }); animateComposer(0); });
+  window.addEventListener('scroll', () => {
+    const now=performance.now(),delta=window.scrollY-lastScroll;
+    movement=Math.min(15,movement+Math.abs(delta)*.04);
+    if(delta>0){scrollVelocity=Math.max(scrollVelocity*.65,Math.min(12,delta/Math.max(16,now-lastScrollAt)));lastDownAt=now;}
+    else if(delta<0)scrollVelocity=0;
+    lastScroll=scrollY;lastScrollAt=now;needsLayout=true;
+    clearTimeout(window.uiScrollTimer);window.uiScrollTimer=setTimeout(()=>{uiDirty=true;},100);
+  },{passive:true});
+  window.addEventListener('wheel',event=>{const scale=event.deltaMode===1?24:event.deltaMode===2?height:1;noteScrollIntent(event.deltaY*scale);},{passive:true});
+  let touchY=null;
+  window.addEventListener('touchstart',event=>{touchY=event.touches.length===1?event.touches[0].clientY:null;},{passive:true});
+  window.addEventListener('touchmove',event=>{if(touchY===null||event.touches.length!==1)return;const y=event.touches[0].clientY;noteScrollIntent(touchY-y);touchY=y;},{passive:true});
+  window.addEventListener('touchend',()=>{touchY=null;},{passive:true});
   let resizeTimer; window.addEventListener('resize', () => { resize(); clearTimeout(resizeTimer); resizeTimer = setTimeout(() => rebuildMessages(), 180); });
   canvas.addEventListener('webglcontextlost', event => { event.preventDefault(); document.body.classList.add('reading-mode'); toast('3D 畫面暫時中斷，已切換純文字閱讀。'); });
 }
@@ -378,7 +466,7 @@ async function init() {
     setUrl(); rebuildMessages(); resize(); bind(); animateComposer(0);
     $('#motion').setAttribute('aria-pressed', String(reduced)); $('#loading').classList.add('hide'); render();
     if(params.has('v')&&!['1','2'].includes(params.get('v')))toast('此連結的版本無法辨識，已載入目前版本。');
-    window.__CITY3D__ = { get stats() { return { drawCalls: renderer.info.render.calls, triangles: renderer.info.render.triangles, glyphGeometries: type.cache.size, missingGlyphs: [...type.missing], visibleMessages: liveMeshes.size, activeIndex: currentIndex, seed, version: scriptVersion, sentCount, totalMessages: messages.length, reducedMotion: reduced, geometryText: true }; }, conversation, renderer, scene, uiScene, camera, snapshotModel };
+    window.__CITY3D__ = { get stats() { return { drawCalls: renderer.info.render.calls, triangles: renderer.info.render.triangles, glyphGeometries: type.cache.size, missingGlyphs: [...type.missing], visibleMessages: liveMeshes.size, activeIndex: currentIndex, seed, version: scriptVersion, sentCount, desiredSentCount, runwayHeight, scrollVelocity, totalMessages: messages.length, reducedMotion: reduced, geometryText: true }; }, conversation, renderer, scene, uiScene, camera, snapshotModel };
   } catch (error) {
     console.error(error); $('#loading-status').textContent = '此裝置暫時無法啟動 3D，已切換文字閱讀。';
     document.body.classList.add('reading-mode');
@@ -386,4 +474,5 @@ async function init() {
     $('#loading').classList.add('hide'); $('#about').onclick = () => $('#info-dialog').showModal(); $('#close-dialog').onclick = () => $('#info-dialog').close();
   }
 }
+initAnalytics();
 init();

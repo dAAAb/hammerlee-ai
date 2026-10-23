@@ -1,0 +1,20 @@
+{
+  "siteProjectId": "appgprj_6adb2cfdad648191ba62c73d2b2d753c",
+  "supabaseProjectId": "moydlexgxsrqawsqqttm",
+  "supabaseRegion": "ap-northeast-1",
+  "origin": "https://hammerlee-ai.daaab.chatgpt.site",
+  "primaryDomain": "hammerlee.ai",
+  "reservedUnusedDomain": "hammerlee.tw",
+  "analytics": {"account": "juchunko", "accountId": "303088657", "propertyId": "560494349", "streamId": "16188236673", "measurementId": "G-PSBSDE64S5", "enhancedMeasurement": false, "redactedQueryParameters": ["s", "v"]},
+  "firstPublishedCommit": "63ee3c857afa42abef76790529bb94730a20b5b0",
+  "dnsBefore": {"A": "Parked", "www": "hammerlee.ai.", "nameservers": ["ns51.domaincontrol.com", "ns52.domaincontrol.com"]},
+  "dnsRequired": [
+    {"type":"A","name":"@","value":"162.159.143.30"},
+    {"type":"A","name":"@","value":"172.66.3.26"},
+    {"type":"CNAME","name":"www","value":"custom-domains.chatgpt.site."},
+    {"type":"TXT","name":"_openai-site-verification","value":"openai-site-verification=SB9p2SIY_UETj8jyx1yqtyAdwxEe7uACFLQQhpYDQWc"},
+    {"type":"TXT","name":"_cf-custom-hostname","value":"81036aaa-9b6b-4165-9545-62aeb50b068b"},
+    {"type":"TXT","name":"_openai-site-verification.www","value":"openai-site-verification=TJrW7-uxcfDFGySuZRpF7xIZYb17UIVQvKuQzD04qhw"},
+    {"type":"TXT","name":"_cf-custom-hostname.www","value":"3e45b2d4-d5f5-4a3f-b48d-61633e65e268"}
+  ]
+}
